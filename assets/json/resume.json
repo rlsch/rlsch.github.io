@@ -26,7 +26,7 @@
       "endDate": "now",
       "score": "10",
       "courses": ["Research on underground robotics, specifically computer vision.", "Developing new methods for localization based on depth data."],
-      "teaching":["Supervision of student’s theses.", "Supervision of seminars for programming and scientific writing."]
+      "teaching": ["Supervision of student’s theses.", "Supervision of seminars for programming and scientific writing."]
     },
     {
       "studyType": "Research Scholar",
@@ -37,7 +37,7 @@
       "endDate": "2016",
       "score": "1.3",
       "courses": [
-        "Research for master's thesis during semester abroad", 
+        "Research for master's thesis during semester abroad",
         "Thesis&#58; \"Multitarget Multisensor Motion Tracking of Vehicles with Vehicle Based Multilayer 2D Laser Range Finders\"."
       ]
     },

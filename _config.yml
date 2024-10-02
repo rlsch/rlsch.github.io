@@ -247,6 +247,7 @@ exclude:
   - _pages/projects.md
   - _pages/profiles.md
   - _pages/dropdown.md
+  - assets/json/resume.json
   - purgecss.config.js
   - README.md
   - readme_preview/
