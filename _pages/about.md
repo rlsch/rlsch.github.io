@@ -20,4 +20,4 @@ social: true # includes social icons at the bottom of the page
 
 I am a research assistant and PhD student at the [Institute of Computer Science](https://tu-freiberg.de/en/fakult1/inf) at the [Technical University Bergakademie Freiberg](https://tu-freiberg.de/en), Germany. Before that, I received my Master's degree in Robotics, Cognition, Intelligence at [Technical University of Munich](https://www.tum.de/en/) in 2017.
 
-In the last years, I was working on the projects [ARIDuA](https://tu-freiberg.de/en/aridua) (Autonomous Robots and the Internet of Things in Underground Facilities) and [HoloMine](https://holomine.eu/). My current research focuses on underground robotics, computer vision, depth data, and localization.
+In the last years, I was working on the projects [ARIDuA](https://web.archive.org/web/20221001004540/https://tu-freiberg.de/en/aridua) (Autonomous Robots and the Internet of Things in Underground Facilities) and [HoloMine](https://holomine.eu/). My current research focuses on underground robotics, computer vision, depth data, and localization.
