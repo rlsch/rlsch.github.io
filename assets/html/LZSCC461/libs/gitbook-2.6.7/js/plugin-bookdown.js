@@ -99,7 +99,7 @@ gitbook.require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
     href = href.substr(href.lastIndexOf('https://www.lancaster.ac.uk/') + 1);
     // accentuated characters need to be decoded (#819)
     href = decodeURIComponent(href);
-    if (href === '') href = 'index-2.html';
+    if (href === '') href = 'index.html';
     var li = $('a[href^="' + href + location.hash + '"]').parent('li.chapter').first();
     var summary = $('ul.summary'), chaps = summary.find('li.chapter');
     if (li.length === 0) li = chaps.first();
