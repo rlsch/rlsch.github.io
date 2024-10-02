@@ -3,7 +3,6 @@
     "name": "Robert Lösch",
     "label": "Scientist",
     "image": "",
-    "email": "Robert.Loesch <at> tu-freiberg.de"
   },
   "work": [
     {
@@ -16,18 +15,6 @@
       "highlights": ["Relativity"]
     }
   ],
-  "volunteer": [
-    {
-      "organization": "People's Climate March",
-      "location": "Zurich, Switzerland",
-      "position": "Lead Organizer",
-      "url": "https://example.com",
-      "startDate": "2014-04-01",
-      "endDate": "2015-07-01",
-      "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-      "highlights": ["Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.", "Men of the year 2014 by Time magazine"]
-    }
-  ],
   "education": [
     {
       "studyType": "PhD",
@@ -38,16 +25,33 @@
       "startDate": "2017",
       "endDate": "now",
       "score": "10",
-      "courses": ["courses"]
+      "courses": ["Research on underground robotics, specifically computer vision.", "Developing new methods for localization based on depth data."],
+      "teaching":[
+        "Supervision of student’s theses.",
+        "Supervision of seminars for programming and scientific writing."
+      ]
     },
     {
       "studyType": "Research Scholar",
       "institution": "Carnegie Mellon University, Pittsburgh, Pennsylvania, USA",
-      "location": "Pittsburgh, Pennsylvania, USA",
-      "url": "https://www.tu-freiberg.de",
+      "location": "Pittsburgh, USA",
+      "url": "https://www.cmu.edu/",
       "startDate": "2016",
+      "endDate": "2016",
+      "score": "1.3",
+      "courses": [
+        "Research for master's thesis during semester abroad", 
+        "Thesis&#58; \"Multitarget Multisensor Motion Tracking of Vehicles with Vehicle Based Multilayer 2D Laser Range Finders\"."]
+    },
+    {
+      "studyType": "Master of Science",
+      "institution": "TU Munich, Munich, Germany",
+      "location": "Munich, Germany",
+      "url": "https://www.tum.de/",
+      "startDate": "2014",
+      "endDate": "2017",
       "score": "10",
-      "courses": ["Research for master's thesis during semester abroad", "Thesis&#58; \"Multitarget Multisensor Motion Tracking of Vehicles with Vehicle Based Multilayer 2D Laser Range Finders\"."]
+      "area": "Graduate Degree (M.Sc.) in Robotics, Cognition, Intelligence."
     }
   ],  "awards": [
     {
