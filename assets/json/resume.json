@@ -36,7 +36,10 @@
       "startDate": "2016",
       "endDate": "2016",
       "score": "1.3",
-      "courses": ["Research for master's thesis during semester abroad", "Thesis&#58; \"Multitarget Multisensor Motion Tracking of Vehicles with Vehicle Based Multilayer 2D Laser Range Finders\"."]
+      "courses": [
+        "Research for master's thesis during semester abroad", 
+        "Thesis&#58; \"Multitarget Multisensor Motion Tracking of Vehicles with Vehicle Based Multilayer 2D Laser Range Finders\"."
+      ]
     },
     {
       "studyType": "Master of Science",
