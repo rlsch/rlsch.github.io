@@ -247,7 +247,6 @@ exclude:
   - _pages/projects.md
   - _pages/profiles.md
   - _pages/dropdown.md
-  - assets/json/resume.json
   - purgecss.config.js
   - README.md
   - readme_preview/
@@ -637,7 +636,7 @@ third_party_libraries:
 
 jekyll_get_json:
   - data: resume
-    json: assets/json/resume.json # it can also be an url
+    json: assets/json/resume_.json # it can also be an url
 jsonresume:
   - basics
   - work
