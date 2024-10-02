@@ -6,7 +6,7 @@
   - firstname: ["Nathan", "N."]
     url: https://en.wikipedia.org/wiki/Nathan_Rosen
 
-"Bach": 
+"Bach":
   - firstname: ["Johann Sebastian", "J. S."]
     url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
 
@@ -14,21 +14,21 @@
     url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
 
 "Althoff":
-- firstname: ["Matthias", "M."]
-  url: https://www.professoren.tum.de/althoff-matthias
+  - firstname: ["Matthias", "M."]
+    url: https://www.professoren.tum.de/althoff-matthias
 
 "Grehl":
-- firstname: ["Steve", "S."]
-  url: https://steve-grehl.eu
+  - firstname: ["Steve", "S."]
+    url: https://steve-grehl.eu
 
 "Jung":
-- firstname: ["Bernhard", "B."]
-  url: https://tu-freiberg.de/virtuelle-realitaet/team
+  - firstname: ["Bernhard", "B."]
+    url: https://tu-freiberg.de/virtuelle-realitaet/team
 
 "Sastuba":
-- firstname: ["Mark", "M."]
-  url: https://KarlRatti.github.io
+  - firstname: ["Mark", "M."]
+    url: https://KarlRatti.github.io
 
 "Toth":
-- firstname: ["Jonas", "J."]
-  url: https://jonastoth.github.io
+  - firstname: ["Jonas", "J."]
+    url: https://jonastoth.github.io
