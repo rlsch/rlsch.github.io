@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
-
-<!-- Mirrored from www.lancaster.ac.uk/~romano/teaching/2324MATH550/time.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Oct 2024 09:56:34 GMT -->
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Time manipulation, aggregation and summarisation | Lancaster University Leipzig LZSCC.461 R Programming</title>
   <meta name="description" content="2 Time manipulation, aggregation and summarisation | Lancaster University Leipzig LZSCC.461 R Programming" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Time manipulation, aggregation and summarisation | Lancaster University Leipzig LZSCC.461 R Programming" />
   <meta property="og:type" content="book" />
@@ -22,7 +20,7 @@
   
   
 
-<meta name="author" content="Lecturer: Dr Gaetano Romano" />
+<meta name="author" content="Lecturer: Robert Lösch" />
 
 
 
@@ -53,11 +51,12 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <script src="libs/detect-resize-0.5.3/jquery.resize.js"></script>
@@ -67,13 +66,13 @@
 <script src="libs/vega-1.4.3/vega.min.js"></script>
 <script src="libs/lodash-4.17.21/lodash.min.js"></script>
 <script>var lodash = _.noConflict();</script>
-<link href="libs/ggvis-0.4.8/css/ggvis.css" rel="stylesheet" />
-<script src="libs/ggvis-0.4.8/js/ggvis.js"></script>
+<link href="libs/ggvis-0.4.9/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis-0.4.9/js/ggvis.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -83,7 +82,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -214,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="index.html">Lancaster University Leipzig LZSCC.461 R Programming</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University Leipzig LZSCC.461 R Programming</a>
           </h1>
         </div>
 
@@ -235,7 +234,7 @@ script covers the basics handling dates and times in R, along with
 how to aggregate and summarise data.</li>
 <li>Add your favourite packages to the start of your script:</li>
 </ul>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="time.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="time.html#cb303-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="dates-and-timestamps-in-r" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Dates and timestamps in R<a href="time.html#dates-and-timestamps-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -292,9 +291,9 @@ days, hours, minutes, and seconds;</li>
 <li>Handle time zones and daylight savings time.</li>
 </ul>
 <p>Before we continue install the <code>lubridate</code> package:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="time.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;lubridate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="time.html#cb305-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;lubridate&quot;</span>)</span></code></pre></div>
 <p>Now load it.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="time.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="time.html#cb306-1" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
 <div id="parsing-timestamps" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Parsing timestamps<a href="time.html#parsing-timestamps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can parse dates and timestamps in R using the <code>ymd()</code> series of
@@ -306,13 +305,13 @@ timestamp, choose the function name that matches the order of elements
 in the timestamp. For example, in the following date the month element
 comes first, followed by the day and then the year. So we would use the
 <code>mdy()</code> function:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="time.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;12/01/2010&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="time.html#cb307-1" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;12/01/2010&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-01&quot;</code></pre>
 <p>The same function can also be used to parse <code>"Dec 1st, 2010"</code>:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="time.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;Dec 1st, 2010&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="time.html#cb309-1" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;Dec 1st, 2010&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-01&quot;</code></pre>
 <p>The <code>ymd()</code> series of functions can also parse vectors of dates:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="time.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="fu">c</span>(<span class="st">&quot;31.12.2010&quot;</span>, <span class="st">&quot;01.01.2011&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="time.html#cb311-1" tabindex="-1"></a><span class="fu">dmy</span>(<span class="fu">c</span>(<span class="st">&quot;31.12.2010&quot;</span>, <span class="st">&quot;01.01.2011&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-31&quot; &quot;2011-01-01&quot;</code></pre>
 <p>These functions automatically recognise the separators commonly used to
 record dates. These include: <code>-</code>, <code>/</code>, <code>.</code>, and “no separator”. When a
@@ -372,14 +371,14 @@ occurred or when an observation was made. We can easily extract each
 element of a timestamp with the accessor functions listed in Table
 <a href="time.html#tab:accessor">2.2</a>. For example, if we save the current system
 time:<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="time.html#cb313-1" aria-hidden="true" tabindex="-1"></a>stamp <span class="ot">&lt;-</span> <span class="fu">now</span>()</span>
-<span id="cb313-2"><a href="time.html#cb313-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(stamp)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="time.html#cb313-1" tabindex="-1"></a>stamp <span class="ot">&lt;-</span> <span class="fu">now</span>()</span>
+<span id="cb313-2"><a href="time.html#cb313-2" tabindex="-1"></a><span class="fu">class</span>(stamp)</span></code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <p>We can then extract each of its elements:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="time.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(stamp) <span class="co"># for illustration only; your output might vary</span></span></code></pre></div>
-<pre><code>## [1] 2023</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="time.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">minute</span>(stamp) <span class="co"># your output might vary</span></span></code></pre></div>
-<pre><code>## [1] 50</code></pre>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="time.html#cb315-1" tabindex="-1"></a><span class="fu">year</span>(stamp) <span class="co"># for illustration only; your output might vary</span></span></code></pre></div>
+<pre><code>## [1] 2024</code></pre>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="time.html#cb317-1" tabindex="-1"></a><span class="fu">minute</span>(stamp) <span class="co"># your output might vary</span></span></code></pre></div>
+<pre><code>## [1] 19</code></pre>
 <p>For the month and weekday elements (<code>mday</code> and <code>wday</code>), we can also
 specify whether we want to extract the numerical value of the element,
 an abbreviation of the name of the month or weekday, or the full name.
@@ -436,16 +435,16 @@ accessor function.</caption>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="time.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(stamp) <span class="co"># your output might vary</span></span></code></pre></div>
-<pre><code>## [1] 11</code></pre>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="time.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(stamp, <span class="at">label=</span><span class="cn">TRUE</span>) <span class="co"># your output might vary</span></span></code></pre></div>
-<pre><code>## [1] Nov
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="time.html#cb319-1" tabindex="-1"></a><span class="fu">month</span>(stamp) <span class="co"># your output might vary</span></span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="time.html#cb321-1" tabindex="-1"></a><span class="fu">month</span>(stamp, <span class="at">label=</span><span class="cn">TRUE</span>) <span class="co"># your output might vary</span></span></code></pre></div>
+<pre><code>## [1] Oct
 ## 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="time.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(stamp, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr=</span><span class="cn">FALSE</span>) <span class="co"># your output might vary</span></span></code></pre></div>
-<pre><code>## [1] November
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="time.html#cb323-1" tabindex="-1"></a><span class="fu">month</span>(stamp, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr=</span><span class="cn">FALSE</span>) <span class="co"># your output might vary</span></span></code></pre></div>
+<pre><code>## [1] October
 ## 12 Levels: January &lt; February &lt; March &lt; April &lt; May &lt; June &lt; ... &lt; December</code></pre>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="time.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(stamp, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr=</span><span class="cn">FALSE</span>) <span class="co"># your output might vary</span></span></code></pre></div>
-<pre><code>## [1] Monday
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="time.html#cb325-1" tabindex="-1"></a><span class="fu">wday</span>(stamp, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr=</span><span class="cn">FALSE</span>) <span class="co"># your output might vary</span></span></code></pre></div>
+<pre><code>## [1] Thursday
 ## 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
 </div>
 <div id="arithmetic-with-timestamps" class="section level3 hasAnchor" number="2.2.3">
@@ -460,19 +459,19 @@ seconds. Consider how one of these conventions might complicate a simple
 addition task. If today were January 1st, 2010 and we wished to know
 what day it would be one year from now, we could simply add 1 to the
 years element of our date:</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="time.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;January 1st, 2010&quot;</span>) <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="time.html#cb327-1" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;January 1st, 2010&quot;</span>) <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2011-01-01&quot;</code></pre>
 <p>Alternatively, we could add 365 to the days element of our date because
 a year is equivalent to 365 days:</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="time.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;January 1st, 2010&quot;</span>) <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">365</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="time.html#cb329-1" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;January 1st, 2010&quot;</span>) <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">365</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2011-01-01&quot;</code></pre>
 <p>However, problems arise if we try the same for January 1st, 2012. 2012
 is a leap year, which means it has an extra day. Our two approaches
 above now give us different answers because the length of a year has
 changed:</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="time.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;January 1st, 2012&quot;</span>) <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="time.html#cb331-1" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;January 1st, 2012&quot;</span>) <span class="sc">+</span> <span class="fu">years</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2013-01-01&quot;</code></pre>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="time.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;January 1st, 2012&quot;</span>) <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">365</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="time.html#cb333-1" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;January 1st, 2012&quot;</span>) <span class="sc">+</span> <span class="fu">days</span>(<span class="dv">365</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2012-12-31&quot;</code></pre>
 <p>At different moments in time, the lengths of months, weeks, days, hours,
 and even minutes will also vary. We can consider these to be <em>relative</em>
@@ -487,8 +486,8 @@ time from them. To do this use the helper functions; <code>years()</code>,
 <code>months()</code>, <code>weeks()</code>, <code>days()</code>, <code>hours()</code>, <code>minutes()</code>, and
 <code>seconds()</code>. Where the first and only argument is the amount of that
 unit of time:</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="time.html#cb335-1" aria-hidden="true" tabindex="-1"></a>stamp <span class="sc">-</span> <span class="fu">hours</span>(<span class="dv">48</span>) <span class="sc">-</span> <span class="fu">minutes</span>(<span class="dv">30</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2023-11-04 16:20:08 GMT&quot;</code></pre>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="time.html#cb335-1" tabindex="-1"></a>stamp <span class="sc">-</span> <span class="fu">hours</span>(<span class="dv">48</span>) <span class="sc">-</span> <span class="fu">minutes</span>(<span class="dv">30</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2024-10-01 14:49:45 CEST&quot;</code></pre>
 </div>
 <div id="intervals-and-durations" class="section level3 hasAnchor" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Intervals and durations<a href="time.html#intervals-and-durations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -497,18 +496,18 @@ calculate the difference between two timestamps. For example, between
 the start and end of an event to calculate the duration, or to count
 down to a particular event. We first define an interval using between
 our two time-points:</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="time.html#cb337-1" aria-hidden="true" tabindex="-1"></a>halloween <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">&quot;2014-10-31&quot;</span>)</span>
-<span id="cb337-2"><a href="time.html#cb337-2" aria-hidden="true" tabindex="-1"></a>christmas <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">&quot;2014-12-25&quot;</span>)</span>
-<span id="cb337-3"><a href="time.html#cb337-3" aria-hidden="true" tabindex="-1"></a>inter  <span class="ot">&lt;-</span> <span class="fu">interval</span>(halloween, christmas)</span>
-<span id="cb337-4"><a href="time.html#cb337-4" aria-hidden="true" tabindex="-1"></a>inter</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="time.html#cb337-1" tabindex="-1"></a>halloween <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">&quot;2014-10-31&quot;</span>)</span>
+<span id="cb337-2"><a href="time.html#cb337-2" tabindex="-1"></a>christmas <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">&quot;2014-12-25&quot;</span>)</span>
+<span id="cb337-3"><a href="time.html#cb337-3" tabindex="-1"></a>inter  <span class="ot">&lt;-</span> <span class="fu">interval</span>(halloween, christmas)</span>
+<span id="cb337-4"><a href="time.html#cb337-4" tabindex="-1"></a>inter</span></code></pre></div>
 <pre><code>## [1] 2014-10-31 UTC--2014-12-25 UTC</code></pre>
 <p>After which we can choose to express this interval as a duration in
 terms of a specific time-unit (e.g. weeks, days, or seconds):</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="time.html#cb339-1" aria-hidden="true" tabindex="-1"></a>inter <span class="sc">/</span> <span class="fu">dweeks</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="time.html#cb339-1" tabindex="-1"></a>inter <span class="sc">/</span> <span class="fu">dweeks</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 7.857143</code></pre>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="time.html#cb341-1" aria-hidden="true" tabindex="-1"></a>inter <span class="sc">/</span> <span class="fu">ddays</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="time.html#cb341-1" tabindex="-1"></a>inter <span class="sc">/</span> <span class="fu">ddays</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 55</code></pre>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="time.html#cb343-1" aria-hidden="true" tabindex="-1"></a>inter <span class="sc">/</span> <span class="fu">dseconds</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="time.html#cb343-1" tabindex="-1"></a>inter <span class="sc">/</span> <span class="fu">dseconds</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 4752000</code></pre>
 <p>In order to express an interval as a duration we divide by similar
 functions to those used in the arithmetic section but they are all
@@ -528,13 +527,13 @@ Figure 2.3: Unix time passed 1,000,000,000 seconds on 2001-09-09 01:46:40 UTC. I
 </div>
 <p>To convert a date-time object to Unix time, simply change the object
 type to numeric:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="time.html#cb345-1" aria-hidden="true" tabindex="-1"></a>event <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2001-09-09 01:46:40&quot;</span>, <span class="at">tz=</span><span class="st">&quot;UTC&quot;</span>)</span>
-<span id="cb345-2"><a href="time.html#cb345-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(event)</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="time.html#cb345-1" tabindex="-1"></a>event <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2001-09-09 01:46:40&quot;</span>, <span class="at">tz=</span><span class="st">&quot;UTC&quot;</span>)</span>
+<span id="cb345-2"><a href="time.html#cb345-2" tabindex="-1"></a><span class="fu">as.numeric</span>(event)</span></code></pre></div>
 <pre><code>## [1] 1e+09</code></pre>
 <p>To convert from Unix-time back to a timestamp, take the Unix-time value
 (which is just a number of seconds) and add it to the origin:</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="time.html#cb347-1" aria-hidden="true" tabindex="-1"></a>origin <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;1970-01-01 00:00:00&quot;</span>, <span class="at">tz=</span><span class="st">&quot;UTC&quot;</span>)</span>
-<span id="cb347-2"><a href="time.html#cb347-2" aria-hidden="true" tabindex="-1"></a>origin <span class="sc">+</span> <span class="fu">seconds</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>) <span class="co"># 1 billion seconds</span></span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="time.html#cb347-1" tabindex="-1"></a>origin <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;1970-01-01 00:00:00&quot;</span>, <span class="at">tz=</span><span class="st">&quot;UTC&quot;</span>)</span>
+<span id="cb347-2"><a href="time.html#cb347-2" tabindex="-1"></a>origin <span class="sc">+</span> <span class="fu">seconds</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">9</span>) <span class="co"># 1 billion seconds</span></span></code></pre></div>
 <pre><code>## [1] &quot;2001-09-09 01:46:40 UTC&quot;</code></pre>
 </div>
 <div id="rounding-time" class="section level3 hasAnchor" number="2.2.6">
@@ -546,23 +545,23 @@ timestamps can be rounded. To perform this rounding we use:
 of each function is a timestamp or vector of timestamps to be rounded.
 The second argument is the unit to round to. For example, we could round
 11:33, 20th April 2010 to the nearest day:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="time.html#cb349-1" aria-hidden="true" tabindex="-1"></a>april20 <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-04-20 11:33:29&quot;</span>)</span>
-<span id="cb349-2"><a href="time.html#cb349-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round_date</span>(april20, <span class="st">&quot;day&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="time.html#cb349-1" tabindex="-1"></a>april20 <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-04-20 11:33:29&quot;</span>)</span>
+<span id="cb349-2"><a href="time.html#cb349-2" tabindex="-1"></a><span class="fu">round_date</span>(april20, <span class="st">&quot;day&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-04-20 UTC&quot;</code></pre>
 <p>Note that rounding a timestamp to a particular day sets the hours,
 minutes and seconds components of the timestamp to <span class="math inline">\(00\)</span>. If the
 timestamp is in the afternoon then it will be rounded up to the next
 day:</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="time.html#cb351-1" aria-hidden="true" tabindex="-1"></a>april20 <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-04-20 14:15:02&quot;</span>)</span>
-<span id="cb351-2"><a href="time.html#cb351-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round_date</span>(april20, <span class="st">&quot;day&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="time.html#cb351-1" tabindex="-1"></a>april20 <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-04-20 14:15:02&quot;</span>)</span>
+<span id="cb351-2"><a href="time.html#cb351-2" tabindex="-1"></a><span class="fu">round_date</span>(april20, <span class="st">&quot;day&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-04-21 UTC&quot;</code></pre>
 <p>Similarly, rounding to the nearest month, sets the day to <span class="math inline">\(01\)</span>
 regardless of which month it is rounded to:</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="time.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round_date</span>(april20, <span class="st">&quot;month&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="time.html#cb353-1" tabindex="-1"></a><span class="fu">round_date</span>(april20, <span class="st">&quot;month&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-05-01 UTC&quot;</code></pre>
 <p>We can use <code>ceiling_date()</code> to find the last day of a month. Do this by
 ceiling a timestamp to the next month and then subtract one day:</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="time.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling_date</span>(april20, <span class="st">&quot;month&quot;</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="time.html#cb355-1" tabindex="-1"></a><span class="fu">ceiling_date</span>(april20, <span class="st">&quot;month&quot;</span>) <span class="sc">-</span> <span class="fu">days</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-04-30 UTC&quot;</code></pre>
 </div>
 <div id="a-real-example-sea-ice-extent" class="section level3 hasAnchor" number="2.2.7">
@@ -595,12 +594,12 @@ set the <code>stringsAsFactors</code> to <code>FALSE</code> or not respectively)
 to change this so that R recognises that it’s a data. Run the
 command below and check the class again</p></li>
 </ol>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="time.html#cb357-1" aria-hidden="true" tabindex="-1"></a>sea_ice<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(sea_ice<span class="sc">$</span>date)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="time.html#cb357-1" tabindex="-1"></a>sea_ice<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(sea_ice<span class="sc">$</span>date)</span></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Plot the extent of the sea ice over time.</li>
 </ol>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="time.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
-<span id="cb358-2"><a href="time.html#cb358-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> extent))</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="time.html#cb358-1" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
+<span id="cb358-2"><a href="time.html#cb358-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> extent))</span></code></pre></div>
 <p><img src="images/sea-ice-time-1.png" width="80%" /></p>
 <p>What can be seen here is that while there is clear seasonal variation,
 there also appears to be a downward trend over time.</p>
@@ -611,9 +610,9 @@ year then having its own line. To do this we first need to create
 two extra variables based on <code>date</code>; one which contains the year
 component, and the other containing the day of the year (1-365):</li>
 </ol>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="time.html#cb359-1" aria-hidden="true" tabindex="-1"></a>sea_ice<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(sea_ice<span class="sc">$</span>date)</span>
-<span id="cb359-2"><a href="time.html#cb359-2" aria-hidden="true" tabindex="-1"></a>sea_ice<span class="sc">$</span>year_day <span class="ot">&lt;-</span> <span class="fu">yday</span>(sea_ice<span class="sc">$</span>date)</span>
-<span id="cb359-3"><a href="time.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sea_ice)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="time.html#cb359-1" tabindex="-1"></a>sea_ice<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">year</span>(sea_ice<span class="sc">$</span>date)</span>
+<span id="cb359-2"><a href="time.html#cb359-2" tabindex="-1"></a>sea_ice<span class="sc">$</span>year_day <span class="ot">&lt;-</span> <span class="fu">yday</span>(sea_ice<span class="sc">$</span>date)</span>
+<span id="cb359-3"><a href="time.html#cb359-3" tabindex="-1"></a><span class="fu">head</span>(sea_ice)</span></code></pre></div>
 <pre><code>##         date   extent year year_day
 ## 1 1978-10-26 10.19591 1978      299
 ## 2 1978-10-28 10.34363 1978      301
@@ -624,34 +623,34 @@ component, and the other containing the day of the year (1-365):</li>
 <p>Using these two new variables we can now create a seasonal plot. Note
 that in order to tell <code>ggplot()</code> to produce a separate line for each
 year we specify <code>group = year</code> as part of <code>aes()</code>.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="time.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
-<span id="cb361-2"><a href="time.html#cb361-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year),</span>
-<span id="cb361-3"><a href="time.html#cb361-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="time.html#cb361-1" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
+<span id="cb361-2"><a href="time.html#cb361-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year),</span>
+<span id="cb361-3"><a href="time.html#cb361-3" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="images/sea-ice-seasonal-1.png" width="80%" /></p>
 <p>To highlight which lines belong to which year modify the plot so we
 colour each line according to year:</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="time.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
-<span id="cb362-2"><a href="time.html#cb362-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year, <span class="at">colour =</span> year),</span>
-<span id="cb362-3"><a href="time.html#cb362-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb362-4"><a href="time.html#cb362-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="time.html#cb362-1" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
+<span id="cb362-2"><a href="time.html#cb362-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year, <span class="at">colour =</span> year),</span>
+<span id="cb362-3"><a href="time.html#cb362-3" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb362-4"><a href="time.html#cb362-4" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
 <p>To change the colours used for the gradient, and the labels shown on the
 colour bar for year, add <code>scale_colour_gradient()</code> to your <code>ggplot()</code>
 command:</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="time.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
-<span id="cb363-2"><a href="time.html#cb363-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year, <span class="at">colour =</span> year),</span>
-<span id="cb363-3"><a href="time.html#cb363-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb363-4"><a href="time.html#cb363-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradient</span>(<span class="at">low =</span> <span class="st">&quot;red&quot;</span>, <span class="at">high =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb363-5"><a href="time.html#cb363-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="time.html#cb363-1" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
+<span id="cb363-2"><a href="time.html#cb363-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year, <span class="at">colour =</span> year),</span>
+<span id="cb363-3"><a href="time.html#cb363-3" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb363-4"><a href="time.html#cb363-4" tabindex="-1"></a>  <span class="fu">scale_colour_gradient</span>(<span class="at">low =</span> <span class="st">&quot;red&quot;</span>, <span class="at">high =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb363-5"><a href="time.html#cb363-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
 <p>Try other colours to see if you can find something that looks pretty. An
 alternative to picking colours yourself is to use the colour brewer:<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="time.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb364-2"><a href="time.html#cb364-2" aria-hidden="true" tabindex="-1"></a>palette <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="at">name =</span> <span class="st">&quot;BrBG&quot;</span>)</span>
-<span id="cb364-3"><a href="time.html#cb364-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb364-4"><a href="time.html#cb364-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
-<span id="cb364-5"><a href="time.html#cb364-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year, <span class="at">colour =</span> year),</span>
-<span id="cb364-6"><a href="time.html#cb364-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb364-7"><a href="time.html#cb364-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradient</span>(<span class="at">low =</span> palette[<span class="dv">1</span>], <span class="at">high =</span> palette[<span class="dv">3</span>]) <span class="sc">+</span></span>
-<span id="cb364-8"><a href="time.html#cb364-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="time.html#cb364-1" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb364-2"><a href="time.html#cb364-2" tabindex="-1"></a>palette <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="at">name =</span> <span class="st">&quot;BrBG&quot;</span>)</span>
+<span id="cb364-3"><a href="time.html#cb364-3" tabindex="-1"></a></span>
+<span id="cb364-4"><a href="time.html#cb364-4" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
+<span id="cb364-5"><a href="time.html#cb364-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year, <span class="at">colour =</span> year),</span>
+<span id="cb364-6"><a href="time.html#cb364-6" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb364-7"><a href="time.html#cb364-7" tabindex="-1"></a>  <span class="fu">scale_colour_gradient</span>(<span class="at">low =</span> palette[<span class="dv">1</span>], <span class="at">high =</span> palette[<span class="dv">3</span>]) <span class="sc">+</span></span>
+<span id="cb364-8"><a href="time.html#cb364-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
 <p><img src="images/sea-ice-colorbrewer-1.png" width="50%" /></p>
 </div>
 </div>
@@ -667,9 +666,9 @@ October every year.</li>
 <p>We will consider each of these approaches using the R packages we have
 covered so far in the course. The first of these is the simplest to
 implement, we begin by keeping only October observations:</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="time.html#cb365-1" aria-hidden="true" tabindex="-1"></a>sea_ice<span class="sc">$</span>month <span class="ot">&lt;-</span> <span class="fu">month</span>(sea_ice<span class="sc">$</span>date)</span>
-<span id="cb365-2"><a href="time.html#cb365-2" aria-hidden="true" tabindex="-1"></a>sea_ice_oct <span class="ot">&lt;-</span> sea_ice <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">10</span>)</span>
-<span id="cb365-3"><a href="time.html#cb365-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sea_ice_oct)</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="time.html#cb365-1" tabindex="-1"></a>sea_ice<span class="sc">$</span>month <span class="ot">&lt;-</span> <span class="fu">month</span>(sea_ice<span class="sc">$</span>date)</span>
+<span id="cb365-2"><a href="time.html#cb365-2" tabindex="-1"></a>sea_ice_oct <span class="ot">&lt;-</span> sea_ice <span class="sc">%&gt;%</span> <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">10</span>)</span>
+<span id="cb365-3"><a href="time.html#cb365-3" tabindex="-1"></a><span class="fu">head</span>(sea_ice_oct)</span></code></pre></div>
 <pre><code>##         date   extent year year_day month
 ## 1 1978-10-26 10.19591 1978      299    10
 ## 2 1978-10-28 10.34363 1978      301    10
@@ -689,24 +688,24 @@ perform the same calculation on each subgroup, we use <code>group_by()</code> fr
 <code>dplyr</code>, whose first argument is the data frame of interest and all
 subsequent arguments are the variables to be grouped on. The following
 will create groups for each unique value in <code>year</code>:</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="time.html#cb367-1" aria-hidden="true" tabindex="-1"></a>sea_ice_oct_grp <span class="ot">&lt;-</span> sea_ice_oct <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year)</span>
-<span id="cb367-2"><a href="time.html#cb367-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.grouped_df</span>(sea_ice_oct_grp)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="time.html#cb367-1" tabindex="-1"></a>sea_ice_oct_grp <span class="ot">&lt;-</span> sea_ice_oct <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(year)</span>
+<span id="cb367-2"><a href="time.html#cb367-2" tabindex="-1"></a><span class="fu">is.grouped_df</span>(sea_ice_oct_grp)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p><code>sea_ice_oct_grp</code> is a grouped data frame. Use <code>ungroup()</code> to remove a
 grouping that is no longer needed. To summarise each group we send
 <code>sea_ice_oct_grp</code> to the <code>summarise()</code> function which will produce a new
 data frame containing the grouping variable (just <code>year</code> in this case)
 and any summary variables we decide to calculate:</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="time.html#cb369-1" aria-hidden="true" tabindex="-1"></a>oct_summary <span class="ot">&lt;-</span> sea_ice_oct_grp <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
-<span id="cb369-2"><a href="time.html#cb369-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date     =</span> <span class="fu">first</span>(date),</span>
-<span id="cb369-3"><a href="time.html#cb369-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">extent   =</span> <span class="fu">first</span>(extent),</span>
-<span id="cb369-4"><a href="time.html#cb369-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_day =</span> <span class="fu">first</span>(year_day)</span>
-<span id="cb369-5"><a href="time.html#cb369-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="time.html#cb369-1" tabindex="-1"></a>oct_summary <span class="ot">&lt;-</span> sea_ice_oct_grp <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb369-2"><a href="time.html#cb369-2" tabindex="-1"></a>  <span class="at">date     =</span> <span class="fu">first</span>(date),</span>
+<span id="cb369-3"><a href="time.html#cb369-3" tabindex="-1"></a>  <span class="at">extent   =</span> <span class="fu">first</span>(extent),</span>
+<span id="cb369-4"><a href="time.html#cb369-4" tabindex="-1"></a>  <span class="at">year_day =</span> <span class="fu">first</span>(year_day)</span>
+<span id="cb369-5"><a href="time.html#cb369-5" tabindex="-1"></a>)</span></code></pre></div>
 <p>The code above summaries each group simply by taking the first row in
 each subgroup and stores the results in a data frame called
 <code>oct_summary</code>. This is, of course, a very crude summary. But it does
 give us one observation per October of every year.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="time.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(oct_summary)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="time.html#cb370-1" tabindex="-1"></a><span class="fu">head</span>(oct_summary)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##    year date       extent year_day
 ##   &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -724,14 +723,14 @@ back to a timestamp see the section on Unix time.</p>
 with the <code>group_by() %&gt;% summarise()</code> combo. As you will see as follows
 (and in the exercises) we can do a lot more cool stuff with this
 statement:</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="time.html#cb372-1" aria-hidden="true" tabindex="-1"></a>oct_summary_2 <span class="ot">&lt;-</span> sea_ice_oct_grp <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
-<span id="cb372-2"><a href="time.html#cb372-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">tot_extent =</span> <span class="fu">sum</span>(extent),</span>
-<span id="cb372-3"><a href="time.html#cb372-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">len_extent =</span> <span class="fu">n_distinct</span>(extent),</span>
-<span id="cb372-4"><a href="time.html#cb372-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_extent_1 =</span> tot_extent <span class="sc">/</span> len_extent,  <span class="co"># equivalent to below</span></span>
-<span id="cb372-5"><a href="time.html#cb372-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_extent_2 =</span> <span class="fu">mean</span>(extent),             <span class="co"># equivalent to above</span></span>
-<span id="cb372-6"><a href="time.html#cb372-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">sd_extent =</span> <span class="fu">sd</span>(extent)</span>
-<span id="cb372-7"><a href="time.html#cb372-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb372-8"><a href="time.html#cb372-8" aria-hidden="true" tabindex="-1"></a>oct_summary_2</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="time.html#cb372-1" tabindex="-1"></a>oct_summary_2 <span class="ot">&lt;-</span> sea_ice_oct_grp <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb372-2"><a href="time.html#cb372-2" tabindex="-1"></a>  <span class="at">tot_extent =</span> <span class="fu">sum</span>(extent),</span>
+<span id="cb372-3"><a href="time.html#cb372-3" tabindex="-1"></a>  <span class="at">len_extent =</span> <span class="fu">n_distinct</span>(extent),</span>
+<span id="cb372-4"><a href="time.html#cb372-4" tabindex="-1"></a>  <span class="at">mean_extent_1 =</span> tot_extent <span class="sc">/</span> len_extent,  <span class="co"># equivalent to below</span></span>
+<span id="cb372-5"><a href="time.html#cb372-5" tabindex="-1"></a>  <span class="at">mean_extent_2 =</span> <span class="fu">mean</span>(extent),             <span class="co"># equivalent to above</span></span>
+<span id="cb372-6"><a href="time.html#cb372-6" tabindex="-1"></a>  <span class="at">sd_extent =</span> <span class="fu">sd</span>(extent)</span>
+<span id="cb372-7"><a href="time.html#cb372-7" tabindex="-1"></a>)</span>
+<span id="cb372-8"><a href="time.html#cb372-8" tabindex="-1"></a>oct_summary_2</span></code></pre></div>
 <pre><code>## # A tibble: 37 × 6
 ##     year tot_extent len_extent mean_extent_1 mean_extent_2 sd_extent
 ##    &lt;dbl&gt;      &lt;dbl&gt;      &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;
@@ -771,7 +770,7 @@ Figure 2.5: Ice extent (million sq-km) in October each year. We are plotting the
 <h4><span class="header-section-number">2.3.2.1</span> Exercise<a href="time.html#exercise-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To calculate the average of a variable in a data frame, we pass the
 variable to the <code>mean()</code> function:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="time.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sea_ice<span class="sc">$</span>extent)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="time.html#cb374-1" tabindex="-1"></a><span class="fu">mean</span>(sea_ice<span class="sc">$</span>extent)</span></code></pre></div>
 <pre><code>## [1] 11.44243</code></pre>
 <p>This calculated the mean across all observations of <code>extent</code>. Repeat the
 process of grouping and summarising on the whole dataset, grouping by
@@ -848,13 +847,13 @@ The timestamp you parsed earlier was created by combining several
 columns in the original data. The original data is in
 <code>orig_NH_seaice_extent.csv</code> on Moodle. Download this to your working
 directory and load it into R:</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="time.html#cb376-1" aria-hidden="true" tabindex="-1"></a>sea_ice_orig <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;orig_NH_seaice_extent.csv&quot;</span>)</span>
-<span id="cb376-2"><a href="time.html#cb376-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sea_ice_orig)</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="time.html#cb376-1" tabindex="-1"></a>sea_ice_orig <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;orig_NH_seaice_extent.csv&quot;</span>)</span>
+<span id="cb376-2"><a href="time.html#cb376-2" tabindex="-1"></a><span class="fu">names</span>(sea_ice_orig)</span></code></pre></div>
 <pre><code>## [1] &quot;Year&quot;        &quot;Month&quot;       &quot;Day&quot;         &quot;Extent&quot;      &quot;Missing&quot;    
 ## [6] &quot;Source.Data&quot;</code></pre>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="time.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove junk columns</span></span>
-<span id="cb378-2"><a href="time.html#cb378-2" aria-hidden="true" tabindex="-1"></a>sea_ice_orig <span class="ot">&lt;-</span> <span class="fu">select</span>(sea_ice_orig, <span class="sc">-</span>Missing, <span class="sc">-</span>Source.Data)</span>
-<span id="cb378-3"><a href="time.html#cb378-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sea_ice_orig)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="time.html#cb378-1" tabindex="-1"></a><span class="co"># remove junk columns</span></span>
+<span id="cb378-2"><a href="time.html#cb378-2" tabindex="-1"></a>sea_ice_orig <span class="ot">&lt;-</span> <span class="fu">select</span>(sea_ice_orig, <span class="sc">-</span>Missing, <span class="sc">-</span>Source.Data)</span>
+<span id="cb378-3"><a href="time.html#cb378-3" tabindex="-1"></a><span class="fu">head</span>(sea_ice_orig)</span></code></pre></div>
 <pre><code>##   Year Month Day   Extent
 ## 1 2014     1   1 12.97145
 ## 2 2014     1   2 13.06702
@@ -868,18 +867,18 @@ join each row of year, month and day together. To do this we use the
 <code>glue()</code> function from the <code>glue</code> package. Install this package and then
 load it using <code>library()</code>. Check the help page for <code>glue()</code> and test how
 it works:</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="time.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb380-2"><a href="time.html#cb380-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2014</span></span>
-<span id="cb380-3"><a href="time.html#cb380-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">09</span></span>
-<span id="cb380-4"><a href="time.html#cb380-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb380-5"><a href="time.html#cb380-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">&quot;{y}{m}{d}&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="time.html#cb380-1" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb380-2"><a href="time.html#cb380-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2014</span></span>
+<span id="cb380-3"><a href="time.html#cb380-3" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">09</span></span>
+<span id="cb380-4"><a href="time.html#cb380-4" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb380-5"><a href="time.html#cb380-5" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">&quot;{y}{m}{d}&quot;</span>)</span></code></pre></div>
 <pre><code>## 2014915</code></pre>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="time.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">&quot;{y}/{m}/{d}&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="time.html#cb382-1" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">&quot;{y}/{m}/{d}&quot;</span>)</span></code></pre></div>
 <pre><code>## 2014/9/15</code></pre>
 <p>We can also use vectors:</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="time.html#cb384-1" aria-hidden="true" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;human&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;zebra&quot;</span>)</span>
-<span id="cb384-2"><a href="time.html#cb384-2" aria-hidden="true" tabindex="-1"></a>food <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pizza&quot;</span>, <span class="st">&quot;fish&quot;</span>, <span class="st">&quot;anything&quot;</span>, <span class="st">&quot;grass&quot;</span>)</span>
-<span id="cb384-3"><a href="time.html#cb384-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">&quot;{animal} would like {food}&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="time.html#cb384-1" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;monkey&quot;</span>, <span class="st">&quot;human&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;zebra&quot;</span>)</span>
+<span id="cb384-2"><a href="time.html#cb384-2" tabindex="-1"></a>food <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pizza&quot;</span>, <span class="st">&quot;fish&quot;</span>, <span class="st">&quot;anything&quot;</span>, <span class="st">&quot;grass&quot;</span>)</span>
+<span id="cb384-3"><a href="time.html#cb384-3" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">&quot;{animal} would like {food}&quot;</span>)</span></code></pre></div>
 <pre><code>## monkey would like banana
 ## human would like pizza
 ## cat would like fish
@@ -887,7 +886,7 @@ it works:</p>
 ## zebra would like grass</code></pre>
 <p>Use <code>glue()</code> along with <code>mutate()</code> to create a date variable within the
 <code>sea_ice_orig</code> data frame, which should look something like this:</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="time.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sea_ice_orig)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="time.html#cb386-1" tabindex="-1"></a><span class="fu">head</span>(sea_ice_orig)</span></code></pre></div>
 <pre><code>##   Year Month Day   Extent       Date
 ## 1 2014     1   1 12.97145 2014-01-01
 ## 2 2014     1   2 13.06702 2014-01-02
@@ -904,11 +903,11 @@ ways to summarise a data frame.</p>
 <h2><span class="header-section-number">2.5</span> Time zones<a href="time.html#time-zones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Time zones give multiple names to the same <em>instance</em> of time. For
 example,</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="time.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Australian Christmas lunch</span></span>
-<span id="cb388-2"><a href="time.html#cb388-2" aria-hidden="true" tabindex="-1"></a>aus_christmas <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>,</span>
-<span id="cb388-3"><a href="time.html#cb388-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">tz =</span> <span class="st">&quot;Australia/Melbourne&quot;</span>)</span>
-<span id="cb388-4"><a href="time.html#cb388-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In UK time</span></span>
-<span id="cb388-5"><a href="time.html#cb388-5" aria-hidden="true" tabindex="-1"></a><span class="fu">with_tz</span>(aus_christmas, <span class="at">tz =</span> <span class="st">&quot;GMT&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="time.html#cb388-1" tabindex="-1"></a><span class="co"># Australian Christmas lunch</span></span>
+<span id="cb388-2"><a href="time.html#cb388-2" tabindex="-1"></a>aus_christmas <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>,</span>
+<span id="cb388-3"><a href="time.html#cb388-3" tabindex="-1"></a>                         <span class="at">tz =</span> <span class="st">&quot;Australia/Melbourne&quot;</span>)</span>
+<span id="cb388-4"><a href="time.html#cb388-4" tabindex="-1"></a><span class="co"># In UK time</span></span>
+<span id="cb388-5"><a href="time.html#cb388-5" tabindex="-1"></a><span class="fu">with_tz</span>(aus_christmas, <span class="at">tz =</span> <span class="st">&quot;GMT&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 02:00:00 GMT&quot;</code></pre>
 <p>Both of these describe the same instant. The first shows how the instant
 is labelled in Melbourne time (AEDT). While the second shows the same
@@ -924,21 +923,21 @@ different time zones in data by two ways. First, we can change the time
 zone in which an instant is displayed by using the function <code>with_tz()</code>.
 This changes how the clock time is displayed, but not the specific
 instant of time that is referred to. For example:</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="time.html#cb390-1" aria-hidden="true" tabindex="-1"></a>uk_christmas <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;GMT&quot;</span>)</span>
-<span id="cb390-2"><a href="time.html#cb390-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with_tz</span>(uk_christmas, <span class="st">&quot;UTC&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="time.html#cb390-1" tabindex="-1"></a>uk_christmas <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;GMT&quot;</span>)</span>
+<span id="cb390-2"><a href="time.html#cb390-2" tabindex="-1"></a><span class="fu">with_tz</span>(uk_christmas, <span class="st">&quot;UTC&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="time.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with_tz</span>(aus_christmas, <span class="st">&quot;UTC&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="time.html#cb392-1" tabindex="-1"></a><span class="fu">with_tz</span>(aus_christmas, <span class="st">&quot;UTC&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 02:00:00 UTC&quot;</code></pre>
 <p>The <code>force_tz()</code> function does the opposite of <code>with_tz()</code>; it changes
 the actual instant of time saved in the object, while keeping the
 displayed clock time the same. The new time zone value is the indicator
 of this change. For example, the code below moves us to a new instant
 that occurs 11 hours later.</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="time.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="fu">force_tz</span>(aus_christmas, <span class="st">&quot;UTC&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="time.html#cb394-1" tabindex="-1"></a><span class="fu">force_tz</span>(aus_christmas, <span class="st">&quot;UTC&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 UTC&quot;</code></pre>
 <p>The <code>with_tz()</code> and <code>force_tz()</code> functions only work with time zones
 recognised by R. To see a long list of these, use <code>OlsonNames()</code>.</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="time.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">OlsonNames</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="time.html#cb396-1" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">OlsonNames</span>())</span></code></pre></div>
 <pre><code>## [1] &quot;Africa/Abidjan&quot;     &quot;Africa/Accra&quot;       &quot;Africa/Addis_Ababa&quot;
 ## [4] &quot;Africa/Algiers&quot;     &quot;Africa/Asmara&quot;      &quot;Africa/Asmera&quot;</code></pre>
 <p>Finally, note that the <code>ymd_hms</code> family of functions will, by default,
@@ -946,31 +945,31 @@ parse all timestamps as being in the UTC timezone. Regardless of whether
 the timestamp contains a reference to the actual timezone. Here is an
 example of a timestamp in USA Eastern Standard Time (EST) being
 overwritten as UTC:</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="time.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="time.html#cb398-1" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 UTC&quot;</code></pre>
 <p>To ensure your timestamp is parsed as being in the correct timezone you
 need to pass the timezone to the <code>tz</code> argument of the <code>ymd_hms()</code>
 function:</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="time.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;EST&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="time.html#cb400-1" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;EST&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 EST&quot;</code></pre>
 <p>Note that if you the <code>tz</code> argument has to be a valid timezone otherwise
 <code>with_tz()</code> will not perform the proper conversion when converting it to
 a different timezone:</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="time.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(tz_pickle <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;PICKLE&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="time.html#cb402-1" tabindex="-1"></a><span class="fu">try</span>(tz_pickle <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;PICKLE&quot;</span>))</span></code></pre></div>
 <pre><code>## Error in C_force_tz(to_posixct(time), tz, roll_dst) : 
 ##   CCTZ: Unrecognized output timezone: &quot;PICKLE&quot;</code></pre>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="time.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">try</span>(<span class="fu">with_tz</span>(tz_pickle, <span class="st">&quot;UTC&quot;</span>))</span></code></pre></div>
-<pre><code>## Error in eval(expr, envir, enclos) : object &#39;tz_pickle&#39; not found</code></pre>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="time.html#cb404-1" tabindex="-1"></a><span class="fu">try</span>(<span class="fu">with_tz</span>(tz_pickle, <span class="st">&quot;UTC&quot;</span>))</span></code></pre></div>
+<pre><code>## Error in eval(expr, envir) : object &#39;tz_pickle&#39; not found</code></pre>
 <p>The timezone PICKLE is silently replaced to UTC, even though PICKLE is
 not an actual timezone. A more real example; while EST is a valid
 timezone in R, USA Central Standard Time (CST) is not, although it <em>is</em>
 an actual timezone. Instead of <code>CST</code> we have to use <code>CST6CDT</code> which
 represents both the CST and CDT timezones (both are GMT - 6 hours).</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="time.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">OlsonNames</span>() <span class="sc">==</span> <span class="st">&quot;EST&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="time.html#cb406-1" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">OlsonNames</span>() <span class="sc">==</span> <span class="st">&quot;EST&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="time.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">OlsonNames</span>() <span class="sc">==</span> <span class="st">&quot;CST&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="time.html#cb408-1" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">OlsonNames</span>() <span class="sc">==</span> <span class="st">&quot;CST&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="time.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">OlsonNames</span>() <span class="sc">==</span> <span class="st">&quot;CST6CDT&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="time.html#cb410-1" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">OlsonNames</span>() <span class="sc">==</span> <span class="st">&quot;CST6CDT&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Because of all these issues, a good strategy is:</p>
 <ul>
@@ -1075,6 +1074,4 @@ gitbook.start({
 </script>
 </body>
 
-
-<!-- Mirrored from www.lancaster.ac.uk/~romano/teaching/2324MATH550/time.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Oct 2024 09:56:44 GMT -->
 </html>

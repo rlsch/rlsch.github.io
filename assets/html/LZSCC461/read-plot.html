@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
-
-<!-- Mirrored from www.lancaster.ac.uk/~romano/teaching/2324MATH550/read-plot.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Oct 2024 09:56:14 GMT -->
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Data manipulation and plotting in R | Lancaster University Leipzig LZSCC.461 R Programming</title>
   <meta name="description" content="1 Data manipulation and plotting in R | Lancaster University Leipzig LZSCC.461 R Programming" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Data manipulation and plotting in R | Lancaster University Leipzig LZSCC.461 R Programming" />
   <meta property="og:type" content="book" />
@@ -22,7 +20,7 @@
   
   
 
-<meta name="author" content="Lecturer: Dr Gaetano Romano" />
+<meta name="author" content="Lecturer: Robert Lösch" />
 
 
 
@@ -53,11 +51,12 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <script src="libs/detect-resize-0.5.3/jquery.resize.js"></script>
@@ -67,13 +66,13 @@
 <script src="libs/vega-1.4.3/vega.min.js"></script>
 <script src="libs/lodash-4.17.21/lodash.min.js"></script>
 <script>var lodash = _.noConflict();</script>
-<link href="libs/ggvis-0.4.8/css/ggvis.css" rel="stylesheet" />
-<script src="libs/ggvis-0.4.8/js/ggvis.js"></script>
+<link href="libs/ggvis-0.4.9/css/ggvis.css" rel="stylesheet" />
+<script src="libs/ggvis-0.4.9/js/ggvis.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -83,7 +82,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -214,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="index.html">Lancaster University Leipzig LZSCC.461 R Programming</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Lancaster University Leipzig LZSCC.461 R Programming</a>
           </h1>
         </div>
 
@@ -252,7 +251,7 @@ for fast data manipulation, exploration, analysis and plotting. In
 particular, we will be working a lot with the <code>tidyverse</code> packages. This
 is a collection of R packages designed for data science.</p>
 <div class="figure"><span style="display:block;" id="fig:corrgram"></span>
-<img src="week1/spider.jpg" alt="In 'Spiderman: Into the Tidyverse' a young Miles Morales follows his dad’s advice, and never gets bitten by a radioactive spider, masters R programming, graduates from a data science programme, and gets hired in a Fortune 500 consultancy company." width="50%" />
+<img src="week1/spider.jpeg" alt="In 'Spiderman: Into the Tidyverse' a young Miles Morales follows his dad’s advice, and never gets bitten by a radioactive spider, masters R programming, graduates from a data science programme, and gets hired in a Fortune 500 consultancy company." width="50%" />
 <p class="caption">
 Figure 1.1: In ‘Spiderman: Into the Tidyverse’ a young Miles Morales follows his dad’s advice, and never gets bitten by a radioactive spider, masters R programming, graduates from a data science programme, and gets hired in a Fortune 500 consultancy company.
 </p>
@@ -268,9 +267,9 @@ science, and for this reason I heavily encourage you to use its
 functions and packages for this entire module and for your future
 analyses.</p>
 <p>To install the tidyverse, run:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="read-plot.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="read-plot.html#cb128-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>And to load the package:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="read-plot.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="read-plot.html#cb129-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>You only need to install a package once. But you have to load all the
 packages you want to use at the start of every session. For this reason,
 make sure all <code>library(...)</code> commands sit at the top of your script.</p>
@@ -281,8 +280,8 @@ first argument. This operator is written as <code>%&gt;%</code> and is used to e
 a sequence of multiple operations in a more readable and intuitive way.</p>
 <p>For example, if we want to compute the natural logarithm of the sum of
 the first 10 natural numbers, <span class="math inline">\(\ln(1 + 2+ 3+ ... + 10)\)</span>, this is:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="read-plot.html#cb130-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># create a vector with the first 10 integers</span></span>
-<span id="cb130-2"><a href="read-plot.html#cb130-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="sc">%&gt;%</span> <span class="fu">log</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="read-plot.html#cb130-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="co"># create a vector with the first 10 integers</span></span>
+<span id="cb130-2"><a href="read-plot.html#cb130-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="sc">%&gt;%</span> <span class="fu">log</span>()</span></code></pre></div>
 <pre><code>## [1] 4.007333</code></pre>
 <p>In this example, we start with a vector <code>x</code> containing the numbers from
 1 to 10. We then use the pipe operator to pass this vector to the
@@ -290,8 +289,8 @@ the first 10 natural numbers, <span class="math inline">\(\ln(1 + 2+ 3+ ... + 10
 vector. The result of this operation (55) is then passed to the <code>log()</code>
 function, which calculates the natural logarithm of the input.</p>
 <p>This code is equivalent to writing:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="read-plot.html#cb132-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb132-2"><a href="read-plot.html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">sum</span>(x))</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="read-plot.html#cb132-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb132-2"><a href="read-plot.html#cb132-2" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">sum</span>(x))</span></code></pre></div>
 <pre><code>## [1] 4.007333</code></pre>
 <p>As you can see, using the pipe operator allows us to express the
 sequence of operations in a more readable and intuitive way. It can be
@@ -304,12 +303,12 @@ function <code>log</code> takes as first argument the number and as second argum
 the base of our logarithm. If we want to compute the base-10 logarithm
 instead of the natural logarithm, we can do this by changing the second
 <code>base</code> argument after the piping:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="read-plot.html#cb134-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb134-2"><a href="read-plot.html#cb134-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="sc">%&gt;%</span> <span class="fu">log</span>(<span class="at">base =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="read-plot.html#cb134-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb134-2"><a href="read-plot.html#cb134-2" tabindex="-1"></a>x <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="sc">%&gt;%</span> <span class="fu">log</span>(<span class="at">base =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 1.740363</code></pre>
 <p>This code is equivalent to writing:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="read-plot.html#cb136-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb136-2"><a href="read-plot.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">sum</span>(x), <span class="at">base =</span> <span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="read-plot.html#cb136-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb136-2"><a href="read-plot.html#cb136-2" tabindex="-1"></a><span class="fu">log</span>(<span class="fu">sum</span>(x), <span class="at">base =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 1.740363</code></pre>
 <div id="data-frames" class="section level3 hasAnchor" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Data frames<a href="read-plot.html#data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -408,19 +407,19 @@ script and run it.</p>
 last week’s script then copy and paste these as appropriate. Reusing
 your existing vectors from previous chapter to create the <code>planets</code> data
 frame may look like this:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="read-plot.html#cb138-1" aria-hidden="true" tabindex="-1"></a>planet <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb138-2"><a href="read-plot.html#cb138-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Mercury&quot;</span>, <span class="st">&quot;Venus&quot;</span>, <span class="st">&quot;Earth&quot;</span>,</span>
-<span id="cb138-3"><a href="read-plot.html#cb138-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Mars&quot;</span>, <span class="st">&quot;Jupiter&quot;</span>, <span class="st">&quot;Saturn&quot;</span>,</span>
-<span id="cb138-4"><a href="read-plot.html#cb138-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Uranus&quot;</span>, <span class="st">&quot;Neptune&quot;</span>),</span>
-<span id="cb138-5"><a href="read-plot.html#cb138-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mass   =</span> <span class="fu">c</span>(<span class="fl">3.30</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>, <span class="fl">4.87</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">24</span>, <span class="fl">5.97</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">24</span>,</span>
-<span id="cb138-6"><a href="read-plot.html#cb138-6" aria-hidden="true" tabindex="-1"></a>        <span class="fl">6.42</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>, <span class="fl">1.90</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">27</span>, <span class="fl">5.68</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">26</span>,</span>
-<span id="cb138-7"><a href="read-plot.html#cb138-7" aria-hidden="true" tabindex="-1"></a>        <span class="fl">8.68</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">25</span>, <span class="fl">1.02</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">26</span>),</span>
-<span id="cb138-8"><a href="read-plot.html#cb138-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="fu">c</span>(<span class="fl">2.440</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">6.052</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">6.371</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>,</span>
-<span id="cb138-9"><a href="read-plot.html#cb138-9" aria-hidden="true" tabindex="-1"></a>        <span class="fl">3.390</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">6.991</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>, <span class="fl">5.823</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>,</span>
-<span id="cb138-10"><a href="read-plot.html#cb138-10" aria-hidden="true" tabindex="-1"></a>        <span class="fl">2.536</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>, <span class="fl">2.462</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>)</span>
-<span id="cb138-11"><a href="read-plot.html#cb138-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="read-plot.html#cb138-1" tabindex="-1"></a>planet <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb138-2"><a href="read-plot.html#cb138-2" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Mercury&quot;</span>, <span class="st">&quot;Venus&quot;</span>, <span class="st">&quot;Earth&quot;</span>,</span>
+<span id="cb138-3"><a href="read-plot.html#cb138-3" tabindex="-1"></a>        <span class="st">&quot;Mars&quot;</span>, <span class="st">&quot;Jupiter&quot;</span>, <span class="st">&quot;Saturn&quot;</span>,</span>
+<span id="cb138-4"><a href="read-plot.html#cb138-4" tabindex="-1"></a>        <span class="st">&quot;Uranus&quot;</span>, <span class="st">&quot;Neptune&quot;</span>),</span>
+<span id="cb138-5"><a href="read-plot.html#cb138-5" tabindex="-1"></a>    <span class="at">mass   =</span> <span class="fu">c</span>(<span class="fl">3.30</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>, <span class="fl">4.87</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">24</span>, <span class="fl">5.97</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">24</span>,</span>
+<span id="cb138-6"><a href="read-plot.html#cb138-6" tabindex="-1"></a>        <span class="fl">6.42</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>, <span class="fl">1.90</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">27</span>, <span class="fl">5.68</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">26</span>,</span>
+<span id="cb138-7"><a href="read-plot.html#cb138-7" tabindex="-1"></a>        <span class="fl">8.68</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">25</span>, <span class="fl">1.02</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">26</span>),</span>
+<span id="cb138-8"><a href="read-plot.html#cb138-8" tabindex="-1"></a>    <span class="at">radius =</span> <span class="fu">c</span>(<span class="fl">2.440</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">6.052</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">6.371</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>,</span>
+<span id="cb138-9"><a href="read-plot.html#cb138-9" tabindex="-1"></a>        <span class="fl">3.390</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">6.991</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>, <span class="fl">5.823</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>,</span>
+<span id="cb138-10"><a href="read-plot.html#cb138-10" tabindex="-1"></a>        <span class="fl">2.536</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>, <span class="fl">2.462</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>)</span>
+<span id="cb138-11"><a href="read-plot.html#cb138-11" tabindex="-1"></a>)</span></code></pre></div>
 <p>Check that <code>planet</code> really is a <code>data.frame</code> by typing:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="read-plot.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(planet)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="read-plot.html#cb139-1" tabindex="-1"></a><span class="fu">class</span>(planet)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <p>In R the class of objects is very important. The same function, for
 example <code>summary()</code>, will perform differently depending upon the class
@@ -429,25 +428,25 @@ overloading”.</p>
 <p>Type <code>planet</code> into the console, and it will display the contents of our
 newly created data frame. Another way to see the contents, this time in
 a spreadsheet type view, is to type:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="read-plot.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(planet)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="read-plot.html#cb141-1" tabindex="-1"></a><span class="fu">View</span>(planet)</span></code></pre></div>
 <p>To access the individual variables we use the dollar syntax:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="read-plot.html#cb142-1" aria-hidden="true" tabindex="-1"></a>planet<span class="sc">$</span>mass</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="read-plot.html#cb142-1" tabindex="-1"></a>planet<span class="sc">$</span>mass</span></code></pre></div>
 <pre><code>## [1] 3.30e+23 4.87e+24 5.97e+24 6.42e+23 1.90e+27 5.68e+26 8.68e+25 1.02e+26</code></pre>
 <p>But we can also use square brackets to select the individual elements of
 the data frame:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="read-plot.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first row, first column</span></span>
-<span id="cb144-2"><a href="read-plot.html#cb144-2" aria-hidden="true" tabindex="-1"></a>planet[<span class="dv">1</span>, <span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="read-plot.html#cb144-1" tabindex="-1"></a><span class="co"># first row, first column</span></span>
+<span id="cb144-2"><a href="read-plot.html#cb144-2" tabindex="-1"></a>planet[<span class="dv">1</span>, <span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Mercury&quot;</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="read-plot.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># entire first row</span></span>
-<span id="cb146-2"><a href="read-plot.html#cb146-2" aria-hidden="true" tabindex="-1"></a>planet[<span class="dv">1</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="read-plot.html#cb146-1" tabindex="-1"></a><span class="co"># entire first row</span></span>
+<span id="cb146-2"><a href="read-plot.html#cb146-2" tabindex="-1"></a>planet[<span class="dv">1</span>, ]</span></code></pre></div>
 <pre><code>##      name    mass  radius
 ## 1 Mercury 3.3e+23 2440000</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="read-plot.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># entire first column</span></span>
-<span id="cb148-2"><a href="read-plot.html#cb148-2" aria-hidden="true" tabindex="-1"></a>planet[, <span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="read-plot.html#cb148-1" tabindex="-1"></a><span class="co"># entire first column</span></span>
+<span id="cb148-2"><a href="read-plot.html#cb148-2" tabindex="-1"></a>planet[, <span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Mercury&quot; &quot;Venus&quot;   &quot;Earth&quot;   &quot;Mars&quot;    &quot;Jupiter&quot; &quot;Saturn&quot;  &quot;Uranus&quot; 
 ## [8] &quot;Neptune&quot;</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="read-plot.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first 3 rows</span></span>
-<span id="cb150-2"><a href="read-plot.html#cb150-2" aria-hidden="true" tabindex="-1"></a>planet[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="read-plot.html#cb150-1" tabindex="-1"></a><span class="co"># first 3 rows</span></span>
+<span id="cb150-2"><a href="read-plot.html#cb150-2" tabindex="-1"></a>planet[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code></pre></div>
 <pre><code>##      name     mass  radius
 ## 1 Mercury 3.30e+23 2440000
 ## 2   Venus 4.87e+24 6052000
@@ -462,7 +461,7 @@ the code, as you will see.</p>
 are perfect spheres, we could use the equation for volume: <span class="math display">\[
 V = \frac{4}{3} \pi r^3,
 \]</span> where <span class="math inline">\(r\)</span> is the planet radius:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="read-plot.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span><span class="sc">/</span><span class="dv">3</span> <span class="sc">*</span> pi <span class="sc">*</span> planet<span class="sc">$</span>radius<span class="sc">^</span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="read-plot.html#cb152-1" tabindex="-1"></a><span class="dv">4</span><span class="sc">/</span><span class="dv">3</span> <span class="sc">*</span> pi <span class="sc">*</span> planet<span class="sc">$</span>radius<span class="sc">^</span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 6.084965e+19 9.285074e+20 1.083207e+21 1.631878e+20 1.431220e+24
 ## [6] 8.270447e+23 6.831819e+22 6.251047e+22</code></pre>
 <p>Since we created this data frame, we already know the names of the
@@ -472,31 +471,31 @@ that this data set also has good documentation, such as a PDF or website
 telling you all the details you could ever want know. But <em>within</em> R, we
 can get a list of the attributes of an object by using the <code>names()</code>
 function:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="read-plot.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(planet)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="read-plot.html#cb154-1" tabindex="-1"></a><span class="fu">names</span>(planet)</span></code></pre></div>
 <pre><code>## [1] &quot;name&quot;   &quot;mass&quot;   &quot;radius&quot;</code></pre>
 <p>As well as using <code>names()</code>, it is also good practice to check the <em>size</em>
 of the data frame.</p>
 <p>We previously used <code>length()</code> to determine how many elements were in a
 vector. Since, a data frame is two-dimensional, we instead use <code>nrow()</code>
 and <code>ncol()</code> to determine the number of rows and columns respectively:</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="read-plot.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(planet)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="read-plot.html#cb156-1" tabindex="-1"></a><span class="fu">nrow</span>(planet)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="read-plot.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(planet)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="read-plot.html#cb158-1" tabindex="-1"></a><span class="fu">ncol</span>(planet)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="read-plot.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(planet)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="read-plot.html#cb160-1" tabindex="-1"></a><span class="fu">dim</span>(planet)</span></code></pre></div>
 <pre><code>## [1] 8 3</code></pre>
 <p>Ultimately, there is a great function that contains and print all these
 information for your in a convenient format, <code>str</code>. This will print also
 the class of the columns and the first few observations, and can be a
 pretty useful function to have a first look at a new data frame:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="read-plot.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(planet)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="read-plot.html#cb162-1" tabindex="-1"></a><span class="fu">str</span>(planet)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    8 obs. of  3 variables:
 ##  $ name  : chr  &quot;Mercury&quot; &quot;Venus&quot; &quot;Earth&quot; &quot;Mars&quot; ...
 ##  $ mass  : num  3.30e+23 4.87e+24 5.97e+24 6.42e+23 1.90e+27 ...
 ##  $ radius: num  2440000 6052000 6371000 3390000 69910000 ...</code></pre>
 <p>Using the dollar syntax we can create new variables:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="read-plot.html#cb164-1" aria-hidden="true" tabindex="-1"></a>planet<span class="sc">$</span>contains_humans <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb164-2"><a href="read-plot.html#cb164-2" aria-hidden="true" tabindex="-1"></a>planet<span class="sc">$</span>radius_km <span class="ot">&lt;-</span> planet<span class="sc">$</span>radius <span class="sc">/</span> <span class="dv">1000</span></span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="read-plot.html#cb164-1" tabindex="-1"></a>planet<span class="sc">$</span>contains_humans <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb164-2"><a href="read-plot.html#cb164-2" tabindex="-1"></a>planet<span class="sc">$</span>radius_km <span class="ot">&lt;-</span> planet<span class="sc">$</span>radius <span class="sc">/</span> <span class="dv">1000</span></span></code></pre></div>
 <p>Though there are more elegant ways of creating new variables, as you
 will see in the next section.</p>
 </div>
@@ -505,7 +504,7 @@ will see in the next section.</p>
 <p>The easiest way to add <code>distance</code>, and <code>gravity</code> as variables to our
 data frame is to make use of the <code>dplyr</code> package. Before we can load
 this package from the R library, you will need to install it:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="read-plot.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) <span class="co"># if asked, choose a UK location</span></span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="read-plot.html#cb165-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dplyr&quot;</span>) <span class="co"># if asked, choose a UK location</span></span></code></pre></div>
 <p>Add <code>library(dplyr)</code> to yours now and run it. Alternatively, we can load
 the <code>tidyverse</code> via the command: <code>library(tidyverse)</code>, and this will
 automatically load <code>dplyr</code>.</p>
@@ -524,9 +523,9 @@ to work with. These allows the function to be used in conjunction with
 the pipe operator <code>%&gt;%</code>.</p>
 <p>For example, to focus on big planets i.e. those that have radius greater
 than <span class="math inline">\(10^7\)</span>m we use the <code>filter()</code> function:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="read-plot.html#cb166-1" aria-hidden="true" tabindex="-1"></a>big_planets <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span> <span class="fu">filter</span>(radius <span class="sc">&gt;</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>)</span>
-<span id="cb166-2"><a href="read-plot.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="co"># big_planets &lt;- filter(planet, radius &gt; 10^7) # alternatively, without pipe </span></span>
-<span id="cb166-3"><a href="read-plot.html#cb166-3" aria-hidden="true" tabindex="-1"></a>big_planets</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="read-plot.html#cb166-1" tabindex="-1"></a>big_planets <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span> <span class="fu">filter</span>(radius <span class="sc">&gt;</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>)</span>
+<span id="cb166-2"><a href="read-plot.html#cb166-2" tabindex="-1"></a><span class="co"># big_planets &lt;- filter(planet, radius &gt; 10^7) # alternatively, without pipe </span></span>
+<span id="cb166-3"><a href="read-plot.html#cb166-3" tabindex="-1"></a>big_planets</span></code></pre></div>
 <pre><code>##      name     mass   radius contains_humans radius_km
 ## 1 Jupiter 1.90e+27 69910000               0     69910
 ## 2  Saturn 5.68e+26 58230000               0     58230
@@ -534,7 +533,7 @@ than <span class="math inline">\(10^7\)</span>m we use the <code>filter()</code>
 ## 4 Neptune 1.02e+26 24620000               0     24620</code></pre>
 <p>To arrange the planets by increasing size, we using the <code>arrange()</code>
 function:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="read-plot.html#cb168-1" aria-hidden="true" tabindex="-1"></a>planet <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(radius) <span class="co"># increasing by default</span></span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="read-plot.html#cb168-1" tabindex="-1"></a>planet <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(radius) <span class="co"># increasing by default</span></span></code></pre></div>
 <pre><code>##      name     mass   radius contains_humans radius_km
 ## 1 Mercury 3.30e+23  2440000               0      2440
 ## 2    Mars 6.42e+23  3390000               0      3390
@@ -544,7 +543,7 @@ function:</p>
 ## 6  Uranus 8.68e+25 25360000               0     25360
 ## 7  Saturn 5.68e+26 58230000               0     58230
 ## 8 Jupiter 1.90e+27 69910000               0     69910</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="read-plot.html#cb170-1" aria-hidden="true" tabindex="-1"></a>planet <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(radius)) <span class="co"># decreasing</span></span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="read-plot.html#cb170-1" tabindex="-1"></a>planet <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(radius)) <span class="co"># decreasing</span></span></code></pre></div>
 <pre><code>##      name     mass   radius contains_humans radius_km
 ## 1 Jupiter 1.90e+27 69910000               0     69910
 ## 2  Saturn 5.68e+26 58230000               0     58230
@@ -554,20 +553,20 @@ function:</p>
 ## 6   Venus 4.87e+24  6052000               0      6052
 ## 7    Mars 6.42e+23  3390000               0      3390
 ## 8 Mercury 3.30e+23  2440000               0      2440</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="read-plot.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternatively, without pipe</span></span>
-<span id="cb172-2"><a href="read-plot.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="co"># arrange(planet, radius) # increasing by default</span></span>
-<span id="cb172-3"><a href="read-plot.html#cb172-3" aria-hidden="true" tabindex="-1"></a><span class="co"># arrange(planet, desc(radius)) # decreasing</span></span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="read-plot.html#cb172-1" tabindex="-1"></a><span class="co"># alternatively, without pipe</span></span>
+<span id="cb172-2"><a href="read-plot.html#cb172-2" tabindex="-1"></a><span class="co"># arrange(planet, radius) # increasing by default</span></span>
+<span id="cb172-3"><a href="read-plot.html#cb172-3" tabindex="-1"></a><span class="co"># arrange(planet, desc(radius)) # decreasing</span></span></code></pre></div>
 <p>If we want to store the data in this newly rearranged form then:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="read-plot.html#cb173-1" aria-hidden="true" tabindex="-1"></a>planet <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span></span>
-<span id="cb173-2"><a href="read-plot.html#cb173-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(radius))</span>
-<span id="cb173-3"><a href="read-plot.html#cb173-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb173-4"><a href="read-plot.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="co"># alternatively, without pipe</span></span>
-<span id="cb173-5"><a href="read-plot.html#cb173-5" aria-hidden="true" tabindex="-1"></a><span class="co"># planet &lt;- arrange(planet, desc(radius))</span></span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="read-plot.html#cb173-1" tabindex="-1"></a>planet <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span></span>
+<span id="cb173-2"><a href="read-plot.html#cb173-2" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(radius))</span>
+<span id="cb173-3"><a href="read-plot.html#cb173-3" tabindex="-1"></a></span>
+<span id="cb173-4"><a href="read-plot.html#cb173-4" tabindex="-1"></a><span class="co"># alternatively, without pipe</span></span>
+<span id="cb173-5"><a href="read-plot.html#cb173-5" tabindex="-1"></a><span class="co"># planet &lt;- arrange(planet, desc(radius))</span></span></code></pre></div>
 <p>If we wanted to remove the column of planet names, effectively
 anonymising them, we would use the <code>select()</code> function to specify the
 columns we do want to keep.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="read-plot.html#cb174-1" aria-hidden="true" tabindex="-1"></a>annon_planets <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span> <span class="fu">select</span>(mass, radius)</span>
-<span id="cb174-2"><a href="read-plot.html#cb174-2" aria-hidden="true" tabindex="-1"></a>annon_planets</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="read-plot.html#cb174-1" tabindex="-1"></a>annon_planets <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span> <span class="fu">select</span>(mass, radius)</span>
+<span id="cb174-2"><a href="read-plot.html#cb174-2" tabindex="-1"></a>annon_planets</span></code></pre></div>
 <pre><code>##       mass   radius
 ## 1 1.90e+27 69910000
 ## 2 5.68e+26 58230000
@@ -577,22 +576,22 @@ columns we do want to keep.</p>
 ## 6 4.87e+24  6052000
 ## 7 6.42e+23  3390000
 ## 8 3.30e+23  2440000</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="read-plot.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternatively, without pipe</span></span>
-<span id="cb176-2"><a href="read-plot.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="co"># annon_planets &lt;- select(planet, mass, radius)</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="read-plot.html#cb176-1" tabindex="-1"></a><span class="co"># alternatively, without pipe</span></span>
+<span id="cb176-2"><a href="read-plot.html#cb176-2" tabindex="-1"></a><span class="co"># annon_planets &lt;- select(planet, mass, radius)</span></span></code></pre></div>
 <p>In order to carry on with our gravity calculations, we need to add a
 <code>distance</code> column, use <code>mutate()</code> to do this. Using <code>mutate()</code> we can
 actually add the <code>distance</code> and <code>gravity</code> variables in one call:</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="read-plot.html#cb177-1" aria-hidden="true" tabindex="-1"></a>calc_gravity <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">distance =</span> <span class="dv">0</span>, <span class="at">mass =</span> <span class="fl">5.9736</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">24</span>, <span class="at">radius =</span> <span class="fl">6.371</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>) {</span>
-<span id="cb177-2"><a href="read-plot.html#cb177-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># constant</span></span>
-<span id="cb177-3"><a href="read-plot.html#cb177-3" aria-hidden="true" tabindex="-1"></a>    G <span class="ot">&lt;-</span> <span class="fl">6.6728</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^-</span><span class="dv">11</span></span>
-<span id="cb177-4"><a href="read-plot.html#cb177-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># calculation</span></span>
-<span id="cb177-5"><a href="read-plot.html#cb177-5" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> radius <span class="sc">+</span> distance</span>
-<span id="cb177-6"><a href="read-plot.html#cb177-6" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> G <span class="sc">*</span> mass <span class="sc">/</span> r<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb177-7"><a href="read-plot.html#cb177-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(a)</span>
-<span id="cb177-8"><a href="read-plot.html#cb177-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb177-9"><a href="read-plot.html#cb177-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-10"><a href="read-plot.html#cb177-10" aria-hidden="true" tabindex="-1"></a>planet <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">distance =</span> <span class="dv">0</span>,</span>
-<span id="cb177-11"><a href="read-plot.html#cb177-11" aria-hidden="true" tabindex="-1"></a>                            <span class="at">gravity =</span> <span class="fu">calc_gravity</span>(distance, mass, radius))</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="read-plot.html#cb177-1" tabindex="-1"></a>calc_gravity <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">distance =</span> <span class="dv">0</span>, <span class="at">mass =</span> <span class="fl">5.9736</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">24</span>, <span class="at">radius =</span> <span class="fl">6.371</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>) {</span>
+<span id="cb177-2"><a href="read-plot.html#cb177-2" tabindex="-1"></a>    <span class="co"># constant</span></span>
+<span id="cb177-3"><a href="read-plot.html#cb177-3" tabindex="-1"></a>    G <span class="ot">&lt;-</span> <span class="fl">6.6728</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^-</span><span class="dv">11</span></span>
+<span id="cb177-4"><a href="read-plot.html#cb177-4" tabindex="-1"></a>    <span class="co"># calculation</span></span>
+<span id="cb177-5"><a href="read-plot.html#cb177-5" tabindex="-1"></a>    r <span class="ot">&lt;-</span> radius <span class="sc">+</span> distance</span>
+<span id="cb177-6"><a href="read-plot.html#cb177-6" tabindex="-1"></a>    a <span class="ot">&lt;-</span> G <span class="sc">*</span> mass <span class="sc">/</span> r<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb177-7"><a href="read-plot.html#cb177-7" tabindex="-1"></a>    <span class="fu">return</span>(a)</span>
+<span id="cb177-8"><a href="read-plot.html#cb177-8" tabindex="-1"></a>}</span>
+<span id="cb177-9"><a href="read-plot.html#cb177-9" tabindex="-1"></a></span>
+<span id="cb177-10"><a href="read-plot.html#cb177-10" tabindex="-1"></a>planet <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">distance =</span> <span class="dv">0</span>,</span>
+<span id="cb177-11"><a href="read-plot.html#cb177-11" tabindex="-1"></a>                            <span class="at">gravity =</span> <span class="fu">calc_gravity</span>(distance, mass, radius))</span></code></pre></div>
 <p>When passing variable names to <code>cal_gravity()</code>, <code>mutate()</code> will check if
 these names correspond to variables inside the specified data frame.
 This means we do not have to repeatedly use the dollar syntax mentioned
@@ -604,12 +603,12 @@ error if it could not find any object matching the name specified.</p>
 <p>Check what the data contained with <code>planet</code> now looks like.</p>
 <p>Thanks to the power of the pipe operator <code>%&gt;%</code>, we can do all these
 operations in one go by piping the above functions together:</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="read-plot.html#cb178-1" aria-hidden="true" tabindex="-1"></a>planet <span class="sc">%&gt;%</span></span>
-<span id="cb178-2"><a href="read-plot.html#cb178-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(radius <span class="sc">&gt;</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb178-3"><a href="read-plot.html#cb178-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">distance =</span> <span class="dv">0</span>,</span>
-<span id="cb178-4"><a href="read-plot.html#cb178-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">gravity =</span> <span class="fu">calc_gravity</span>(distance, mass, radius)) <span class="sc">%&gt;%</span></span>
-<span id="cb178-5"><a href="read-plot.html#cb178-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mass)) <span class="sc">%&gt;%</span></span>
-<span id="cb178-6"><a href="read-plot.html#cb178-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, mass)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="read-plot.html#cb178-1" tabindex="-1"></a>planet <span class="sc">%&gt;%</span></span>
+<span id="cb178-2"><a href="read-plot.html#cb178-2" tabindex="-1"></a>  <span class="fu">filter</span>(radius <span class="sc">&gt;</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb178-3"><a href="read-plot.html#cb178-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">distance =</span> <span class="dv">0</span>,</span>
+<span id="cb178-4"><a href="read-plot.html#cb178-4" tabindex="-1"></a>         <span class="at">gravity =</span> <span class="fu">calc_gravity</span>(distance, mass, radius)) <span class="sc">%&gt;%</span></span>
+<span id="cb178-5"><a href="read-plot.html#cb178-5" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mass)) <span class="sc">%&gt;%</span></span>
+<span id="cb178-6"><a href="read-plot.html#cb178-6" tabindex="-1"></a>  <span class="fu">select</span>(name, mass)</span></code></pre></div>
 <pre><code>##      name     mass
 ## 1 Jupiter 1.90e+27
 ## 2  Saturn 5.68e+26
@@ -632,8 +631,8 @@ on how you want to combine the data, like concatenating, and joining.</p>
 <p>Let us explore the difference between the two through a real example. We
 start by selecting few columns from the planet data set that we have
 created so far.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="read-plot.html#cb180-1" aria-hidden="true" tabindex="-1"></a>real_planet <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, mass, radius, contains_humans)</span>
-<span id="cb180-2"><a href="read-plot.html#cb180-2" aria-hidden="true" tabindex="-1"></a>real_planet</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="read-plot.html#cb180-1" tabindex="-1"></a>real_planet <span class="ot">&lt;-</span> planet <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, mass, radius, contains_humans)</span>
+<span id="cb180-2"><a href="read-plot.html#cb180-2" tabindex="-1"></a>real_planet</span></code></pre></div>
 <pre><code>##      name     mass   radius contains_humans
 ## 1 Jupiter 1.90e+27 69910000               0
 ## 2  Saturn 5.68e+26 58230000               0
@@ -646,13 +645,13 @@ created so far.</p>
 <p>Say that we now have a new data frame with some additional (exo)planets,
 fresh from the telescopes, which shares common features with our
 existing dataset:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="read-plot.html#cb182-1" aria-hidden="true" tabindex="-1"></a>exoplanet <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb182-2"><a href="read-plot.html#cb182-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Kepler-186f&quot;</span>, <span class="st">&quot;Kepler-62f&quot;</span>, <span class="st">&quot;Kepler-438b&quot;</span>),</span>
-<span id="cb182-3"><a href="read-plot.html#cb182-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mass =</span> <span class="fu">c</span>(<span class="fl">1.9</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>, <span class="fl">3.32</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>, <span class="fl">2.64</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>),</span>
-<span id="cb182-4"><a href="read-plot.html#cb182-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="fu">c</span>(<span class="fl">1.17</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">1.41</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">1.12</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>)</span>
-<span id="cb182-5"><a href="read-plot.html#cb182-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb182-6"><a href="read-plot.html#cb182-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb182-7"><a href="read-plot.html#cb182-7" aria-hidden="true" tabindex="-1"></a>exoplanet</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="read-plot.html#cb182-1" tabindex="-1"></a>exoplanet <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb182-2"><a href="read-plot.html#cb182-2" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Kepler-186f&quot;</span>, <span class="st">&quot;Kepler-62f&quot;</span>, <span class="st">&quot;Kepler-438b&quot;</span>),</span>
+<span id="cb182-3"><a href="read-plot.html#cb182-3" tabindex="-1"></a>    <span class="at">mass =</span> <span class="fu">c</span>(<span class="fl">1.9</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>, <span class="fl">3.32</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>, <span class="fl">2.64</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">23</span>),</span>
+<span id="cb182-4"><a href="read-plot.html#cb182-4" tabindex="-1"></a>    <span class="at">radius =</span> <span class="fu">c</span>(<span class="fl">1.17</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">1.41</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="fl">1.12</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>)</span>
+<span id="cb182-5"><a href="read-plot.html#cb182-5" tabindex="-1"></a>)</span>
+<span id="cb182-6"><a href="read-plot.html#cb182-6" tabindex="-1"></a></span>
+<span id="cb182-7"><a href="read-plot.html#cb182-7" tabindex="-1"></a>exoplanet</span></code></pre></div>
 <pre><code>##          name     mass  radius
 ## 1 Kepler-186f 1.90e+23 1170000
 ## 2  Kepler-62f 3.32e+23 1410000
@@ -661,8 +660,8 @@ existing dataset:</p>
 to a data frame from a different one that shares the same columns. This
 can be achieved with the <code>bind_rows</code> function, that takes as input any
 number of data frames and essentially collates them together:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="read-plot.html#cb184-1" aria-hidden="true" tabindex="-1"></a>real_planet <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(real_planet, exoplanet)</span>
-<span id="cb184-2"><a href="read-plot.html#cb184-2" aria-hidden="true" tabindex="-1"></a>real_planet</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="read-plot.html#cb184-1" tabindex="-1"></a>real_planet <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(real_planet, exoplanet)</span>
+<span id="cb184-2"><a href="read-plot.html#cb184-2" tabindex="-1"></a>real_planet</span></code></pre></div>
 <pre><code>##           name     mass   radius contains_humans
 ## 1      Jupiter 1.90e+27 69910000               0
 ## 2       Saturn 5.68e+26 58230000               0
@@ -685,12 +684,12 @@ assigned a job at the Lancaster branch of the Planet Express (somehow
 they still need data scientists).</p>
 <p>You now have a new data-frame to work with, with some new planets,
 species and delivery due-dates:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="read-plot.html#cb186-1" aria-hidden="true" tabindex="-1"></a>futurama_planet <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb186-2"><a href="read-plot.html#cb186-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Omicron Persei 8&quot;</span>, <span class="st">&quot;V-GINY&quot;</span>, <span class="st">&quot;Mars&quot;</span>, <span class="st">&quot;Neutral Planet&quot;</span>, <span class="st">&quot;Earth&quot;</span>, <span class="st">&quot;Decapod 10&quot;</span>, <span class="st">&quot;Amphibios 9&quot;</span>, <span class="st">&quot;Near Death Star&quot;</span>),</span>
-<span id="cb186-3"><a href="read-plot.html#cb186-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="fu">c</span>(<span class="st">&quot;Omicronians&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;Native Martians&quot;</span>, <span class="st">&quot;Neutral People&quot;</span>, <span class="st">&quot;Humans&quot;</span>, <span class="st">&quot;Decapodians&quot;</span>, <span class="st">&quot;Amphibiosans&quot;</span>, <span class="cn">NA</span>),</span>
-<span id="cb186-4"><a href="read-plot.html#cb186-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">delivery_due =</span> <span class="fu">c</span>(<span class="st">&quot;3001/01/03&quot;</span>, <span class="st">&quot;3005/04/22&quot;</span>, <span class="st">&quot;3003/03/05&quot;</span>, <span class="st">&quot;3011/11/13&quot;</span>, <span class="st">&quot;3001/02/02&quot;</span>, <span class="st">&quot;3001/01/13&quot;</span>, <span class="st">&quot;3002/01/13&quot;</span>, <span class="st">&quot;3007/07/25&quot;</span>)</span>
-<span id="cb186-5"><a href="read-plot.html#cb186-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb186-6"><a href="read-plot.html#cb186-6" aria-hidden="true" tabindex="-1"></a>futurama_planet</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="read-plot.html#cb186-1" tabindex="-1"></a>futurama_planet <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb186-2"><a href="read-plot.html#cb186-2" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;Omicron Persei 8&quot;</span>, <span class="st">&quot;V-GINY&quot;</span>, <span class="st">&quot;Mars&quot;</span>, <span class="st">&quot;Neutral Planet&quot;</span>, <span class="st">&quot;Earth&quot;</span>, <span class="st">&quot;Decapod 10&quot;</span>, <span class="st">&quot;Amphibios 9&quot;</span>, <span class="st">&quot;Near Death Star&quot;</span>),</span>
+<span id="cb186-3"><a href="read-plot.html#cb186-3" tabindex="-1"></a>    <span class="at">species =</span> <span class="fu">c</span>(<span class="st">&quot;Omicronians&quot;</span>, <span class="cn">NA</span>, <span class="st">&quot;Native Martians&quot;</span>, <span class="st">&quot;Neutral People&quot;</span>, <span class="st">&quot;Humans&quot;</span>, <span class="st">&quot;Decapodians&quot;</span>, <span class="st">&quot;Amphibiosans&quot;</span>, <span class="cn">NA</span>),</span>
+<span id="cb186-4"><a href="read-plot.html#cb186-4" tabindex="-1"></a>    <span class="at">delivery_due =</span> <span class="fu">c</span>(<span class="st">&quot;3001/01/03&quot;</span>, <span class="st">&quot;3005/04/22&quot;</span>, <span class="st">&quot;3003/03/05&quot;</span>, <span class="st">&quot;3011/11/13&quot;</span>, <span class="st">&quot;3001/02/02&quot;</span>, <span class="st">&quot;3001/01/13&quot;</span>, <span class="st">&quot;3002/01/13&quot;</span>, <span class="st">&quot;3007/07/25&quot;</span>)</span>
+<span id="cb186-5"><a href="read-plot.html#cb186-5" tabindex="-1"></a>)</span>
+<span id="cb186-6"><a href="read-plot.html#cb186-6" tabindex="-1"></a>futurama_planet</span></code></pre></div>
 <pre><code>##               name         species delivery_due
 ## 1 Omicron Persei 8     Omicronians   3001/01/03
 ## 2           V-GINY            &lt;NA&gt;   3005/04/22
@@ -713,8 +712,8 @@ both tables, matching observations based on the values of one or more
 shared columns (called keys).</p>
 <p>In our example, we can combine the two data frames by joining them using
 the <code>name</code> column as our key:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="read-plot.html#cb188-1" aria-hidden="true" tabindex="-1"></a>joined_planets <span class="ot">&lt;-</span> <span class="fu">full_join</span>(real_planet, futurama_planet, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb188-2"><a href="read-plot.html#cb188-2" aria-hidden="true" tabindex="-1"></a>joined_planets</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="read-plot.html#cb188-1" tabindex="-1"></a>joined_planets <span class="ot">&lt;-</span> <span class="fu">full_join</span>(real_planet, futurama_planet, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb188-2"><a href="read-plot.html#cb188-2" tabindex="-1"></a>joined_planets</span></code></pre></div>
 <pre><code>##                name     mass   radius contains_humans         species
 ## 1           Jupiter 1.90e+27 69910000               0            &lt;NA&gt;
 ## 2            Saturn 5.68e+26 58230000               0            &lt;NA&gt;
@@ -765,8 +764,8 @@ Another function is the <code>left_join()</code> function, which keeps all
 observations in the first data frame (x) and adds columns from the
 second data frame (y) to x, matching again observations based on the
 keys.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="read-plot.html#cb190-1" aria-hidden="true" tabindex="-1"></a>left_joined_planets <span class="ot">&lt;-</span> <span class="fu">left_join</span>(real_planet, futurama_planet, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb190-2"><a href="read-plot.html#cb190-2" aria-hidden="true" tabindex="-1"></a>left_joined_planets</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="read-plot.html#cb190-1" tabindex="-1"></a>left_joined_planets <span class="ot">&lt;-</span> <span class="fu">left_join</span>(real_planet, futurama_planet, <span class="at">by =</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb190-2"><a href="read-plot.html#cb190-2" tabindex="-1"></a>left_joined_planets</span></code></pre></div>
 <pre><code>##           name     mass   radius contains_humans         species delivery_due
 ## 1      Jupiter 1.90e+27 69910000               0            &lt;NA&gt;         &lt;NA&gt;
 ## 2       Saturn 5.68e+26 58230000               0            &lt;NA&gt;         &lt;NA&gt;
@@ -792,11 +791,11 @@ module, you will in the more-theoretical statistics modules.</p>
 <p>The word <em>matrix</em> is a mathematical term for a two-dimensional array of
 numbers, with a <em>vector</em> being a one-dimensional array. To create a
 matrix we can simply bind vectors together as columns:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="read-plot.html#cb192-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb192-2"><a href="read-plot.html#cb192-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb192-3"><a href="read-plot.html#cb192-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span></span>
-<span id="cb192-4"><a href="read-plot.html#cb192-4" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x, y, z)</span>
-<span id="cb192-5"><a href="read-plot.html#cb192-5" aria-hidden="true" tabindex="-1"></a>mat</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="read-plot.html#cb192-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb192-2"><a href="read-plot.html#cb192-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb192-3"><a href="read-plot.html#cb192-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span></span>
+<span id="cb192-4"><a href="read-plot.html#cb192-4" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">cbind</span>(x, y, z)</span>
+<span id="cb192-5"><a href="read-plot.html#cb192-5" tabindex="-1"></a>mat</span></code></pre></div>
 <pre><code>##      x  y  z
 ## [1,] 1  6 11
 ## [2,] 2  7 12
@@ -804,8 +803,8 @@ matrix we can simply bind vectors together as columns:</p>
 ## [4,] 4  9 14
 ## [5,] 5 10 15</code></pre>
 <p>Or we can create one directly, using the <code>matrix()</code> function:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="read-plot.html#cb194-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">byrow =</span> T)</span>
-<span id="cb194-2"><a href="read-plot.html#cb194-2" aria-hidden="true" tabindex="-1"></a>mat</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="read-plot.html#cb194-1" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">byrow =</span> T)</span>
+<span id="cb194-2"><a href="read-plot.html#cb194-2" tabindex="-1"></a>mat</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    2    3
 ## [2,]    4    5    6
@@ -834,15 +833,15 @@ rerun the command, and see if you can spot the difference in the file.</p>
 <p>Where are these row names coming from? Type <code>row.names(planet)</code> into the
 console. Row names should just be the equivalent of row indexes i.e.
 nothing of actual value. Therefore they do not need storing.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="read-plot.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="do">## if you are working in an R markdown, this will save the file as &quot;planet.csv&quot;</span></span>
-<span id="cb196-2"><a href="read-plot.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to the same path where your R markdown script is located. This is the reproducible way. </span></span>
-<span id="cb196-3"><a href="read-plot.html#cb196-3" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="st">&quot;planet.csv&quot;</span></span>
-<span id="cb196-4"><a href="read-plot.html#cb196-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb196-5"><a href="read-plot.html#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="do">## if you are working in a script:</span></span>
-<span id="cb196-6"><a href="read-plot.html#cb196-6" aria-hidden="true" tabindex="-1"></a><span class="co"># filename &lt;- &quot;H:/My Awesome R Scripts/planet.csv&quot; # replace by actual path</span></span>
-<span id="cb196-7"><a href="read-plot.html#cb196-7" aria-hidden="true" tabindex="-1"></a><span class="do">### DO NOT INCLUDE ABSOLUTE PATHS IN R MARKDOWNS </span><span class="al">###</span></span>
-<span id="cb196-8"><a href="read-plot.html#cb196-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb196-9"><a href="read-plot.html#cb196-9" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(planet, <span class="at">file =</span> filename, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="read-plot.html#cb196-1" tabindex="-1"></a><span class="do">## if you are working in an R markdown, this will save the file as &quot;planet.csv&quot;</span></span>
+<span id="cb196-2"><a href="read-plot.html#cb196-2" tabindex="-1"></a><span class="co"># to the same path where your R markdown script is located. This is the reproducible way. </span></span>
+<span id="cb196-3"><a href="read-plot.html#cb196-3" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="st">&quot;planet.csv&quot;</span></span>
+<span id="cb196-4"><a href="read-plot.html#cb196-4" tabindex="-1"></a></span>
+<span id="cb196-5"><a href="read-plot.html#cb196-5" tabindex="-1"></a><span class="do">## if you are working in a script:</span></span>
+<span id="cb196-6"><a href="read-plot.html#cb196-6" tabindex="-1"></a><span class="co"># filename &lt;- &quot;H:/My Awesome R Scripts/planet.csv&quot; # replace by actual path</span></span>
+<span id="cb196-7"><a href="read-plot.html#cb196-7" tabindex="-1"></a><span class="do">### DO NOT INCLUDE ABSOLUTE PATHS IN R MARKDOWNS </span><span class="al">###</span></span>
+<span id="cb196-8"><a href="read-plot.html#cb196-8" tabindex="-1"></a></span>
+<span id="cb196-9"><a href="read-plot.html#cb196-9" tabindex="-1"></a><span class="fu">write.csv</span>(planet, <span class="at">file =</span> filename, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>This will write a CSV file to the path you have specified. If you are
 working in R markdown, given that the working directory defaults to the
 location of the Markdown file, you can just specify a filename and this
@@ -903,7 +902,7 @@ because the other two methods are considered sufficient.</p>
 <p>As you can see, while we have <code>write.*()</code> functions we also have equal
 and opposite <code>read.*()</code> functions. Try importing the <code>planet.csv</code> file
 that you produced:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="read-plot.html#cb197-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&quot;planet.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="read-plot.html#cb197-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&quot;planet.csv&quot;</span>)</span></code></pre></div>
 <p>Take a look inside <code>dat</code>, if it looks the same as your <code>planet</code> data
 frame, then good job!</p>
 <p>In general, before you import a data set, try to inspect the file using
@@ -920,23 +919,23 @@ for <code>read.table()</code> check its help page.</p>
 <h3><span class="header-section-number">1.2.7</span> Using a working directory<a href="read-plot.html#using-a-working-directory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Previously, when importing and exporting data sets, we said we had to
 specify a complete file path such as:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="read-plot.html#cb198-1" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="st">&quot;H:/My Awesome R Scripts/planet.csv&quot;</span> <span class="co"># again, replace by actual path</span></span>
-<span id="cb198-2"><a href="read-plot.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(planet, <span class="at">file =</span> filename, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="read-plot.html#cb198-1" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="st">&quot;H:/My Awesome R Scripts/planet.csv&quot;</span> <span class="co"># again, replace by actual path</span></span>
+<span id="cb198-2"><a href="read-plot.html#cb198-2" tabindex="-1"></a><span class="fu">write.csv</span>(planet, <span class="at">file =</span> filename, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>However, R has something called a working directory. If set, anything we
 save, such as data sets and plots, will be saved to this location<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>.</p>
 <p>Now, of course, if we specify absolute paths, like the one above then we
 are effectively overriding this feature.</p>
 <p>To get the path of your current working directory type into the
 :</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="read-plot.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="read-plot.html#cb199-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <p>You can change this, by setting it to a different directory using using
 <code>setwd()</code>, for example:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="read-plot.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;H:/My Awesome R Scripts&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="read-plot.html#cb200-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;H:/My Awesome R Scripts&quot;</span>)</span></code></pre></div>
 <p>If I were to run the following command, the <code>filename</code> is now considered
 relative, i.e. it does not tell R exactly where to save the data. In
 this case, R assumes it should use the working directory.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="read-plot.html#cb201-1" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="st">&quot;planet.csv&quot;</span></span>
-<span id="cb201-2"><a href="read-plot.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(planet, <span class="at">file =</span> filename, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="read-plot.html#cb201-1" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="st">&quot;planet.csv&quot;</span></span>
+<span id="cb201-2"><a href="read-plot.html#cb201-2" tabindex="-1"></a><span class="fu">write.csv</span>(planet, <span class="at">file =</span> filename, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>So, by setting the working directory at the start of a script, we make
 our importing-and-exporting lives easier, because we do not have to
 verbosely state where we want to save something every single time. Also,
@@ -944,8 +943,8 @@ if future you ever needs to open a script to see where it is saving
 everything, then this will be obvious from the <code>setwd()</code> near the top of
 the script.</p>
 <p>A relative file path can include folders:</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="read-plot.html#cb202-1" aria-hidden="true" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="st">&quot;data/planet.csv&quot;</span></span>
-<span id="cb202-2"><a href="read-plot.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(planet, <span class="at">file =</span> filename, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="read-plot.html#cb202-1" tabindex="-1"></a>filename <span class="ot">&lt;-</span> <span class="st">&quot;data/planet.csv&quot;</span></span>
+<span id="cb202-2"><a href="read-plot.html#cb202-2" tabindex="-1"></a><span class="fu">write.csv</span>(planet, <span class="at">file =</span> filename, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>This assumes that there is folder called “data” in my working directory.
 R will complain if it does not exist.</p>
 <p>One final thing about why it is good to use relative paths and “working
@@ -965,15 +964,15 @@ type of data it contains (strings vs numbers) can differ from the
 other columns. Accessing data can be done using both the dollar
 syntax and the square-bracket syntax:</li>
 </ul>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="read-plot.html#cb203-1" aria-hidden="true" tabindex="-1"></a>planet<span class="sc">$</span>name</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="read-plot.html#cb203-1" tabindex="-1"></a>planet<span class="sc">$</span>name</span></code></pre></div>
 <pre><code>## [1] &quot;Jupiter&quot; &quot;Saturn&quot;  &quot;Uranus&quot;  &quot;Neptune&quot; &quot;Earth&quot;   &quot;Venus&quot;   &quot;Mars&quot;   
 ## [8] &quot;Mercury&quot;</code></pre>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="read-plot.html#cb205-1" aria-hidden="true" tabindex="-1"></a>planet<span class="sc">$</span>name[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="read-plot.html#cb205-1" tabindex="-1"></a>planet<span class="sc">$</span>name[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Jupiter&quot; &quot;Saturn&quot;</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="read-plot.html#cb207-1" aria-hidden="true" tabindex="-1"></a>planet[, <span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="read-plot.html#cb207-1" tabindex="-1"></a>planet[, <span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Jupiter&quot; &quot;Saturn&quot;  &quot;Uranus&quot;  &quot;Neptune&quot; &quot;Earth&quot;   &quot;Venus&quot;   &quot;Mars&quot;   
 ## [8] &quot;Mercury&quot;</code></pre>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="read-plot.html#cb209-1" aria-hidden="true" tabindex="-1"></a>planet[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="read-plot.html#cb209-1" tabindex="-1"></a>planet[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Jupiter&quot; &quot;Saturn&quot;</code></pre>
 <ul>
 <li>To manipulate data on a much larger and general scale, it is more
@@ -1025,14 +1024,14 @@ menu in RStudio that allows you to do the same thing.</p></li>
 <li><p>Working directories are good, as they allow you to use relative
 paths, rather than absolute ones.</p></li>
 </ul>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="read-plot.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># relative file names</span></span>
-<span id="cb211-2"><a href="read-plot.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;H:/Awesome R Scripts/&quot;</span>)</span>
-<span id="cb211-3"><a href="read-plot.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(planet, <span class="at">file =</span> <span class="st">&quot;planet.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb211-4"><a href="read-plot.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(letters, <span class="at">file =</span> <span class="st">&quot;letters.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb211-5"><a href="read-plot.html#cb211-5" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb211-6"><a href="read-plot.html#cb211-6" aria-hidden="true" tabindex="-1"></a><span class="co"># absolute file names</span></span>
-<span id="cb211-7"><a href="read-plot.html#cb211-7" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(planet, <span class="at">file =</span> <span class="st">&quot;H:/Awesome R Scripts/planet.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb211-8"><a href="read-plot.html#cb211-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(letters, <span class="at">file =</span> <span class="st">&quot;H:/Awesome R Scripts/letters.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="read-plot.html#cb211-1" tabindex="-1"></a><span class="co"># relative file names</span></span>
+<span id="cb211-2"><a href="read-plot.html#cb211-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;H:/Awesome R Scripts/&quot;</span>)</span>
+<span id="cb211-3"><a href="read-plot.html#cb211-3" tabindex="-1"></a><span class="fu">write.table</span>(planet, <span class="at">file =</span> <span class="st">&quot;planet.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb211-4"><a href="read-plot.html#cb211-4" tabindex="-1"></a><span class="fu">write.table</span>(letters, <span class="at">file =</span> <span class="st">&quot;letters.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb211-5"><a href="read-plot.html#cb211-5" tabindex="-1"></a> </span>
+<span id="cb211-6"><a href="read-plot.html#cb211-6" tabindex="-1"></a><span class="co"># absolute file names</span></span>
+<span id="cb211-7"><a href="read-plot.html#cb211-7" tabindex="-1"></a><span class="fu">write.table</span>(planet, <span class="at">file =</span> <span class="st">&quot;H:/Awesome R Scripts/planet.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb211-8"><a href="read-plot.html#cb211-8" tabindex="-1"></a><span class="fu">write.table</span>(letters, <span class="at">file =</span> <span class="st">&quot;H:/Awesome R Scripts/letters.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <ul>
 <li>It can be a good idea to set your working directory at the top of
 your script.</li>
@@ -1078,21 +1077,21 @@ particular <code>write.*()</code> function.</li>
 <h2><span class="header-section-number">1.3</span> Data Types<a href="read-plot.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To determine the data type of an object use the <code>class()</code> function. Type
 in the :</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="read-plot.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(planet<span class="sc">$</span>mass)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="read-plot.html#cb213-1" tabindex="-1"></a><span class="fu">class</span>(planet<span class="sc">$</span>mass)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="read-plot.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(planet<span class="sc">$</span>name)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="read-plot.html#cb215-1" tabindex="-1"></a><span class="fu">class</span>(planet<span class="sc">$</span>name)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="read-plot.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">c</span>(<span class="st">&quot;peanut&quot;</span>, <span class="st">&quot;seed&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="read-plot.html#cb217-1" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">c</span>(<span class="st">&quot;peanut&quot;</span>, <span class="st">&quot;seed&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="read-plot.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="read-plot.html#cb219-1" tabindex="-1"></a><span class="fu">class</span>(<span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 <!-- Notice how the names of the planets are classed as a *factor* -->
 <!-- whereas the vector of strings (`peanut` and `seed`) is classed as -->
 <!-- a character? We will discuss this soon. -->
 <p>More generally, <code>class()</code> can be applied to any object:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="read-plot.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(planet)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="read-plot.html#cb221-1" tabindex="-1"></a><span class="fu">class</span>(planet)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="read-plot.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(plot)</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="read-plot.html#cb223-1" tabindex="-1"></a><span class="fu">class</span>(plot)</span></code></pre></div>
 <pre><code>## [1] &quot;function&quot;</code></pre>
 <p>When you start getting unexpected errors, <code>class()</code> can be used to
 sanity-check your objects: Is planet actually a data frame?</p>
@@ -1101,13 +1100,13 @@ sanity-check your objects: Is planet actually a data frame?</p>
 <p>Decimal values are stored as <em>numeric</em> data in R. And it is the default
 computational data type. If we assign a decimal value to a variable <code>x</code>
 as follows, <code>x</code> will be of type numeric:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="read-plot.html#cb225-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.5</span>, <span class="fl">19.2</span>, <span class="dv">1</span>)</span>
-<span id="cb225-2"><a href="read-plot.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x) </span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="read-plot.html#cb225-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.5</span>, <span class="fl">19.2</span>, <span class="dv">1</span>)</span>
+<span id="cb225-2"><a href="read-plot.html#cb225-2" tabindex="-1"></a><span class="fu">class</span>(x) </span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>Furthermore, even if we assign a vector of integers to a variable <code>k</code>, R
 will still store it as numeric:</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="read-plot.html#cb227-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">33</span>)</span>
-<span id="cb227-2"><a href="read-plot.html#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(k)  </span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="read-plot.html#cb227-1" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">10</span>, <span class="dv">33</span>)</span>
+<span id="cb227-2"><a href="read-plot.html#cb227-2" tabindex="-1"></a><span class="fu">class</span>(k)  </span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 </div>
 <div id="factors" class="section level3 hasAnchor" number="1.3.2">
@@ -1126,15 +1125,15 @@ converted to <em>factors</em>. A factor is a data structure which stores the
 categorical data as numerical codes, but has <em>labels</em> which make the
 codes meaningful. For example, say we have a <code>pain</code> variable that
 records what level of pain our patients are in using a four-point scale:</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="read-plot.html#cb229-1" aria-hidden="true" tabindex="-1"></a>pain <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
-<span id="cb229-2"><a href="read-plot.html#cb229-2" aria-hidden="true" tabindex="-1"></a>pain_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(pain, <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>,</span>
-<span id="cb229-3"><a href="read-plot.html#cb229-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;mild&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;severe&quot;</span>))</span>
-<span id="cb229-4"><a href="read-plot.html#cb229-4" aria-hidden="true" tabindex="-1"></a>pain_f</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="read-plot.html#cb229-1" tabindex="-1"></a>pain <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>)</span>
+<span id="cb229-2"><a href="read-plot.html#cb229-2" tabindex="-1"></a>pain_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(pain, <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb229-3"><a href="read-plot.html#cb229-3" tabindex="-1"></a>             <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;mild&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;severe&quot;</span>))</span>
+<span id="cb229-4"><a href="read-plot.html#cb229-4" tabindex="-1"></a>pain_f</span></code></pre></div>
 <pre><code>## [1] none   mild   severe medium medium mild   mild   severe
 ## Levels: none mild medium severe</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="read-plot.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you need to work with the actual string labels</span></span>
-<span id="cb231-2"><a href="read-plot.html#cb231-2" aria-hidden="true" tabindex="-1"></a>pain_c <span class="ot">&lt;-</span> <span class="fu">as.character</span>(pain_f)</span>
-<span id="cb231-3"><a href="read-plot.html#cb231-3" aria-hidden="true" tabindex="-1"></a>pain_c</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="read-plot.html#cb231-1" tabindex="-1"></a><span class="co"># if you need to work with the actual string labels</span></span>
+<span id="cb231-2"><a href="read-plot.html#cb231-2" tabindex="-1"></a>pain_c <span class="ot">&lt;-</span> <span class="fu">as.character</span>(pain_f)</span>
+<span id="cb231-3"><a href="read-plot.html#cb231-3" tabindex="-1"></a>pain_c</span></code></pre></div>
 <pre><code>## [1] &quot;none&quot;   &quot;mild&quot;   &quot;severe&quot; &quot;medium&quot; &quot;medium&quot; &quot;mild&quot;   &quot;mild&quot;   &quot;severe&quot;</code></pre>
 <p>This <em>factor</em> data structure is so routinely used by data scientists
 that R will automatically convert strings to factors when creating a
@@ -1143,16 +1142,16 @@ why, even though we originally specified the planet names as a vector of
 strings, it is now being stored as a factor in R.</p>
 <p>After the factor has been created, we can modify its levels, either all
 at once or individually:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="read-plot.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what are the levels?</span></span>
-<span id="cb233-2"><a href="read-plot.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(pain_f)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="read-plot.html#cb233-1" tabindex="-1"></a><span class="co"># what are the levels?</span></span>
+<span id="cb233-2"><a href="read-plot.html#cb233-2" tabindex="-1"></a><span class="fu">levels</span>(pain_f)</span></code></pre></div>
 <pre><code>## [1] &quot;none&quot;   &quot;mild&quot;   &quot;medium&quot; &quot;severe&quot;</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="read-plot.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change all levels</span></span>
-<span id="cb235-2"><a href="read-plot.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(pain_f) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;uncomfortable&quot;</span>, <span class="st">&quot;unpleasant&quot;</span>, <span class="st">&quot;agonising&quot;</span>)</span>
-<span id="cb235-3"><a href="read-plot.html#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(pain_f)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="read-plot.html#cb235-1" tabindex="-1"></a><span class="co"># change all levels</span></span>
+<span id="cb235-2"><a href="read-plot.html#cb235-2" tabindex="-1"></a><span class="fu">levels</span>(pain_f) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;none&quot;</span>, <span class="st">&quot;uncomfortable&quot;</span>, <span class="st">&quot;unpleasant&quot;</span>, <span class="st">&quot;agonising&quot;</span>)</span>
+<span id="cb235-3"><a href="read-plot.html#cb235-3" tabindex="-1"></a><span class="fu">levels</span>(pain_f)</span></code></pre></div>
 <pre><code>## [1] &quot;none&quot;          &quot;uncomfortable&quot; &quot;unpleasant&quot;    &quot;agonising&quot;</code></pre>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="read-plot.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change only the first level</span></span>
-<span id="cb237-2"><a href="read-plot.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(pain_f)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;absent&quot;</span></span>
-<span id="cb237-3"><a href="read-plot.html#cb237-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(pain_f)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="read-plot.html#cb237-1" tabindex="-1"></a><span class="co"># change only the first level</span></span>
+<span id="cb237-2"><a href="read-plot.html#cb237-2" tabindex="-1"></a><span class="fu">levels</span>(pain_f)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;absent&quot;</span></span>
+<span id="cb237-3"><a href="read-plot.html#cb237-3" tabindex="-1"></a><span class="fu">levels</span>(pain_f)</span></code></pre></div>
 <pre><code>## [1] &quot;absent&quot;        &quot;uncomfortable&quot; &quot;unpleasant&quot;    &quot;agonising&quot;</code></pre>
 </div>
 <div id="data-and-time" class="section level3 hasAnchor" number="1.3.3">
@@ -1209,12 +1208,12 @@ logical comparisons.</p>
 <h3><span class="header-section-number">1.4.1</span> Logical comparisons<a href="read-plot.html#logical-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We have previously seen, that we can select parts of a vector using
 indexing:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="read-plot.html#cb239-1" aria-hidden="true" tabindex="-1"></a>planet<span class="sc">$</span>name[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="read-plot.html#cb239-1" tabindex="-1"></a>planet<span class="sc">$</span>name[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Saturn&quot;  &quot;Uranus&quot;  &quot;Neptune&quot; &quot;Earth&quot;</code></pre>
 <p>But if we want to specifically look at particular type of planet, then
 without having to calculate the specific numerical index we can use
 <code>filter</code>:</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="read-plot.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(planet, type <span class="sc">==</span> <span class="st">&quot;ice giant&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="read-plot.html#cb241-1" tabindex="-1"></a><span class="fu">filter</span>(planet, type <span class="sc">==</span> <span class="st">&quot;ice giant&quot;</span>)</span></code></pre></div>
 <pre><code>##      name     mass   radius contains_humans radius_km distance   gravity
 ## 1  Uranus 8.68e+25 25360000               0     25360        0  9.005946
 ## 2 Neptune 1.02e+26 24620000               0     24620        0 11.228770
@@ -1264,7 +1263,7 @@ in R.</p>
 <p>Note that when you see a logical comparisons, such as
 <code>type == "ice giant"</code>, R is actually returning a vector of <code>TRUE</code> and
 <code>FALSE</code> values:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="read-plot.html#cb243-1" aria-hidden="true" tabindex="-1"></a>planet<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;ice giant&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="read-plot.html#cb243-1" tabindex="-1"></a>planet<span class="sc">$</span>type <span class="sc">==</span> <span class="st">&quot;ice giant&quot;</span></span></code></pre></div>
 <pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE</code></pre>
 <p>This is then being used to filter the data frame, returning only the
 rows that correspond to <code>TRUE</code>.</p>
@@ -1300,14 +1299,14 @@ Boolean operations.</p>
 <code>TRUE</code> or <code>FALSE</code> depending on the joint truth or falsehood of the two
 logical comparisons. We also use brackets to help visually separate out
 the different conditions.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="read-plot.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(planet, (gravity <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">&amp;</span> (radius  <span class="sc">&lt;</span> <span class="dv">7</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="read-plot.html#cb245-1" tabindex="-1"></a><span class="fu">filter</span>(planet, (gravity <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">&amp;</span> (radius  <span class="sc">&lt;</span> <span class="dv">7</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>))</span></code></pre></div>
 <pre><code>##    name     mass  radius contains_humans radius_km distance  gravity
 ## 1 Earth 5.97e+24 6371000               1      6371        0 9.814479
 ## 2 Venus 4.87e+24 6052000               0      6052        0 8.872362
 ##          type
 ## 1 terrestrial
 ## 2 terrestrial</code></pre>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="read-plot.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(planet, (gravity <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">|</span> (radius  <span class="sc">&lt;</span> <span class="dv">7</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="read-plot.html#cb247-1" tabindex="-1"></a><span class="fu">filter</span>(planet, (gravity <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">|</span> (radius  <span class="sc">&lt;</span> <span class="dv">7</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>))</span></code></pre></div>
 <pre><code>##      name     mass   radius contains_humans radius_km distance   gravity
 ## 1 Jupiter 1.90e+27 69910000               0     69910        0 25.940784
 ## 2  Saturn 5.68e+26 58230000               0     58230        0 11.177968
@@ -1335,30 +1334,30 @@ While <code>|</code> returns <code>TRUE</code> if <em>at least one</em> of the c
 We have seen an example of this on the dataset we joined earlier,
 following the <code>left_join</code>. For instance let’s recall the variable
 <code>contain_humans</code>:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="read-plot.html#cb249-1" aria-hidden="true" tabindex="-1"></a>left_joined_planets<span class="sc">$</span>contains_humans</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="read-plot.html#cb249-1" tabindex="-1"></a>left_joined_planets<span class="sc">$</span>contains_humans</span></code></pre></div>
 <pre><code>##  [1]  0  0  0  0  1  0  0  0 NA NA NA</code></pre>
 <p>Say we want to fill in these values. It’s important to note that <code>NA</code> is
 not equivalent to other values, including itself. This means that we
 cannot use the equality operator <code>==</code> (or any other operator!) to test
 and selecting for <code>NA</code>, as this comparison will return an <code>NA</code>:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="read-plot.html#cb251-1" aria-hidden="true" tabindex="-1"></a>left_joined_planets<span class="sc">$</span>contains_humans <span class="sc">==</span> <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="read-plot.html#cb251-1" tabindex="-1"></a>left_joined_planets<span class="sc">$</span>contains_humans <span class="sc">==</span> <span class="cn">NA</span></span></code></pre></div>
 <pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA NA</code></pre>
 <p>Rstudio will even give us a warning! Instead, you need to use the
 <code>is.na()</code> function:</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="read-plot.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(left_joined_planets<span class="sc">$</span>contains_humans)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="read-plot.html#cb253-1" tabindex="-1"></a><span class="fu">is.na</span>(left_joined_planets<span class="sc">$</span>contains_humans)</span></code></pre></div>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
 <p>This will output a boolean vector that we can now use for indexing
 purposes. From here, you can fill <code>NA</code> values in several ways.</p>
 <p>Using the standard R syntax:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="read-plot.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filling values with 0</span></span>
-<span id="cb255-2"><a href="read-plot.html#cb255-2" aria-hidden="true" tabindex="-1"></a>left_joined_planets<span class="sc">$</span>contains_humans[<span class="fu">is.na</span>(left_joined_planets<span class="sc">$</span>contains_humans)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="read-plot.html#cb255-1" tabindex="-1"></a><span class="co"># filling values with 0</span></span>
+<span id="cb255-2"><a href="read-plot.html#cb255-2" tabindex="-1"></a>left_joined_planets<span class="sc">$</span>contains_humans[<span class="fu">is.na</span>(left_joined_planets<span class="sc">$</span>contains_humans)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code></pre></div>
 <p>Or, with the <code>mutate()</code> function combined with <code>ifelse()</code> to replace
 <code>NA</code> values:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="read-plot.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filling values with 0</span></span>
-<span id="cb256-2"><a href="read-plot.html#cb256-2" aria-hidden="true" tabindex="-1"></a>left_joined_planets <span class="ot">&lt;-</span> left_joined_planets <span class="sc">%&gt;%</span></span>
-<span id="cb256-3"><a href="read-plot.html#cb256-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">contains_humans =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(contains_humans), <span class="dv">0</span>, contains_humans))</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="read-plot.html#cb256-1" tabindex="-1"></a><span class="co"># filling values with 0</span></span>
+<span id="cb256-2"><a href="read-plot.html#cb256-2" tabindex="-1"></a>left_joined_planets <span class="ot">&lt;-</span> left_joined_planets <span class="sc">%&gt;%</span></span>
+<span id="cb256-3"><a href="read-plot.html#cb256-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">contains_humans =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(contains_humans), <span class="dv">0</span>, contains_humans))</span></code></pre></div>
 <p>Both would have achieved the same:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="read-plot.html#cb257-1" aria-hidden="true" tabindex="-1"></a>left_joined_planets<span class="sc">$</span>contains_humans</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="read-plot.html#cb257-1" tabindex="-1"></a>left_joined_planets<span class="sc">$</span>contains_humans</span></code></pre></div>
 <pre><code>##  [1] 0 0 0 0 1 0 0 0 0 0 0</code></pre>
 <p>Despite being more verbose (yes I know) than native R, the <code>mutate</code> +
 <code>ifelse</code> statement is quite a powerful statement as it allows for quick
@@ -1393,17 +1392,17 @@ time and is often an iterative process.</p>
 <code>chp-1-plots.R</code>.
 <!-- You will also need to download the `diam.csv.gz` file from the moodle page, save it to the same folder as your script. --></p>
 <p>One more thing is that within RStudio you need to install a package:</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="read-plot.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="read-plot.html#cb259-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>If you are on a computer system where you need to install additional
 packages in a specific folder you can use the <code>lib = "filepath"</code>
 argument.</p>
 <p>Once it has installed add <code>library(ggplot2)</code> to the top your new script.
 This loads the package into your current R session.</p>
 <p>You can see all the packages you have loaded in your session using:</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="read-plot.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="read-plot.html#cb260-1" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
 <p>Note, if you want to remove a package from your session type (do not do
 this now):</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="read-plot.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="read-plot.html#cb261-1" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>ggplot2)</span></code></pre></div>
 <p>Also, if when you load in a package and it has a function with the same
 name as another package that is already loaded in your R session. You
 will get a warning that one of the function names masks the function
@@ -1421,7 +1420,7 @@ various data bloggers they will often be using <code>ggplot2</code> to visualise
 their data.</p>
 <p>To see the many functions this package provides view its top level
 help-file with</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="read-plot.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="read-plot.html#cb262-1" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> ggplot2)</span></code></pre></div>
 </div>
 <div id="diamonds-data" class="section level3 hasAnchor" number="1.5.2">
 <h3><span class="header-section-number">1.5.2</span> Diamonds data<a href="read-plot.html#diamonds-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1430,8 +1429,8 @@ describing the prices and other attributes of 53,940 diamonds. Make sure
 your working directory is setup correctly, read the data into R. Check
 it has loaded properly by comparing the dimensions to what is shown
 below:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="read-plot.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(diamonds)</span>
-<span id="cb263-2"><a href="read-plot.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(diamonds)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="read-plot.html#cb263-1" tabindex="-1"></a><span class="fu">data</span>(diamonds)</span>
+<span id="cb263-2"><a href="read-plot.html#cb263-2" tabindex="-1"></a><span class="fu">dim</span>(diamonds)</span></code></pre></div>
 <pre><code>## [1] 53940    10</code></pre>
 <p>The ten variables are described in Table <a href="read-plot.html#tab:diamonds">1.5</a>.</p>
 <table>
@@ -1503,7 +1502,7 @@ Figure 1.2: Measuring a diamond.
 </p>
 </div>
 <p>To check how the data looks type into the R <strong>Console</strong>:</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="read-plot.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="read-plot.html#cb265-1" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10
 ##   carat cut       color clarity depth table price     x     y     z
 ##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1513,7 +1512,7 @@ Figure 1.2: Measuring a diamond.
 ## 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
 ## 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
 ## 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="read-plot.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(diamonds)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="read-plot.html#cb267-1" tabindex="-1"></a><span class="fu">tail</span>(diamonds)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 10
 ##   carat cut       color clarity depth table price     x     y     z
 ##   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -1526,12 +1525,12 @@ Figure 1.2: Measuring a diamond.
 <p>Make sure that the levels for each of the factors are in the correct
 order, because, by default, R will simply order the levels
 alphabetically.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="read-plot.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(diamonds<span class="sc">$</span>cut)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="read-plot.html#cb269-1" tabindex="-1"></a><span class="fu">levels</span>(diamonds<span class="sc">$</span>cut)</span></code></pre></div>
 <pre><code>## [1] &quot;Fair&quot;      &quot;Good&quot;      &quot;Very Good&quot; &quot;Premium&quot;   &quot;Ideal&quot;</code></pre>
 <p>To fix this, apply the <code>factor()</code> function, but with the levels in the
 correct order:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="read-plot.html#cb271-1" aria-hidden="true" tabindex="-1"></a>cut_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Very Good&quot;</span>, <span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Ideal&quot;</span>)</span>
-<span id="cb271-2"><a href="read-plot.html#cb271-2" aria-hidden="true" tabindex="-1"></a>diamonds<span class="sc">$</span>cut <span class="ot">&lt;-</span> <span class="fu">factor</span>(diamonds<span class="sc">$</span>cut, <span class="at">levels =</span> cut_levels)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="read-plot.html#cb271-1" tabindex="-1"></a>cut_levels <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Very Good&quot;</span>, <span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Ideal&quot;</span>)</span>
+<span id="cb271-2"><a href="read-plot.html#cb271-2" tabindex="-1"></a>diamonds<span class="sc">$</span>cut <span class="ot">&lt;-</span> <span class="fu">factor</span>(diamonds<span class="sc">$</span>cut, <span class="at">levels =</span> cut_levels)</span></code></pre></div>
 <p>Check the other factors, and correct them if necessary.</p>
 </div>
 <div id="histograms" class="section level3 hasAnchor" number="1.5.3">
@@ -1539,15 +1538,15 @@ correct order:</p>
 <p>A histogram shows the distribution of a single numeric variable, by
 showing us the frequency with which certain intervals of the data occur.
 Use <code>ggplot()</code> to produce a histogram of the carat distribution:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="read-plot.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
-<span id="cb272-2"><a href="read-plot.html#cb272-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="read-plot.html#cb272-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb272-2"><a href="read-plot.html#cb272-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="images/carat_hist-1.png" width="50%" /></p>
 <p>Because the data is strictly continuous, it needs to be <em>binned</em>. By
 default <code>ggplot2</code> splits the data up into 30 equally-sized intervals
 (bins). To alter this:</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="read-plot.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
-<span id="cb274-2"><a href="read-plot.html#cb274-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="read-plot.html#cb274-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb274-2"><a href="read-plot.html#cb274-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="images/carat_hist_binwidth-1.png" width="50%" /></p>
 <p>Always experiment with the bin width. Try increasing it slowly up to 1.
 Pay attention to how features in the data become smoothed out?</p>
@@ -1558,9 +1557,9 @@ the cut. The easiest way to do this is to, graphically, reproduce the
 histogram for each type of cut. This process is called <em>faceting</em>. To
 create a faceted plot using the cut variable modify the previous code so
 it now looks like the following and run it:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="read-plot.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
-<span id="cb275-2"><a href="read-plot.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb275-3"><a href="read-plot.html#cb275-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cut, <span class="at">ncol =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="read-plot.html#cb275-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
+<span id="cb275-2"><a href="read-plot.html#cb275-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb275-3"><a href="read-plot.html#cb275-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cut, <span class="at">ncol =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="images/carat_hist_facet-1.png" width="50%" /></p>
 <p>So, it looks like the distribution stays fairly similar across each of
 the cut types. But it is hard to really say with any confidence, because
@@ -1574,8 +1573,8 @@ producing a histogram, when we want to look at the distribution of a
 variable but for different categories of another variable. For example,
 the carat distribution (continuous) with each of the different cut types
 (categorical).</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="read-plot.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat)) <span class="sc">+</span></span>
-<span id="cb276-2"><a href="read-plot.html#cb276-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="read-plot.html#cb276-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat)) <span class="sc">+</span></span>
+<span id="cb276-2"><a href="read-plot.html#cb276-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="images/cut_carat_boxplot-1.png" width="50%" /></p>
 <p>Each set of box and whiskers relies on five numbers to summarise the
 carat distribution for each particular cut. The middle three values are
@@ -1586,19 +1585,19 @@ data from lowest to highest, and then lookup the values that are 25%,
 quartiles (Q1 and Q3 respectively) because they are a quarter into the
 data range, from either end.</p>
 <p><img src="week1/p_compare_bp_hist.png" width="50%" /></p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="read-plot.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Median by hand</span></span>
-<span id="cb277-2"><a href="read-plot.html#cb277-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(diamonds<span class="sc">$</span>carat)</span>
-<span id="cb277-3"><a href="read-plot.html#cb277-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">length</span>(x)]</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="read-plot.html#cb277-1" tabindex="-1"></a><span class="co"># Median by hand</span></span>
+<span id="cb277-2"><a href="read-plot.html#cb277-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sort</span>(diamonds<span class="sc">$</span>carat)</span>
+<span id="cb277-3"><a href="read-plot.html#cb277-3" tabindex="-1"></a>x[<span class="dv">1</span> <span class="sc">/</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">length</span>(x)]</span></code></pre></div>
 <pre><code>## [1] 0.7</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="read-plot.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using in-built function</span></span>
-<span id="cb279-2"><a href="read-plot.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(diamonds<span class="sc">$</span>carat)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="read-plot.html#cb279-1" tabindex="-1"></a><span class="co"># Using in-built function</span></span>
+<span id="cb279-2"><a href="read-plot.html#cb279-2" tabindex="-1"></a><span class="fu">median</span>(diamonds<span class="sc">$</span>carat)</span></code></pre></div>
 <pre><code>## [1] 0.7</code></pre>
 <p>Similarly for the quantiles:</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="read-plot.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantiles by hand</span></span>
-<span id="cb281-2"><a href="read-plot.html#cb281-2" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>) <span class="sc">*</span> <span class="fu">length</span>(x)]</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="read-plot.html#cb281-1" tabindex="-1"></a><span class="co"># Quantiles by hand</span></span>
+<span id="cb281-2"><a href="read-plot.html#cb281-2" tabindex="-1"></a>x[<span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>) <span class="sc">*</span> <span class="fu">length</span>(x)]</span></code></pre></div>
 <pre><code>## [1] 0.40 1.04</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="read-plot.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking with the in-built function</span></span>
-<span id="cb283-2"><a href="read-plot.html#cb283-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(diamonds<span class="sc">$</span>carat, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="read-plot.html#cb283-1" tabindex="-1"></a><span class="co"># Checking with the in-built function</span></span>
+<span id="cb283-2"><a href="read-plot.html#cb283-2" tabindex="-1"></a><span class="fu">quantile</span>(diamonds<span class="sc">$</span>carat, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span></code></pre></div>
 <pre><code>##  25%  75% 
 ## 0.40 1.04</code></pre>
 <p>The two quartiles are then used to draw the main box, with the median
@@ -1626,14 +1625,14 @@ patterns in another, as shown in the margin.</p>
 (continuous). A scatter plot contains a point for each observation in
 the data. We can use scatter plots to explore the relationship between
 the price of the diamond and the other attributes. Start with <code>carat</code>:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="read-plot.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb285-2"><a href="read-plot.html#cb285-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="read-plot.html#cb285-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb285-2"><a href="read-plot.html#cb285-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="images/carat_price-1.png" width="50%" /></p>
 <p>So, we see a general positive relationship between the weight of the
 diamond (carat) and it’s price. It might be reasonable to assume that
 it’s price is also related to it’s cut.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="read-plot.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">colour =</span> clarity)) <span class="sc">+</span></span>
-<span id="cb286-2"><a href="read-plot.html#cb286-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="read-plot.html#cb286-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">colour =</span> clarity)) <span class="sc">+</span></span>
+<span id="cb286-2"><a href="read-plot.html#cb286-2" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="images/carat_price_clarity-1.png" width="50%" /></p>
 <p>We can see some separation according to colour. This may be improved by
 faceting the plot by clarity, similar to what we did for the histograms.
@@ -1643,12 +1642,12 @@ Try doing this now.</p>
 <h3><span class="header-section-number">1.5.6</span> Bar charts<a href="read-plot.html#bar-charts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When wanting to look at the distribution of a categorical variable we
 use a bar chart:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="read-plot.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> clarity)) <span class="sc">+</span></span>
-<span id="cb287-2"><a href="read-plot.html#cb287-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="read-plot.html#cb287-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> clarity)) <span class="sc">+</span></span>
+<span id="cb287-2"><a href="read-plot.html#cb287-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="images/clarity_bar-1.png" width="50%" /></p>
 <p>We can fill in the bars with colour according to the <code>cut</code>:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="read-plot.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> clarity, <span class="at">fill =</span> cut)) <span class="sc">+</span></span>
-<span id="cb288-2"><a href="read-plot.html#cb288-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="read-plot.html#cb288-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> clarity, <span class="at">fill =</span> cut)) <span class="sc">+</span></span>
+<span id="cb288-2"><a href="read-plot.html#cb288-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="images/clarity_bar_cut-1.png" width="50%" /></p>
 <p>What happens if you set the <code>colour</code> argument to be equal to <code>cut</code>,
 instead of using <code>fill</code>?</p>
@@ -1658,17 +1657,16 @@ instead of using <code>fill</code>?</p>
 <p>There is no point in making pretty graphs if you cannot include them in
 a report or blog post. To save your amazing art work, first you need to
 store the plot in an object:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="read-plot.html#cb289-1" aria-hidden="true" tabindex="-1"></a>p_clarity <span class="ot">&lt;-</span> <span class="fu">qplot</span>(<span class="at">x =</span> clarity, <span class="at">data =</span> diamonds, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="read-plot.html#cb289-1" tabindex="-1"></a>p_clarity <span class="ot">&lt;-</span> <span class="fu">qplot</span>(<span class="at">x =</span> clarity, <span class="at">data =</span> diamonds, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <p>Because we are now storing the plot inside an object, R no longer
 automatically prints it to the screen. Simply enter the object name in
 the <strong>console</strong> to see it.</p>
 <p>To save the plot to a file, we pass the object to the<code>ggsave()</code>
 function:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="read-plot.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(p_clarity, <span class="at">file =</span> <span class="st">&quot;p_carat.png&quot;</span>, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="read-plot.html#cb291-1" tabindex="-1"></a><span class="fu">ggsave</span>(p_clarity, <span class="at">file =</span> <span class="st">&quot;p_carat.png&quot;</span>, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>The width and height are automatically assumed to be specified in
 inches. If you prefer to use mm or cm then set the <code>units</code> argument
 according. Check the help page for other arguments.</p>
@@ -1691,26 +1689,26 @@ we need to become pro-ggplotters. To become pro we need to stop using
 <p>First we will recreate some of the graphs we have already seen, so that
 you spot the subtle differences in code. To produce the scatter plot of
 carat vs price:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="read-plot.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple way</span></span>
-<span id="cb292-2"><a href="read-plot.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">colour =</span> clarity, <span class="at">data =</span> diamonds) <span class="sc">+</span></span>
-<span id="cb292-3"><a href="read-plot.html#cb292-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> clarity)</span>
-<span id="cb292-4"><a href="read-plot.html#cb292-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb292-5"><a href="read-plot.html#cb292-5" aria-hidden="true" tabindex="-1"></a><span class="co"># advanced way</span></span>
-<span id="cb292-6"><a href="read-plot.html#cb292-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
-<span id="cb292-7"><a href="read-plot.html#cb292-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">colour =</span> clarity)) <span class="sc">+</span></span>
-<span id="cb292-8"><a href="read-plot.html#cb292-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> clarity)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="read-plot.html#cb292-1" tabindex="-1"></a><span class="co"># simple way</span></span>
+<span id="cb292-2"><a href="read-plot.html#cb292-2" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">colour =</span> clarity, <span class="at">data =</span> diamonds) <span class="sc">+</span></span>
+<span id="cb292-3"><a href="read-plot.html#cb292-3" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> clarity)</span>
+<span id="cb292-4"><a href="read-plot.html#cb292-4" tabindex="-1"></a></span>
+<span id="cb292-5"><a href="read-plot.html#cb292-5" tabindex="-1"></a><span class="co"># advanced way</span></span>
+<span id="cb292-6"><a href="read-plot.html#cb292-6" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb292-7"><a href="read-plot.html#cb292-7" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">colour =</span> clarity)) <span class="sc">+</span></span>
+<span id="cb292-8"><a href="read-plot.html#cb292-8" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> clarity)</span></code></pre></div>
 <p>For boxplots of carat vs cut:</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="read-plot.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple way</span></span>
-<span id="cb293-2"><a href="read-plot.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat, <span class="at">data =</span> diamonds, <span class="at">geom =</span> <span class="st">&quot;boxplot&quot;</span>)</span>
-<span id="cb293-3"><a href="read-plot.html#cb293-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb293-4"><a href="read-plot.html#cb293-4" aria-hidden="true" tabindex="-1"></a><span class="co"># advanced way</span></span>
-<span id="cb293-5"><a href="read-plot.html#cb293-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat))</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="read-plot.html#cb293-1" tabindex="-1"></a><span class="co"># simple way</span></span>
+<span id="cb293-2"><a href="read-plot.html#cb293-2" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat, <span class="at">data =</span> diamonds, <span class="at">geom =</span> <span class="st">&quot;boxplot&quot;</span>)</span>
+<span id="cb293-3"><a href="read-plot.html#cb293-3" tabindex="-1"></a></span>
+<span id="cb293-4"><a href="read-plot.html#cb293-4" tabindex="-1"></a><span class="co"># advanced way</span></span>
+<span id="cb293-5"><a href="read-plot.html#cb293-5" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat))</span></code></pre></div>
 <p>By using <code>ggplot()</code> we are now starting to use the <em>layering</em> approach
 to making graphics. The only thing we give <code>ggplot()</code> is the data frame.
 Next we start to add-on our “geom”s, these are the different shapes and
 summaries that can be plotted.</p>
 <p>Here are some of the geoms available in ggplot2, a full list is at
-<a href="http://docs.ggplot2.org/" class="uri">http://docs.ggplot2.org</a> :</p>
+<a href="http://docs.ggplot2.org" class="uri">http://docs.ggplot2.org</a> :</p>
 <ul>
 <li><code>geom_abline</code></li>
 <li><code>geom_area</code></li>
@@ -1740,9 +1738,9 @@ variables to the aesthetics through the <code>aes()</code> function within the
 particular <code>geom_*()</code>.</p>
 <p>In order to look at cut vs clarity, we previously drew a boxplot. We can
 take this further by overlaying points on top of the boxplots:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="read-plot.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
-<span id="cb294-2"><a href="read-plot.html#cb294-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat)) <span class="sc">+</span></span>
-<span id="cb294-3"><a href="read-plot.html#cb294-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat))</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="read-plot.html#cb294-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb294-2"><a href="read-plot.html#cb294-2" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat)) <span class="sc">+</span></span>
+<span id="cb294-3"><a href="read-plot.html#cb294-3" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat))</span></code></pre></div>
 <p><img src="images/cut_carat_both-1.png" width="50%" /></p>
 <p>This does not look pretty. In fact, there is probably a lot of
 overplotting going on, to improve this try swapping out <code>geom_point</code> for
@@ -1750,9 +1748,9 @@ overplotting going on, to improve this try swapping out <code>geom_point</code> 
 <p>Well, now we can not see the boxplots. Try making the points
 semi-transparent by setting their <code>alpha</code> transparency level to be
 small:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="read-plot.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
-<span id="cb295-2"><a href="read-plot.html#cb295-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat)) <span class="sc">+</span></span>
-<span id="cb295-3"><a href="read-plot.html#cb295-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="read-plot.html#cb295-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb295-2"><a href="read-plot.html#cb295-2" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat)) <span class="sc">+</span></span>
+<span id="cb295-3"><a href="read-plot.html#cb295-3" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="images/cut_carat_alpha-1.png" width="50%" /></p>
 <p>“Alpha” in graphics refers to how transparent something is, usually
 pixels. Alpha values can range between <span class="math inline">\(1\)</span> (solid) to <span class="math inline">\(0\)</span> (invisible).
@@ -1765,23 +1763,23 @@ and rerun the plot.</p>
 <p>Within the boxplots, we can turn off the fill of the boxes by setting
 <code>fill=NA</code>, and turn the colour of the lines used for the boxes and
 whiskers to white:</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="read-plot.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
-<span id="cb296-2"><a href="read-plot.html#cb296-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb296-3"><a href="read-plot.html#cb296-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb296-4"><a href="read-plot.html#cb296-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">outlier.colour =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="read-plot.html#cb296-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb296-2"><a href="read-plot.html#cb296-2" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb296-3"><a href="read-plot.html#cb296-3" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb296-4"><a href="read-plot.html#cb296-4" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">outlier.colour =</span> <span class="cn">NA</span>)</span></code></pre></div>
 <p><img src="images/cut_carat_jitter-1.png" width="50%" /></p>
 <p>Look-up the help page for <code>labs</code>, and use it to rewrite the axis labels
 so that they start with capital letters. Also, look up the help page for
 <code>theme_bw</code>, and see how to add this to your plot.</p>
 <p>To save this to a file, do what you did before; store it to an object
 and use <code>ggsave()</code>:</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="read-plot.html#cb297-1" aria-hidden="true" tabindex="-1"></a>p_cut_carat <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
-<span id="cb297-2"><a href="read-plot.html#cb297-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb297-3"><a href="read-plot.html#cb297-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb297-4"><a href="read-plot.html#cb297-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">outlier.colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb297-5"><a href="read-plot.html#cb297-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plus extra code for labels and theme</span></span>
-<span id="cb297-6"><a href="read-plot.html#cb297-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb297-7"><a href="read-plot.html#cb297-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(p_cut_carat, <span class="at">file =</span> <span class="st">&quot;p_cut_carat.png&quot;</span>, <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="read-plot.html#cb297-1" tabindex="-1"></a>p_cut_carat <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb297-2"><a href="read-plot.html#cb297-2" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb297-3"><a href="read-plot.html#cb297-3" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb297-4"><a href="read-plot.html#cb297-4" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">outlier.colour =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb297-5"><a href="read-plot.html#cb297-5" tabindex="-1"></a>    <span class="co"># plus extra code for labels and theme</span></span>
+<span id="cb297-6"><a href="read-plot.html#cb297-6" tabindex="-1"></a></span>
+<span id="cb297-7"><a href="read-plot.html#cb297-7" tabindex="-1"></a><span class="fu">ggsave</span>(p_cut_carat, <span class="at">file =</span> <span class="st">&quot;p_cut_carat.png&quot;</span>, <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">3</span>)</span></code></pre></div>
 </div>
 <div id="summary-1" class="section level3 hasAnchor" number="1.5.9">
 <h3><span class="header-section-number">1.5.9</span> Summary<a href="read-plot.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1795,22 +1793,22 @@ package attempts to alleviate these problems by providing a layered
 system to creating graphics.</p></li>
 <li><p>An example of a scatter plot:</p></li>
 </ul>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="read-plot.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price), <span class="at">alpha =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="read-plot.html#cb298-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price), <span class="at">alpha =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="images/scatter-1.png" width="50%" /></p>
 <ul>
 <li>An example of a barchart:</li>
 </ul>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="read-plot.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut))</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="read-plot.html#cb299-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut))</span></code></pre></div>
 <p><img src="images/barchart-1.png" width="50%" /></p>
 <ul>
 <li>An example of a histogram:</li>
 </ul>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="read-plot.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> price), <span class="at">binwidth =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="read-plot.html#cb300-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> price), <span class="at">binwidth =</span> <span class="dv">1000</span>)</span></code></pre></div>
 <p><img src="images/histogram-1.png" width="50%" /></p>
 <ul>
 <li>An example of a boxplot:</li>
 </ul>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="read-plot.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price))</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="read-plot.html#cb301-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price))</span></code></pre></div>
 <p><img src="images/boxplot-1.png" width="50%" /></p>
 <ul>
 <li><p>Aesthetics of a geom generally include: <code>x</code>; <code>y</code>; <code>size</code>; <code>colour</code>;
@@ -1825,9 +1823,9 @@ the font size to be 10pt.</p></li>
 <li><p>Use the <code>ggsave()</code> function to save the plot as a PNG file, width
 and height are specified in inches by default:</p></li>
 </ul>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="read-plot.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(p_cut, <span class="at">file =</span> <span class="st">&quot;p_cut.png&quot;</span>, <span class="at">width =</span> <span class="dv">3</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="read-plot.html#cb302-1" tabindex="-1"></a><span class="fu">ggsave</span>(p_cut, <span class="at">file =</span> <span class="st">&quot;p_cut.png&quot;</span>, <span class="at">width =</span> <span class="dv">3</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code></pre></div>
 <ul>
-<li>Documentation is at <a href="http://docs.ggplot2.org/" class="uri">http://docs.ggplot2.org</a> and there have been
+<li>Documentation is at <a href="http://docs.ggplot2.org" class="uri">http://docs.ggplot2.org</a> and there have been
 many <code>ggplot2</code> questions answered on StackOverflow.</li>
 </ul>
 </div>
@@ -2008,6 +2006,4 @@ gitbook.start({
 </script>
 </body>
 
-
-<!-- Mirrored from www.lancaster.ac.uk/~romano/teaching/2324MATH550/read-plot.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Oct 2024 09:56:34 GMT -->
 </html>
