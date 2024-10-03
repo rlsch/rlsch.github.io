@@ -96,7 +96,7 @@ gitbook.require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
 
     // highlight the current section in TOC
     var href = window.location.pathname;
-    href = href.substr(href.lastIndexOf('https://www.lancaster.ac.uk/') + 1);
+    href = href.substr(href.lastIndexOf('/') + 1);
     // accentuated characters need to be decoded (#819)
     href = decodeURIComponent(href);
     if (href === '') href = 'index.html';

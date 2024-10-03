@@ -134,7 +134,7 @@ gitbook.require(["gitbook", "lodash", "jQuery"], function(gitbook, _, $) {
 
     function currentPath() {
       var href = window.location.pathname;
-      href = href.substr(href.lastIndexOf('https://www.lancaster.ac.uk/') + 1);
+      href = href.substr(href.lastIndexOf('/') + 1);
       return href === '' ? 'index.html' : href;
     }
 
