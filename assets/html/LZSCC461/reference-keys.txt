@@ -15,7 +15,7 @@ fig:dt-example-1
 fig:dt-example-2
 tab:parse
 tab:accessor
-fig:unnamed-chunk-139
+fig:unnamed-chunk-140
 fig:extent
 fig:ice-october
 fig:ice-yearly
@@ -26,8 +26,8 @@ fig:rnd-owl
 tab:shorthand
 tab:quant
 tab:bfast-vars
-fig:unnamed-chunk-249
 fig:unnamed-chunk-250
+fig:unnamed-chunk-251
 background
 saving-your-work
 getting-started
