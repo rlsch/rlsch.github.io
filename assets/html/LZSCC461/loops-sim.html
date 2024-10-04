@@ -510,10 +510,10 @@ square:</p>
 <span id="cb430-18"><a href="loops-sim.html#cb430-18" tabindex="-1"></a><span class="co"># how much time does each method take to execute?</span></span>
 <span id="cb430-19"><a href="loops-sim.html#cb430-19" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_loop</span>())</span></code></pre></div>
 <pre><code>##        User      System verstrichen 
-##       0.406       0.018       0.435</code></pre>
+##       0.399       0.017       0.424</code></pre>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="loops-sim.html#cb432-1" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_vector</span>())</span></code></pre></div>
 <pre><code>##        User      System verstrichen 
-##       0.012       0.005       0.016</code></pre>
+##       0.012       0.004       0.018</code></pre>
 <p>The <code>for</code> loop took significantly longer than the vector approach. This
 is because of the way R is optimised for thinking with vectors, rather
 than thinking about processing individual values. With other more
