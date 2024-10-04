@@ -27,6 +27,8 @@ Organize your courses by years, topics, or universities, however you like! [test
 <br>
 
 ## List of Supervised Theses
+<br>
+
 - **Reliability of AR Applications in Underground Facilities** (Bachelor thesis, 2021)
 - **A Blender Add-on for Generation of Omnidirectional Camera Images in Virtual Worlds** (Bachelor
 thesis, 2020)
