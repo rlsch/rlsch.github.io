@@ -22,3 +22,12 @@ Organize your courses by years, topics, or universities, however you like! [test
 |2020/21| [TUBAF](https://tu-freiberg.de) Bachelor Thesis Applied Computer Science with Colloquium |
 |2018 - 24| [TUBAF](https://tu-freiberg.de) Seminar Bachelor Applied Computer Science |
 
+## List of Supervised Theses
+- **Reliability of AR Applications in Underground Facilities** (Bachelor thesis, 2021)
+- **A Blender Add-on for Generation of Omnidirectional Camera Images in Virtual Worlds** (Bachelor
+thesis, 2020)
+- **Post-Processing of Depth Images and Laser Scan Data for Feature-based Pose Estimation** (Master thesis, 2020)
+- **Rail Detection in Color and Depth Images** (Bachelor thesis, 2019)
+- **Visual Odometry based on Multiple Virtual Views from an Omnidirectional Camera** (Master thesis,
+2019)
+- **Evaluation of Bluetooth-based Localization Technologies for Retail Applications** (Bachelorthesis,2018)
