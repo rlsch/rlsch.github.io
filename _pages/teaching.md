@@ -22,6 +22,10 @@ Organize your courses by years, topics, or universities, however you like! [test
 |2020/21| [TUBAF](https://tu-freiberg.de) Bachelor Thesis Applied Computer Science with Colloquium |
 |2018 - 24| [TUBAF](https://tu-freiberg.de) Seminar Bachelor Applied Computer Science |
 
+<br>
+<br>
+<br>
+
 ## List of Supervised Theses
 - **Reliability of AR Applications in Underground Facilities** (Bachelor thesis, 2021)
 - **A Blender Add-on for Generation of Omnidirectional Camera Images in Virtual Worlds** (Bachelor
