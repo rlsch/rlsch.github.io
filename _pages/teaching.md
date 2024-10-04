@@ -7,6 +7,11 @@ nav: true
 nav_order: 6
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+<!--For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
 
-Organize your courses by years, topics, or universities, however you like! [test](../assets/html/LZSCC461/index.html)
+Organize your courses by years, topics, or universities, however you like! [test](../assets/html/LZSCC461/index.html)-->
+
+| Year | Course |
+|------|--------|
+|2024/25| Lancaster University Leipzig LZSCC.461 [Programming for Data Scientists](../assets/html/LZSCC461/index.html) |
+
