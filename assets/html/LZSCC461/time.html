@@ -248,9 +248,9 @@ Figure 2.1: Air traffic control direct aircraft on the ground and through contro
 </p>
 </div>
 <div class="figure"><span style="display:block;" id="fig:dt-example-2"></span>
-<img src="week3/jogger.jpg" alt="Left: The GPS tracker a runner users when they go out training continuously logs their location over time; Right: A bank statement is an event-log of transactions." width="45%" /><img src="week3/bank_statement.png" alt="Left: The GPS tracker a runner users when they go out training continuously logs their location over time; Right: A bank statement is an event-log of transactions." width="54%" />
+<img src="week3/jogger.jpg" alt="Left: The GPS tracker a runner uses when they go out training continuously logs their location over time; Right: A bank statement is an event-log of transactions." width="45%" /><img src="week3/bank_statement.png" alt="Left: The GPS tracker a runner uses when they go out training continuously logs their location over time; Right: A bank statement is an event-log of transactions." width="54%" />
 <p class="caption">
-Figure 2.2: Left: The GPS tracker a runner users when they go out training continuously logs their location over time; Right: A bank statement is an event-log of transactions.
+Figure 2.2: Left: The GPS tracker a runner uses when they go out training continuously logs their location over time; Right: A bank statement is an event-log of transactions.
 </p>
 </div>
 <p>Data collected in this fashion can be thought of as an event log, with
@@ -378,7 +378,7 @@ time:<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="time.html#cb315-1" tabindex="-1"></a><span class="fu">year</span>(stamp) <span class="co"># for illustration only; your output might vary</span></span></code></pre></div>
 <pre><code>## [1] 2024</code></pre>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="time.html#cb317-1" tabindex="-1"></a><span class="fu">minute</span>(stamp) <span class="co"># your output might vary</span></span></code></pre></div>
-<pre><code>## [1] 16</code></pre>
+<pre><code>## [1] 43</code></pre>
 <p>For the month and weekday elements (<code>mday</code> and <code>wday</code>), we can also
 specify whether we want to extract the numerical value of the element,
 an abbreviation of the name of the month or weekday, or the full name.
@@ -444,7 +444,7 @@ accessor function.</caption>
 <pre><code>## [1] October
 ## 12 Levels: January &lt; February &lt; March &lt; April &lt; May &lt; June &lt; ... &lt; December</code></pre>
 <div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="time.html#cb325-1" tabindex="-1"></a><span class="fu">wday</span>(stamp, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr=</span><span class="cn">FALSE</span>) <span class="co"># your output might vary</span></span></code></pre></div>
-<pre><code>## [1] Friday
+<pre><code>## [1] Monday
 ## 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
 </div>
 <div id="arithmetic-with-timestamps" class="section level3 hasAnchor" number="2.2.3">
@@ -454,7 +454,7 @@ numbers, but it can be done accurately and easily with <code>lubridate</code>. W
 complicates arithmetic with timestamps? Clock times are periodically
 re-calibrated to reflect astronomical conditions, such as the hour of
 daylight or the Earth’s tilt on its axis relative to the sun. We know
-these re-calibrations as daylight savings time, leap years, and leap
+these re-calibrations as <!--daylight savings time,--> leap years and leap
 seconds. Consider how one of these conventions might complicate a simple
 addition task. If today were January 1st, 2010 and we wished to know
 what day it would be one year from now, we could simply add 1 to the
@@ -487,7 +487,7 @@ time from them. To do this use the helper functions; <code>years()</code>,
 <code>seconds()</code>. Where the first and only argument is the amount of that
 unit of time:</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="time.html#cb335-1" tabindex="-1"></a>stamp <span class="sc">-</span> <span class="fu">hours</span>(<span class="dv">48</span>) <span class="sc">-</span> <span class="fu">minutes</span>(<span class="dv">30</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2024-10-02 19:46:24 CEST&quot;</code></pre>
+<pre><code>## [1] &quot;2024-10-05 17:13:36 CEST&quot;</code></pre>
 </div>
 <div id="intervals-and-durations" class="section level3 hasAnchor" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Intervals and durations<a href="time.html#intervals-and-durations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -716,7 +716,7 @@ give us one observation per October of every year.</p>
 ## 5  1982 1982-10-01   7.71      274
 ## 6  1983 1983-10-02   8.09      275</code></pre>
 <p>We see that the extent of the sea ice for the first observation in
-October, 1978 as 10.3 million sq-km. Also, we can see that by asking for
+October, 1978 as 10.2 million sq-km. Also, we can see that by asking for
 the first date, it has now been converted to Unix time. To convert it
 back to a timestamp see the section on Unix time.</p>
 <p><code>first()</code> is one of the many functions we can use for aggregating data
@@ -862,7 +862,7 @@ directory and load it into R:</p>
 ## 5 2014     1   5 13.12213
 ## 6 2014     1   6 13.11912</code></pre>
 <p>We have three columns used to capture the time of the observation
-(<code>Year</code>, <code>Monday</code>, and <code>Day</code>). To turn this into a timestamp we need to
+(<code>Year</code>, <code>Month</code>, and <code>Day</code>). To turn this into a timestamp we need to
 join each row of year, month and day together. To do this we use the
 <code>glue()</code> function from the <code>glue</code> package. Install this package and then
 load it using <code>library()</code>. Check the help page for <code>glue()</code> and test how
@@ -952,7 +952,7 @@ need to pass the timezone to the <code>tz</code> argument of the <code>ymd_hms()
 function:</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="time.html#cb400-1" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;EST&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 EST&quot;</code></pre>
-<p>Note that if you the <code>tz</code> argument has to be a valid timezone otherwise
+<p>Note that the <code>tz</code> argument has to be a valid timezone otherwise
 <code>with_tz()</code> will not perform the proper conversion when converting it to
 a different timezone:</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="time.html#cb402-1" tabindex="-1"></a><span class="fu">try</span>(tz_pickle <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;PICKLE&quot;</span>))</span></code></pre></div>

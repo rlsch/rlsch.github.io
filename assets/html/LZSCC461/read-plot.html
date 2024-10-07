@@ -1537,15 +1537,13 @@ correct order:</p>
 <p>A histogram shows the distribution of a single numeric variable, by
 showing us the frequency with which certain intervals of the data occur.
 Use <code>ggplot()</code> to produce a histogram of the carat distribution:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="read-plot.html#cb273-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
-<span id="cb273-2"><a href="read-plot.html#cb273-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="read-plot.html#cb273-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat))</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="images/carat_hist-1.png" width="50%" /></p>
 <p>Because the data is strictly continuous, it needs to be <em>binned</em>. By
 default <code>ggplot2</code> splits the data up into 30 equally-sized intervals
 (bins). To alter this:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="read-plot.html#cb275-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
-<span id="cb275-2"><a href="read-plot.html#cb275-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="read-plot.html#cb275-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat), <span class="at">binwidth =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="images/carat_hist_binwidth-1.png" width="50%" /></p>
 <p>Always experiment with the bin width. Try increasing it slowly up to 1.
 Pay attention to how features in the data become smoothed out?</p>
@@ -1556,8 +1554,8 @@ the cut. The easiest way to do this is to, graphically, reproduce the
 histogram for each type of cut. This process is called <em>faceting</em>. To
 create a faceted plot using the cut variable modify the previous code so
 it now looks like the following and run it:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="read-plot.html#cb276-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span></span>
-<span id="cb276-2"><a href="read-plot.html#cb276-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="read-plot.html#cb276-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
+<span id="cb276-2"><a href="read-plot.html#cb276-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> carat), <span class="at">binwidth =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
 <span id="cb276-3"><a href="read-plot.html#cb276-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cut, <span class="at">ncol =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="images/carat_hist_facet-1.png" width="50%" /></p>
 <p>So, it looks like the distribution stays fairly similar across each of
@@ -1572,8 +1570,7 @@ producing a histogram, when we want to look at the distribution of a
 variable but for different categories of another variable. For example,
 the carat distribution (continuous) with each of the different cut types
 (categorical).</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="read-plot.html#cb277-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat)) <span class="sc">+</span></span>
-<span id="cb277-2"><a href="read-plot.html#cb277-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="read-plot.html#cb277-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>cut, <span class="at">y=</span>carat))</span></code></pre></div>
 <p><img src="images/cut_carat_boxplot-1.png" width="50%" /></p>
 <p>Each set of box and whiskers relies on five numbers to summarise the
 carat distribution for each particular cut. The middle three values are
