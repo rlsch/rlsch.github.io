@@ -509,10 +509,10 @@ square:</p>
 <span id="cb430-18"><a href="loops-sim.html#cb430-18" tabindex="-1"></a><span class="co"># how much time does each method take to execute?</span></span>
 <span id="cb430-19"><a href="loops-sim.html#cb430-19" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_loop</span>())</span></code></pre></div>
 <pre><code>##        User      System verstrichen 
-##       0.418       0.015       0.444</code></pre>
+##       0.422       0.016       0.470</code></pre>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="loops-sim.html#cb432-1" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_vector</span>())</span></code></pre></div>
 <pre><code>##        User      System verstrichen 
-##       0.013       0.005       0.018</code></pre>
+##       0.014       0.006       0.023</code></pre>
 <p>The <code>for</code> loop took significantly longer than the vector approach. This
 is because of the way R is optimised for thinking with vectors, rather
 than thinking about processing individual values. With other more
@@ -650,7 +650,7 @@ number.</li>
 <span id="cb446-21"><a href="loops-sim.html#cb446-21" tabindex="-1"></a> }</span>
 <span id="cb446-22"><a href="loops-sim.html#cb446-22" tabindex="-1"></a></span>
 <span id="cb446-23"><a href="loops-sim.html#cb446-23" tabindex="-1"></a><span class="fu">roll_d6</span>()</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p>The function currently has no arguments, this is because everything
 about rolling a single dice is fixed. A feature that we could add is to
 allow multiple dice rolls with one call to <code>roll_d6()</code>, though we should
@@ -1190,10 +1190,10 @@ model looked like this:</p>
 <span id="cb495-13"><a href="loops-sim.html#cb495-13" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
 <span id="cb495-14"><a href="loops-sim.html#cb495-14" tabindex="-1"></a></span>
 <span id="cb495-15"><a href="loops-sim.html#cb495-15" tabindex="-1"></a><span class="co"># population growth model</span></span>
-<span id="cb495-16"><a href="loops-sim.html#cb495-16" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(years <span class="sc">-</span> <span class="dv">1</span>)) {</span>
-<span id="cb495-17"><a href="loops-sim.html#cb495-17" tabindex="-1"></a>    S[t<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> p0 <span class="sc">*</span> J[t]</span>
-<span id="cb495-18"><a href="loops-sim.html#cb495-18" tabindex="-1"></a>    A[t<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> p1 <span class="sc">*</span> S[t] <span class="sc">+</span> p2 <span class="sc">*</span> A[t]</span>
-<span id="cb495-19"><a href="loops-sim.html#cb495-19" tabindex="-1"></a>    J[t<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> f <span class="sc">*</span> A[t]</span>
+<span id="cb495-16"><a href="loops-sim.html#cb495-16" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>years) {</span>
+<span id="cb495-17"><a href="loops-sim.html#cb495-17" tabindex="-1"></a>    S[t] <span class="ot">&lt;-</span> p0 <span class="sc">*</span> J[t<span class="dv">-1</span>]</span>
+<span id="cb495-18"><a href="loops-sim.html#cb495-18" tabindex="-1"></a>    A[t] <span class="ot">&lt;-</span> p1 <span class="sc">*</span> S[t<span class="dv">-1</span>] <span class="sc">+</span> p2 <span class="sc">*</span> A[t<span class="dv">-1</span>]</span>
+<span id="cb495-19"><a href="loops-sim.html#cb495-19" tabindex="-1"></a>    J[t] <span class="ot">&lt;-</span> f <span class="sc">*</span> A[t<span class="dv">-1</span>]</span>
 <span id="cb495-20"><a href="loops-sim.html#cb495-20" tabindex="-1"></a>}</span>
 <span id="cb495-21"><a href="loops-sim.html#cb495-21" tabindex="-1"></a></span>
 <span id="cb495-22"><a href="loops-sim.html#cb495-22" tabindex="-1"></a><span class="co"># store the results</span></span>
