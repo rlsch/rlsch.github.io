@@ -156,5 +156,5 @@ ggvis
 interactiveresponsive-graphics
 shiny-web-applications
 other-rstudio-features-we-havent-covered
-rmarkdown-html-notebooks-and-ipythonjupyter-notebooks
+r-markdown-html-notebooks-and-ipythonjupyter-notebooks
 exercise-housing-in-nairobi
