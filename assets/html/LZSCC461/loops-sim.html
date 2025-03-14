@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="web-app.html"><a href="web-app.html#collecting-data"><i class="fa fa-check"></i><b>5.2</b> Collecting data</a></li>
 <li class="chapter" data-level="5.3" data-path="web-app.html"><a href="web-app.html#alternative-graphics"><i class="fa fa-check"></i><b>5.3</b> Alternative graphics</a></li>
 <li class="chapter" data-level="5.4" data-path="web-app.html"><a href="web-app.html#shiny-web-applications"><i class="fa fa-check"></i><b>5.4</b> Shiny Web Applications</a></li>
-<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#r-markdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> R Markdown HTML notebooks and IPython/Jupyter notebooks</a></li>
+<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#rmarkdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> Rmarkdown HTML notebooks and Ipython/Jupyter notebooks</a></li>
 <li class="chapter" data-level="5.6" data-path="web-app.html"><a href="web-app.html#exercise-housing-in-nairobi"><i class="fa fa-check"></i><b>5.6</b> Exercise: Housing in Nairobi</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i>Further reading</a></li>
@@ -508,11 +508,11 @@ square:</p>
 <span id="cb430-17"><a href="loops-sim.html#cb430-17" tabindex="-1"></a></span>
 <span id="cb430-18"><a href="loops-sim.html#cb430-18" tabindex="-1"></a><span class="co"># how much time does each method take to execute?</span></span>
 <span id="cb430-19"><a href="loops-sim.html#cb430-19" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_loop</span>())</span></code></pre></div>
-<pre><code>##    user  system elapsed 
-##   0.408   0.013   0.427</code></pre>
+<pre><code>##        User      System verstrichen 
+##       0.422       0.016       0.470</code></pre>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="loops-sim.html#cb432-1" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_vector</span>())</span></code></pre></div>
-<pre><code>##    user  system elapsed 
-##   0.013   0.004   0.019</code></pre>
+<pre><code>##        User      System verstrichen 
+##       0.014       0.006       0.023</code></pre>
 <p>The <code>for</code> loop took significantly longer than the vector approach. This
 is because of the way R is optimised for thinking with vectors, rather
 than thinking about processing individual values. With other more
@@ -650,7 +650,7 @@ number.</li>
 <span id="cb446-21"><a href="loops-sim.html#cb446-21" tabindex="-1"></a> }</span>
 <span id="cb446-22"><a href="loops-sim.html#cb446-22" tabindex="-1"></a></span>
 <span id="cb446-23"><a href="loops-sim.html#cb446-23" tabindex="-1"></a><span class="fu">roll_d6</span>()</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p>The function currently has no arguments, this is because everything
 about rolling a single dice is fixed. A feature that we could add is to
 allow multiple dice rolls with one call to <code>roll_d6()</code>, though we should
