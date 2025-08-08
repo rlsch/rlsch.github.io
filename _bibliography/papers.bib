@@ -1,115 +1,69 @@
----
----
-
-@string{aps = {American Physical Society,}}
-
-@book{einstein1920relativity,
-  title={Relativity: the Special and General Theory},
-  author={Einstein, Albert},
-  year={1920},
-  publisher={Methuen & Co Ltd},
-  html={relativity.html}
-}
-
-@book{einstein1956investigations,
+@inproceedings{Loesch2023,
+  title={Converting Depth Images and Point Clouds for Feature-Based Pose Estimation}, 
+  author={L{\"o}sch, Robert and Sastuba, Mark and Toth, Jonas and Jung, Bernhard},
+  booktitle={2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
+  year={2023},
+  pages={3422-3428},
+  abstract={In recent years, depth sensors have become more and more affordable and have found their way into a growing amount of robotic systems. However, mono- or multi-modal sensor registration, often a necessary step for further pro-cessing, faces many challenges on raw depth images or point clouds. This paper presents a method of converting depth data into images capable of visualizing spatial details that are basically hidden in traditional depth images. After noise removal, a neighborhood of points forms two normal vectors whose difference is encoded into this new conversion. Compared to Bearing Angle images, our method yields brighter, higher-contrast images with more visible contours and more details. We tested feature-based pose estimation of both conversions in a visual odometry task and RGB-D SLAM. For all tested features, AKAZE, ORB, SIFT, and SURF, our new Flexion images yield better results than Bearing Angle images and show great potential to bridge the gap between depth data and classical computer vision. Source code is available here: https://rlsch.github.io/depth-flexion-conversion.},
+  doi={10.1109/IROS55552.2023.10341758},
+  ISSN={2153-0866},
+  month={Oct},
   bibtex_show={true},
-  title={Investigations on the Theory of the Brownian Movement},
-  author={Einstein, Albert},
-  year={1956},
-  publisher={Courier Corporation},
-  preview={brownian-motion.gif}
+  html={https://doi.org/10.1109/IROS55552.2023.10341758},
+  url={https://rlsch.github.io/depth-flexion-conversion/},
+  code={https://rlsch.github.io/depth-flexion-conversion/},
+  pdf={Loesch2023.pdf},
+  preview={converting-depth-images.png},
+  selected={true}
 }
 
-@article{einstein1950meaning,
-  abbr={AJP},
+@inproceedings{Loesch2018,
+  title={Design of an Autonomous Robot for Mapping, Navigation, and Manipulation in Underground Mines}, 
+  author={L{\"o}sch, Robert and Grehl, Steve and Donner, Marc and Buhl, Claudia and Jung, Bernhard},
+  booktitle={2018 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
+  year={2018},
+  pages={1407-1412},
+  abstract={Underground mines are a dangerous working environment and, therefore, robots could help putting less humans at risk. Traditional robots, sensors, and software often do not work reliably underground due to the harsh environment. This paper analyzes requirements and presents a robot design capable of navigating autonomously underground and manipulating objects with a robotic arm. The robot's base is a robust four wheeled platform powered by electric motors and able to withstand the harsh environment. It is equipped with color and depth cameras, lighting, laser scanners, an inertial measurement unit, and a robotic arm. We conducted two experiments testing mapping and autonomous navigation. Mapping a 75 meters long route including a loop closure results in a map that qualitatively matches the original map to a good extent. Testing autonomous driving on a previously created map of a second, straight, 150 meters long route was also successful. However, without loop closure, rotation errors cause apparent deviations in the created map. These first experiments showed the robot's operability underground.},
+  doi={10.1109/IROS.2018.8594190},
+  ISSN={2153-0866},
+  month={Oct},
   bibtex_show={true},
-  title={The meaning of relativity},
-  author={Einstein, Albert and Taub, AH},
-  journal={American Journal of Physics},
-  volume={18},
-  number={6},
-  pages={403--404},
-  year={1950},
-  publisher={American Association of Physics Teachers}
+  html={https://doi.org/10.1109/IROS.2018.8594190},
+  pdf={Loesch2018.pdf},
+  preview={design-of-an-autonomous-robot.jpg},
+  selected={true}
 }
 
-@article{PhysRev.47.777,
-  abbr={PhysRev},
-  title={Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author={Einstein*†, A. and Podolsky*, B. and Rosen*, N.},
-  abstract={In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal={Phys. Rev.},
-  location={New Jersey},
-  volume={47},
-  issue={10},
-  pages={777--780},
-  numpages={0},
-  year={1935},
-  month={May},
-  publisher=aps,
-  doi={10.1103/PhysRev.47.777},
-  url={http://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html={https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf={example_pdf.pdf},
-  altmetric={248277},
-  dimensions={true},
-  google_scholar_id={qyhmnyLat1gC},
-  video={https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ},
-  additional_info={. *More Information* can be [found here](https://github.com/alshedivat/al-folio/)},
-  annotation={* Example use of superscripts<br>† Albert Einstein},
-  selected={true},
-  inspirehep_id = {3255}
-}
-
-@article{einstein1905molekularkinetischen,
-  title={{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author={Einstein, A.},
-  journal={Annalen der physik},
-  volume={322},
-  number={8},
-  pages={549--560},
-  year={1905},
-  publisher={Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr={Ann. Phys.},
-  title={Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author={Einstein, A.},
-  journal={Ann. Phys.},
-  volume={17},
-  pages={549--560},
-  year={1905}
-}
-
-@article{einstein1905electrodynamics,
-  title={On the electrodynamics of moving bodies},
-  author={Einstein, A.},
-  year={1905}
-}
-
-@Article{einstein1905photoelectriceffect,
+@mastersthesis{Loesch2017,
+  title={Multitarget multisensor motion tracking of vehicles with vehicle based multilayer 2D laser range finders},
+  author={L{\"o}sch, Robert},
+  year={2017},
+  month={Jan},
+  school={TU Munich},
+  address={Munich, Germany},
+  pages={89},
+  language = {en},
+  abstract = {For tracking, autonomous vehicles often use 3D laser range finders (LRFs), which are expensive. In order to make autonomous cars affordable as a mass product, we use multiple, more affordable 2D LRFs for tracking and implement an algorithm with the goal of achieving a similar performance. Our tracking algorithm comprises the following steps: Data preprocessing, segmentation, classification, feature extraction, data association, and track management. To compensate the information reduction, we re-use track information and focus on reducing over-segmentation and effects of the shape change problem. We test the algorithm on own labeled data and training data sets of “The KITTI Vision Benchmark Suite” with the CLEARMOT and MT/PT/ML metrics. In addition, we test specific properties with specific scenarios. Our algorithm obtains a MOT accuracy, which reflects the amount of correctly detected objects, of 0.79 on our own and negative values on the KITTI data sets. Obtained MOT precision, which is an averaged detection precision, is around 60 percent on all data sets. Out of all tracks, 47.83 percent are mostly tracked on our own data and zero percent on KITTI data sets. Our algorithm for tracking multiple objects with multiple moving 2D LRFs does not reach 3D performance. Improvements of feature extraction and especially classification to distinguish between vehicle and non-vehicle objects would boost its performance.},
+	keywords = {multitarget multisensor tracking LRF LIDAR DATMO MOT},
+  type={Master's thesis},
   bibtex_show={true},
-  abbr={Ann. Phys.},
-  title="{{\"U}ber einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt}",
-  author={Albert Einstein},
-  abstract={This is the abstract text.},
-  journal={Ann. Phys.},
-  volume={322},
-  number={6},
-  pages={132--148},
-  year={1905},
-  doi={10.1002/andp.19053220607},
-  award={Albert Einstein receveid the **Nobel Prize in Physics** 1921 *for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect*},
-  award_name={Nobel Prize}
+  html={https://mediatum.ub.tum.de/1345626},
+  pdf={Loesch2017.pdf},
+  preview={masters-thesis.jpg}
 }
 
-@book{przibram1967letters,
+@inproceedings{Althoff2016,
+  title={Can automated road vehicles harmonize with traffic flow while guaranteeing a safe distance?}, 
+  author={Althoff, Matthias and L{\"o}sch, Robert},
+  booktitle={2016 IEEE 19th International Conference on Intelligent Transportation Systems (ITSC)}, 
+  year={2016},
+  pages={485-491},
+  abstract={A frequently raised argument against safely-driving automated vehicles is that they would not harmonize well with traffic flow-unrealistically large headways would invite other traffic participants to cut in and thus put passengers of following automated vehicles at risk. In order to test this hypothesis, we use real data of thousands of vehicles recorded in the United States as part of the Next Generation Simulation (NGSIM) program. To study the hypothesis, we pretend each human-driven vehicle is automated: These automated vehicles drive exactly as the recorded human drivers, but they have a much smaller reaction time and thus can still drive safely in situations that are unsafe for human drivers. The main result is that in only very few cases an automated vehicle would not drive safely, although more than half of the human drivers do not keep a safe distance according to their capabilities. Thus, there is no increased risk of vehicles cutting in-and if they do, automated vehicles are only at risk in around 10% of all cases compared to around 60% for human drivers.},
+  doi={10.1109/ITSC.2016.7795599},
+  ISSN={2153-0017},
+  month={Nov},
   bibtex_show={true},
-  title={Letters on wave mechanics},
-  author={Einstein, Albert and Schrödinger, Erwin and Planck, Max and Lorentz, Hendrik Antoon and Przibram, Karl},
-  year={1967},
-  publisher={Vision},
-  preview={wave-mechanics.gif},
-  abbr={Vision}
+  html={https://doi.org/10.1109/ITSC.2016.7795599},
+  pdf={Althoff2016.pdf},
+  preview={can-automated-road.png}
 }
