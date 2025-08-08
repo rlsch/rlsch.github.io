@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://lsch.github.io/sitemap.xml
+Sitemap: https://rlsch.github.io/sitemap.xml
