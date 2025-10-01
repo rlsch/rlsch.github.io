@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Time manipulation, aggregation and summarisation | Lancaster University Leipzig LZSCC.461 R Programming</title>
   <meta name="description" content="2 Time manipulation, aggregation and summarisation | Lancaster University Leipzig LZSCC.461 R Programming" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Time manipulation, aggregation and summarisation | Lancaster University Leipzig LZSCC.461 R Programming" />
   <meta property="og:type" content="book" />
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="web-app.html"><a href="web-app.html#collecting-data"><i class="fa fa-check"></i><b>5.2</b> Collecting data</a></li>
 <li class="chapter" data-level="5.3" data-path="web-app.html"><a href="web-app.html#alternative-graphics"><i class="fa fa-check"></i><b>5.3</b> Alternative graphics</a></li>
 <li class="chapter" data-level="5.4" data-path="web-app.html"><a href="web-app.html#shiny-web-applications"><i class="fa fa-check"></i><b>5.4</b> Shiny Web Applications</a></li>
-<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#rmarkdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> Rmarkdown HTML notebooks and Ipython/Jupyter notebooks</a></li>
+<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#r-markdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> R Markdown HTML notebooks and IPython/Jupyter notebooks</a></li>
 <li class="chapter" data-level="5.6" data-path="web-app.html"><a href="web-app.html#exercise-housing-in-nairobi"><i class="fa fa-check"></i><b>5.6</b> Exercise: Housing in Nairobi</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i>Further reading</a></li>
@@ -376,9 +376,9 @@ time:<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <p>We can then extract each of its elements:</p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="time.html#cb315-1" tabindex="-1"></a><span class="fu">year</span>(stamp) <span class="co"># for illustration only; your output might vary</span></span></code></pre></div>
-<pre><code>## [1] 2024</code></pre>
+<pre><code>## [1] 2025</code></pre>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="time.html#cb317-1" tabindex="-1"></a><span class="fu">minute</span>(stamp) <span class="co"># your output might vary</span></span></code></pre></div>
-<pre><code>## [1] 57</code></pre>
+<pre><code>## [1] 15</code></pre>
 <p>For the month and weekday elements (<code>mday</code> and <code>wday</code>), we can also
 specify whether we want to extract the numerical value of the element,
 an abbreviation of the name of the month or weekday, or the full name.
@@ -444,7 +444,7 @@ accessor function.</caption>
 <pre><code>## [1] October
 ## 12 Levels: January &lt; February &lt; March &lt; April &lt; May &lt; June &lt; ... &lt; December</code></pre>
 <div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="time.html#cb325-1" tabindex="-1"></a><span class="fu">wday</span>(stamp, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">abbr=</span><span class="cn">FALSE</span>) <span class="co"># your output might vary</span></span></code></pre></div>
-<pre><code>## [1] Tuesday
+<pre><code>## [1] Wednesday
 ## 7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday</code></pre>
 </div>
 <div id="arithmetic-with-timestamps" class="section level3 hasAnchor" number="2.2.3">
@@ -487,7 +487,7 @@ time from them. To do this use the helper functions; <code>years()</code>,
 <code>seconds()</code>. Where the first and only argument is the amount of that
 unit of time:</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="time.html#cb335-1" tabindex="-1"></a>stamp <span class="sc">-</span> <span class="fu">hours</span>(<span class="dv">48</span>) <span class="sc">-</span> <span class="fu">minutes</span>(<span class="dv">30</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2024-10-20 12:27:13 CEST&quot;</code></pre>
+<pre><code>## [1] &quot;2025-09-29 18:45:33 CEST&quot;</code></pre>
 </div>
 <div id="intervals-and-durations" class="section level3 hasAnchor" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Intervals and durations<a href="time.html#intervals-and-durations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -591,7 +591,7 @@ square-kilometres.</p></li>
 <li><p>If you use the <code>class()</code> function on <code>sea_ice$date</code> you’ll see that
 it’s either of type character or factor (depending upon whether you
 set the <code>stringsAsFactors</code> to <code>FALSE</code> or not respectively). We need
-to change this so that R recognises that it’s a data. Run the
+to change this so that R recognises that it’s a date. Run the
 command below and check the class again</p></li>
 </ol>
 <div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="time.html#cb357-1" tabindex="-1"></a>sea_ice<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(sea_ice<span class="sc">$</span>date)</span></code></pre></div>
@@ -606,7 +606,7 @@ there also appears to be a downward trend over time.</p>
 <ol start="5" style="list-style-type: decimal">
 <li>To focus on the seasonal variation, we need to create a graphic that
 shows <code>extent</code> from January to December on the x-axis, with each
-year then having its own line. To do this we first need to create
+year then having its own line. To do this, we first need to create
 two extra variables based on <code>date</code>; one which contains the year
 component, and the other containing the day of the year (1-365):</li>
 </ol>
@@ -627,13 +627,13 @@ year we specify <code>group = year</code> as part of <code>aes()</code>.</p>
 <span id="cb361-2"><a href="time.html#cb361-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year),</span>
 <span id="cb361-3"><a href="time.html#cb361-3" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="images/sea-ice-seasonal-1.png" width="80%" /></p>
-<p>To highlight which lines belong to which year modify the plot so we
+<p>To highlight which lines belong to which year, modify the plot so we
 colour each line according to year:</p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="time.html#cb362-1" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
 <span id="cb362-2"><a href="time.html#cb362-2" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year_day, <span class="at">y =</span> extent, <span class="at">group =</span> year, <span class="at">colour =</span> year),</span>
 <span id="cb362-3"><a href="time.html#cb362-3" tabindex="-1"></a>            <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb362-4"><a href="time.html#cb362-4" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
-<p>To change the colours used for the gradient, and the labels shown on the
+<p>To change the colours used for the gradient and the labels shown on the
 colour bar for year, add <code>scale_colour_gradient()</code> to your <code>ggplot()</code>
 command:</p>
 <div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="time.html#cb363-1" tabindex="-1"></a><span class="fu">ggplot</span>(sea_ice) <span class="sc">+</span></span>
@@ -718,7 +718,7 @@ give us one observation per October of every year.</p>
 <p>We see that the extent of the sea ice for the first observation in
 October, 1978 as 10.2 million sq-km. Also, we can see that by asking for
 the first date, it has now been converted to Unix time. To convert it
-back to a timestamp see the section on Unix time.</p>
+back to a timestamp, see the section on Unix time.</p>
 <p><code>first()</code> is one of the many functions we can use for aggregating data
 with the <code>group_by() %&gt;% summarise()</code> combo. As you will see as follows
 (and in the exercises) we can do a lot more cool stuff with this
@@ -862,8 +862,8 @@ directory and load it into R:</p>
 ## 5 2014     1   5 13.12213
 ## 6 2014     1   6 13.11912</code></pre>
 <p>We have three columns used to capture the time of the observation
-(<code>Year</code>, <code>Month</code>, and <code>Day</code>). To turn this into a timestamp we need to
-join each row of year, month and day together. To do this we use the
+(<code>Year</code>, <code>Month</code>, and <code>Day</code>). To turn this into a timestamp, we need to
+join each row of year, month and day together. To do this, we use the
 <code>glue()</code> function from the <code>glue</code> package. Install this package and then
 load it using <code>library()</code>. Check the help page for <code>glue()</code> and test how
 it works:</p>
@@ -947,7 +947,7 @@ example of a timestamp in USA Eastern Standard Time (EST) being
 overwritten as UTC:</p>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="time.html#cb398-1" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2010-12-25 13:00:00 UTC&quot;</code></pre>
-<p>To ensure your timestamp is parsed as being in the correct timezone you
+<p>To ensure your timestamp is parsed as being in the correct timezone, you
 need to pass the timezone to the <code>tz</code> argument of the <code>ymd_hms()</code>
 function:</p>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="time.html#cb400-1" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2010-12-25 13:00:00 EST&quot;</span>, <span class="at">tz =</span> <span class="st">&quot;EST&quot;</span>)</span></code></pre></div>

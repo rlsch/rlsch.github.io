@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Data manipulation and plotting in R | Lancaster University Leipzig LZSCC.461 R Programming</title>
   <meta name="description" content="1 Data manipulation and plotting in R | Lancaster University Leipzig LZSCC.461 R Programming" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Data manipulation and plotting in R | Lancaster University Leipzig LZSCC.461 R Programming" />
   <meta property="og:type" content="book" />
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="web-app.html"><a href="web-app.html#collecting-data"><i class="fa fa-check"></i><b>5.2</b> Collecting data</a></li>
 <li class="chapter" data-level="5.3" data-path="web-app.html"><a href="web-app.html#alternative-graphics"><i class="fa fa-check"></i><b>5.3</b> Alternative graphics</a></li>
 <li class="chapter" data-level="5.4" data-path="web-app.html"><a href="web-app.html#shiny-web-applications"><i class="fa fa-check"></i><b>5.4</b> Shiny Web Applications</a></li>
-<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#rmarkdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> Rmarkdown HTML notebooks and Ipython/Jupyter notebooks</a></li>
+<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#r-markdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> R Markdown HTML notebooks and IPython/Jupyter notebooks</a></li>
 <li class="chapter" data-level="5.6" data-path="web-app.html"><a href="web-app.html#exercise-housing-in-nairobi"><i class="fa fa-check"></i><b>5.6</b> Exercise: Housing in Nairobi</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i>Further reading</a></li>
@@ -421,15 +421,15 @@ frame may look like this:</p>
 <p>Check that <code>planet</code> really is a <code>data.frame</code> by typing:</p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="read-plot.html#cb139-1" tabindex="-1"></a><span class="fu">class</span>(planet)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<p>In R the class of objects is very important. The same function, for
+<p>In R, the class of objects is very important. The same function, for
 example <code>summary()</code>, will perform differently depending upon the class
-of the object. In computer programming this is called “function
+of the object. In computer programming, this is called “function
 overloading”.</p>
 <p>Type <code>planet</code> into the console, and it will display the contents of our
 newly created data frame. Another way to see the contents, this time in
 a spreadsheet type view, is to type:</p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="read-plot.html#cb141-1" tabindex="-1"></a><span class="fu">View</span>(planet)</span></code></pre></div>
-<p>To access the individual variables we use the dollar syntax:</p>
+<p>To access the individual variables, we use the dollar syntax:</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="read-plot.html#cb142-1" tabindex="-1"></a>planet<span class="sc">$</span>mass</span></code></pre></div>
 <pre><code>## [1] 3.30e+23 4.87e+24 5.97e+24 6.42e+23 1.90e+27 5.68e+26 8.68e+25 1.02e+26</code></pre>
 <p>But we can also use square brackets to select the individual elements of
@@ -579,7 +579,7 @@ columns we do want to keep.</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="read-plot.html#cb176-1" tabindex="-1"></a><span class="co"># alternatively, without pipe</span></span>
 <span id="cb176-2"><a href="read-plot.html#cb176-2" tabindex="-1"></a><span class="co"># annon_planets &lt;- select(planet, mass, radius)</span></span></code></pre></div>
 <p>In order to carry on with our gravity calculations, we need to add a
-<code>distance</code> column, use <code>mutate()</code> to do this. Using <code>mutate()</code> we can
+<code>distance</code> column, use <code>mutate()</code> to do this. Using <code>mutate()</code>, we can
 actually add the <code>distance</code> and <code>gravity</code> variables in one call:</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="read-plot.html#cb177-1" tabindex="-1"></a>calc_gravity <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">distance =</span> <span class="dv">0</span>, <span class="at">mass =</span> <span class="fl">5.9736</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">24</span>, <span class="at">radius =</span> <span class="fl">6.371</span> <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>) {</span>
 <span id="cb177-2"><a href="read-plot.html#cb177-2" tabindex="-1"></a>    <span class="co"># constant</span></span>
@@ -674,10 +674,10 @@ number of data frames and essentially collates them together:</p>
 ## 9  Kepler-186f 1.90e+23  1170000              NA
 ## 10  Kepler-62f 3.32e+23  1410000              NA
 ## 11 Kepler-438b 2.64e+23  1120000              NA</code></pre>
-<p>We can see how our data frame is now made of 11 row: we attached at the
-end the 3 new planets. You will notice that bind_rows assigns “NA” to
+<p>We can see how our data frame is now made of 11 rows: We attached the
+3 new planets at the end. You will notice that <code>bind_rows</code> assigns <code>NA</code> to
 those elements of columns that are not shared between the two data
-frames: see what happened over the <code>contain_humans</code> column!</p>
+frames: See what happened over the <code>contain_humans</code> column!</p>
 <p>Say that for some strange occurrence you get cryogenically frozen and
 wake up in the year 3000. You wake up in the Futurama universe and get
 assigned a job at the Lancaster branch of the Planet Express (somehow
@@ -790,7 +790,7 @@ restrictions. Though we will not be making use of matrices in this
 module, you will in the more-theoretical statistics modules.</p>
 <p>The word <em>matrix</em> is a mathematical term for a two-dimensional array of
 numbers, with a <em>vector</em> being a one-dimensional array. To create a
-matrix we can simply bind vectors together as columns:</p>
+matrix, we can simply bind vectors together as columns:</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="read-plot.html#cb192-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
 <span id="cb192-2"><a href="read-plot.html#cb192-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb192-3"><a href="read-plot.html#cb192-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span></span>
@@ -1134,7 +1134,7 @@ records what level of pain our patients are in using a four-point scale:</p>
 <span id="cb232-2"><a href="read-plot.html#cb232-2" tabindex="-1"></a>pain_c <span class="ot">&lt;-</span> <span class="fu">as.character</span>(pain_f)</span>
 <span id="cb232-3"><a href="read-plot.html#cb232-3" tabindex="-1"></a>pain_c</span></code></pre></div>
 <pre><code>## [1] &quot;none&quot;   &quot;mild&quot;   &quot;severe&quot; &quot;medium&quot; &quot;medium&quot; &quot;mild&quot;   &quot;mild&quot;   &quot;severe&quot;</code></pre>
-<p>This <em>factor</em> data structure is so routinely used by data scientists
+<p>This <em>factor</em> data structure is so routinely used by data scientists,
 that R will automatically convert strings to factors when creating a
 data frame which includes using any of the <code>read.*()</code> functions. Hence
 why, even though we originally specified the planet names as a vector of
@@ -1164,9 +1164,9 @@ month. The lack of consistency of how people write timestamps can make
 them a headache to deal with, especially when we are merging data from
 two different sources.</p>
 <p>By default, R will make no attempt to parse a date or timestamp as such.
-Instead R will silently read them as strings, and thus will be turned
+Instead, R will silently read them as strings, and thus will be turned
 into a factor. This is not useful, and we will cover how to override
-this behaviour using the <code>lubridate</code> package in Chapter <a href="string.html#string">4</a>,
+this behaviour using the <code>lubridate</code> package in Chapter <a href="time.html#time">2</a>,
 where we deal with parsing differently formatted timestamps, and the
 tedious issue of time zones.</p>
 </div>
@@ -1196,7 +1196,7 @@ with <code>0</code> labelled as <code>"no"</code>, and <code>1</code> as <code>"
 or more vectors is often convenient for performing additional
 calculations as well as plotting. R is designed around the idea and use
 of vectors. Data frames are essentially a collection of vectors, but
-with extra useful functionality. Furthermore we have seen that R comes
+with extra useful functionality. Furthermore, we have seen that R comes
 with tools for extracting and manipulating the information in vectors
 and data frames.</p>
 <p>In practice, we often have to extract data that satisfy a certain
@@ -1331,7 +1331,7 @@ While <code>|</code> returns <code>TRUE</code> if <em>at least one</em> of the c
 <h3><span class="header-section-number">1.4.3</span> Dealing with NAs<a href="read-plot.html#dealing-with-nas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In R, <code>NA</code> is a special value that represents missing or undefined data.
 We have seen an example of this on the dataset we joined earlier,
-following the <code>left_join</code>. For instance let’s recall the variable
+following the <code>left_join</code>. For instance, let’s recall the variable
 <code>contain_humans</code>:</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="read-plot.html#cb250-1" tabindex="-1"></a>left_joined_planets<span class="sc">$</span>contains_humans</span></code></pre></div>
 <pre><code>##  [1]  0  0  0  0  1  0  0  0 NA NA NA</code></pre>
@@ -1345,7 +1345,7 @@ and selecting for <code>NA</code>, as this comparison will return an <code>NA</c
 <code>is.na()</code> function:</p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="read-plot.html#cb254-1" tabindex="-1"></a><span class="fu">is.na</span>(left_joined_planets<span class="sc">$</span>contains_humans)</span></code></pre></div>
 <pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
-<p>This will output a boolean vector that we can now use for indexing
+<p>This will output a Boolean vector that we can now use for indexing
 purposes. From here, you can fill <code>NA</code> values in several ways.</p>
 <p>Using the standard R syntax:</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="read-plot.html#cb256-1" tabindex="-1"></a><span class="co"># filling values with 0</span></span>
@@ -1375,7 +1375,7 @@ observation. Data, the collective name for such counts, measurements,
 and attributes, are the lifeblood of science. Studying data with
 quantitative tools allows scientists to detect patterns, make
 predictions, and assess the reliability of current theory. Being able to
-visualise data is crucial to this endeavour. Even a small data set is
+visualise data is crucial to this endeavour. Even a small dataset is
 practically incomprehensible all by itself. Plotting data allows us to
 visualise the relationships we are interested in.</p>
 <p>Visualisation can be used for two things; (a) for the computer to show
@@ -1403,7 +1403,7 @@ This loads the package into your current R session.</p>
 this now):</p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="read-plot.html#cb262-1" tabindex="-1"></a><span class="fu">detach</span>(package<span class="sc">:</span>ggplot2)</span></code></pre></div>
 <p>Also, if when you load in a package and it has a function with the same
-name as another package that is already loaded in your R session. You
+name as another package that is already loaded in your R session, you
 will get a warning that one of the function names masks the function
 from the other package. In such situations, you ensure to use the
 function from the specific package by prefixing the function name by
@@ -1415,17 +1415,17 @@ of the fiddly details that make plotting a hassle when using the
 plotting functions provided by base R (like drawing legends, and picking
 good colours). It also provides a powerful framework which makes
 creating complex graphics easier. When you see analyses performed by
-various data bloggers they will often be using <code>ggplot2</code> to visualise
+various data bloggers, they will often be using <code>ggplot2</code> to visualise
 their data.</p>
-<p>To see the many functions this package provides view its top level
+<p>To see the many functions this package provides, view its top level
 help-file with</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="read-plot.html#cb263-1" tabindex="-1"></a><span class="fu">help</span>(<span class="at">package =</span> ggplot2)</span></code></pre></div>
 </div>
 <div id="diamonds-data" class="section level3 hasAnchor" number="1.5.2">
 <h3><span class="header-section-number">1.5.2</span> Diamonds data<a href="read-plot.html#diamonds-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Let us utilise the functionality of <code>ggplot2</code> by exploring a data set
+<p>Let us utilise the functionality of <code>ggplot2</code> by exploring a dataset
 describing the prices and other attributes of 53,940 diamonds. Make sure
-your working directory is setup correctly, read the data into R. Check
+your working directory is set up correctly, read the data into R. Check
 it has loaded properly by comparing the dimensions to what is shown
 below:</p>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="read-plot.html#cb264-1" tabindex="-1"></a><span class="fu">data</span>(diamonds)</span>
@@ -1725,7 +1725,7 @@ summaries that can be plotted.</p>
 <li><code>geom_violin</code></li>
 <li><code>geom_vline</code></li>
 </ul>
-<p>In order to use a <code>geom</code> we need to map our variables to the different
+<p>In order to use a <code>geom</code>, we need to map our variables to the different
 <strong>aes</strong>thetics it uses. Aesthetics of a <code>geom</code> include; position on the
 x-axis and y-axis, colour, size, transparency, and more. We map our
 variables to the aesthetics through the <code>aes()</code> function within the
@@ -1744,7 +1744,7 @@ semi-transparent by setting their <code>alpha</code> transparency level to be
 small:</p>
 <div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="read-plot.html#cb295-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span></span>
 <span id="cb295-2"><a href="read-plot.html#cb295-2" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat)) <span class="sc">+</span></span>
-<span id="cb295-3"><a href="read-plot.html#cb295-3" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<span id="cb295-3"><a href="read-plot.html#cb295-3" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> carat), <span class="at">alpha =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="images/cut_carat_alpha-1.png" width="50%" /></p>
 <p>“Alpha” in graphics refers to how transparent something is, usually
 pixels. Alpha values can range between <span class="math inline">\(1\)</span> (solid) to <span class="math inline">\(0\)</span> (invisible).
@@ -1805,7 +1805,7 @@ system to creating graphics.</p></li>
 <div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="read-plot.html#cb301-1" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price))</span></code></pre></div>
 <p><img src="images/boxplot-1.png" width="50%" /></p>
 <ul>
-<li><p>Aesthetics of a geom generally include: <code>x</code>; <code>y</code>; <code>size</code>; <code>colour</code>;
+<li><p><strong>Aes</strong>thetics of a geom generally include: <code>x</code>; <code>y</code>; <code>size</code>; <code>colour</code>;
 <code>fill</code>; <code>shape</code>; <code>group</code>; <code>alpha</code>. But there are others for specific
 geoms, check the help pages or online documentation for more
 information.</p></li>
