@@ -509,10 +509,10 @@ square:</p>
 <span id="cb430-18"><a href="loops-sim.html#cb430-18" tabindex="-1"></a><span class="co"># how much time does each method take to execute?</span></span>
 <span id="cb430-19"><a href="loops-sim.html#cb430-19" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_loop</span>())</span></code></pre></div>
 <pre><code>##        User      System verstrichen 
-##       0.401       0.011       0.415</code></pre>
+##       0.393       0.021       0.417</code></pre>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="loops-sim.html#cb432-1" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_vector</span>())</span></code></pre></div>
 <pre><code>##        User      System verstrichen 
-##       0.012       0.003       0.016</code></pre>
+##       0.012       0.004       0.016</code></pre>
 <p>The <code>for</code> loop took significantly longer than the vector approach. This
 is because of the way R is optimised for thinking with vectors, rather
 than thinking about processing individual values. With other more
@@ -650,7 +650,7 @@ number.</li>
 <span id="cb446-21"><a href="loops-sim.html#cb446-21" tabindex="-1"></a> }</span>
 <span id="cb446-22"><a href="loops-sim.html#cb446-22" tabindex="-1"></a></span>
 <span id="cb446-23"><a href="loops-sim.html#cb446-23" tabindex="-1"></a><span class="fu">roll_d6</span>()</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
+<pre><code>## [1] 5</code></pre>
 <p>The function currently has no arguments, this is because everything
 about rolling a single dice is fixed. A feature that we could add is to
 allow multiple dice rolls with one call to <code>roll_d6()</code>, though we should
