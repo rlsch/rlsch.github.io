@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Loops, Conditional Statements, and Simulation | Lancaster University Leipzig LZSCC.461 R Programming</title>
   <meta name="description" content="3 Loops, Conditional Statements, and Simulation | Lancaster University Leipzig LZSCC.461 R Programming" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Loops, Conditional Statements, and Simulation | Lancaster University Leipzig LZSCC.461 R Programming" />
   <meta property="og:type" content="book" />
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="web-app.html"><a href="web-app.html#collecting-data"><i class="fa fa-check"></i><b>5.2</b> Collecting data</a></li>
 <li class="chapter" data-level="5.3" data-path="web-app.html"><a href="web-app.html#alternative-graphics"><i class="fa fa-check"></i><b>5.3</b> Alternative graphics</a></li>
 <li class="chapter" data-level="5.4" data-path="web-app.html"><a href="web-app.html#shiny-web-applications"><i class="fa fa-check"></i><b>5.4</b> Shiny Web Applications</a></li>
-<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#rmarkdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> Rmarkdown HTML notebooks and Ipython/Jupyter notebooks</a></li>
+<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#r-markdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> R Markdown HTML notebooks and IPython/Jupyter notebooks</a></li>
 <li class="chapter" data-level="5.6" data-path="web-app.html"><a href="web-app.html#exercise-housing-in-nairobi"><i class="fa fa-check"></i><b>5.6</b> Exercise: Housing in Nairobi</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i>Further reading</a></li>
@@ -227,7 +227,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.1</span> Before you start<a href="loops-sim.html#before-you-start" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Revise the Summary sections on Data Manipulation and Basic Plots
-from first week. Also scan through the section on Logical
+from the first week. Also scan through the section on Logical
 Comparisons. You will be making use of this knowledge this week.</li>
 <li>Load the good old <code>tidyverse</code>:</li>
 </ul>
@@ -323,7 +323,7 @@ repeated between the curly brackets:</p>
 <p><img src="week2/loop.png" width="50%" /></p>
 <p>When specifying the index, we use the phrase <code>in</code> rather than an equals
 symbol.</p>
-<p>If everything goes well, when you run the code your <code>r</code> vector should
+<p>If everything goes well when you run the code, your <code>r</code> vector should
 now contain 100 elements, you should check this. Also check some of the
 elements against the sequence stated above. For instance the 12th number
 should be 144.</p>
@@ -468,7 +468,7 @@ groups in your data?</li>
 <p>In the first two weeks we have used only <strong>Vectorized functions.</strong> Those
 are in R inherently designed to operate on whole vectors directly. This
 means they can perform an operation on each element of a vector
-simultaneously, making them highly efficient and fast. Technically we
+simultaneously, making them highly efficient and fast. Technically, we
 say that vectorised functions are <em>trivially parallelizable</em> because
 there’s no dependency between elements (the value of an element of a
 vector does not depend on the previous one). While vectorized functions
@@ -479,12 +479,12 @@ is a <strong>state</strong> involved.</p>
 <p>The concept of <strong>state</strong> refers to a scenario where certain steps in
 your code must be executed in a specific order because the output of one
 step is the input to the next step. This is common in tasks that involve
-iterative calculations: in our example, we have used for loops to
+iterative calculations: in our example, we have used <code>for</code> loops to
 generate data based on a model. Each new value we calculated was based
 on at least one previously calculated value. This is, pretty much, the
 only circumstances in which for looping is definitely the answer.</p>
 <p>Often with data problems it is very tempting to create a solution using
-a for loop, but what you might find, especially in R, is that your
+a <code>for</code> loop, but what you might find, especially in R, is that your
 solution takes a long time to run. When this happens there is frequently
 an alternative solution which involves using vectors instead. For a
 trivial example, say, we have an incredibly long vector which want to
@@ -509,10 +509,10 @@ square:</p>
 <span id="cb430-18"><a href="loops-sim.html#cb430-18" tabindex="-1"></a><span class="co"># how much time does each method take to execute?</span></span>
 <span id="cb430-19"><a href="loops-sim.html#cb430-19" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_loop</span>())</span></code></pre></div>
 <pre><code>##        User      System verstrichen 
-##       0.422       0.016       0.470</code></pre>
+##       0.401       0.011       0.415</code></pre>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="loops-sim.html#cb432-1" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">square_x_vector</span>())</span></code></pre></div>
 <pre><code>##        User      System verstrichen 
-##       0.014       0.006       0.023</code></pre>
+##       0.012       0.003       0.016</code></pre>
 <p>The <code>for</code> loop took significantly longer than the vector approach. This
 is because of the way R is optimised for thinking with vectors, rather
 than thinking about processing individual values. With other more
@@ -520,7 +520,7 @@ low-level programming languages you might not see any difference in
 terms of speed between these two methods, in fact it might even be the
 other way around.</p>
 <p>So when coding in R, think vectors first (ask yourself, are the elements
-of my output independent from each-other?). If so, avoid for cycles. In
+of my output independent from each-other?). If so, avoid <code>for</code> cycles. In
 all other cases, where looping seems to solve your problem in a timely
 manner this is good enough.</p>
 <p>In other words, don’t be this guy:</p>
@@ -604,7 +604,7 @@ it reads:</p>
 <span id="cb444-7"><a href="loops-sim.html#cb444-7" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (animal <span class="sc">==</span> <span class="st">&quot;zebra&quot;</span>) {</span>
 <span id="cb444-8"><a href="loops-sim.html#cb444-8" tabindex="-1"></a>        food <span class="ot">&lt;-</span> <span class="st">&quot;grass&quot;</span></span>
 <span id="cb444-9"><a href="loops-sim.html#cb444-9" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb444-10"><a href="loops-sim.html#cb444-10" tabindex="-1"></a>    food <span class="ot">&lt;-</span> <span class="st">&quot;soup&quot;</span></span>
+<span id="cb444-10"><a href="loops-sim.html#cb444-10" tabindex="-1"></a>        food <span class="ot">&lt;-</span> <span class="st">&quot;soup&quot;</span></span>
 <span id="cb444-11"><a href="loops-sim.html#cb444-11" tabindex="-1"></a>    }</span>
 <span id="cb444-12"><a href="loops-sim.html#cb444-12" tabindex="-1"></a>   </span>
 <span id="cb444-13"><a href="loops-sim.html#cb444-13" tabindex="-1"></a>    <span class="co"># compose message</span></span>
@@ -616,13 +616,13 @@ it reads:</p>
 ## [1] &quot;Give a turtle some fish for lunch.&quot;
 ## [1] &quot;Give a zebra some grass for lunch.&quot;</code></pre>
 <p>See how the printed messages have changed.</p>
-<p>An example in statistics when we would use an if statement is when we
+<p>An example in statistics when we would use an <code>if</code> statement is when we
 are creating a basic probability event simulator, such as rolling dice,
 or dealing cards. To simulate rolling a six-sided die we would write a
 function which would:</p>
 <ol style="list-style-type: decimal">
 <li>Draw a random number between 0 and 1. We use <code>runif()</code> for this.</li>
-<li>Use if statements to workout the dice face based on the random
+<li>Use <code>if</code> statements to workout the dice face based on the random
 number.</li>
 <li>Return the dice roll result back to the user.</li>
 </ol>
@@ -650,7 +650,7 @@ number.</li>
 <span id="cb446-21"><a href="loops-sim.html#cb446-21" tabindex="-1"></a> }</span>
 <span id="cb446-22"><a href="loops-sim.html#cb446-22" tabindex="-1"></a></span>
 <span id="cb446-23"><a href="loops-sim.html#cb446-23" tabindex="-1"></a><span class="fu">roll_d6</span>()</span></code></pre></div>
-<pre><code>## [1] 5</code></pre>
+<pre><code>## [1] 1</code></pre>
 <p>The function currently has no arguments, this is because everything
 about rolling a single dice is fixed. A feature that we could add is to
 allow multiple dice rolls with one call to <code>roll_d6()</code>, though we should
@@ -926,33 +926,30 @@ later in the course.</p>
 <span id="cb455-2"><a href="loops-sim.html#cb455-2" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
 <pre><code>##  [1]  0.01593416  0.17485484 -0.61743859  1.68082666 -0.86537503  0.88374391
 ##  [7]  1.16457391  0.05594423 -1.17949905 -1.63178444</code></pre>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="loops-sim.html#cb457-1" tabindex="-1"></a><span class="fu">qplot</span>(x) <span class="co"># quick but not recommended for complex plots - use ggplot()</span></span></code></pre></div>
-<pre><code>## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="loops-sim.html#cb457-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(x)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(x))</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="images/rnorm10-1.png" width="50%" /></p>
 <p>If you rerun these two commands repeatedly you will notice that the <span class="math inline">\(10\)</span>
 values you draw each time changes.</p>
 <p>Again, every distribution will have its own parameters that you can
 tweak. Try to play around with the following code:</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="loops-sim.html#cb460-1" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb460-2"><a href="loops-sim.html#cb460-2" tabindex="-1"></a>  <span class="at">Normal =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">5</span>),</span>
-<span id="cb460-3"><a href="loops-sim.html#cb460-3" tabindex="-1"></a>  <span class="at">Poisson =</span> <span class="fu">rpois</span>(<span class="dv">1000</span>, <span class="at">lambda =</span> <span class="dv">1</span>),</span>
-<span id="cb460-4"><a href="loops-sim.html#cb460-4" tabindex="-1"></a>  <span class="at">Binomial =</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.3</span>),</span>
-<span id="cb460-5"><a href="loops-sim.html#cb460-5" tabindex="-1"></a>  <span class="at">Exponential =</span> <span class="fu">rexp</span>(<span class="dv">1000</span>, <span class="at">rate =</span> <span class="dv">1</span>)</span>
-<span id="cb460-6"><a href="loops-sim.html#cb460-6" tabindex="-1"></a>)</span>
-<span id="cb460-7"><a href="loops-sim.html#cb460-7" tabindex="-1"></a></span>
-<span id="cb460-8"><a href="loops-sim.html#cb460-8" tabindex="-1"></a><span class="co"># Convert data from wide to long format</span></span>
-<span id="cb460-9"><a href="loops-sim.html#cb460-9" tabindex="-1"></a>dist_long <span class="ot">&lt;-</span> dist <span class="sc">%&gt;%</span> </span>
-<span id="cb460-10"><a href="loops-sim.html#cb460-10" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">&quot;Distribution&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span>)</span>
-<span id="cb460-11"><a href="loops-sim.html#cb460-11" tabindex="-1"></a></span>
-<span id="cb460-12"><a href="loops-sim.html#cb460-12" tabindex="-1"></a><span class="co"># Create the ggplot</span></span>
-<span id="cb460-13"><a href="loops-sim.html#cb460-13" tabindex="-1"></a><span class="fu">ggplot</span>(dist_long, <span class="fu">aes</span>(<span class="at">x =</span> Value)) <span class="sc">+</span></span>
-<span id="cb460-14"><a href="loops-sim.html#cb460-14" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb460-15"><a href="loops-sim.html#cb460-15" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Distribution, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
-<span id="cb460-16"><a href="loops-sim.html#cb460-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb460-17"><a href="loops-sim.html#cb460-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Sampling Distributions in R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="loops-sim.html#cb459-1" tabindex="-1"></a>dist <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb459-2"><a href="loops-sim.html#cb459-2" tabindex="-1"></a>  <span class="at">Normal =</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> <span class="dv">5</span>),</span>
+<span id="cb459-3"><a href="loops-sim.html#cb459-3" tabindex="-1"></a>  <span class="at">Poisson =</span> <span class="fu">rpois</span>(<span class="dv">1000</span>, <span class="at">lambda =</span> <span class="dv">1</span>),</span>
+<span id="cb459-4"><a href="loops-sim.html#cb459-4" tabindex="-1"></a>  <span class="at">Binomial =</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fl">0.3</span>),</span>
+<span id="cb459-5"><a href="loops-sim.html#cb459-5" tabindex="-1"></a>  <span class="at">Exponential =</span> <span class="fu">rexp</span>(<span class="dv">1000</span>, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb459-6"><a href="loops-sim.html#cb459-6" tabindex="-1"></a>)</span>
+<span id="cb459-7"><a href="loops-sim.html#cb459-7" tabindex="-1"></a></span>
+<span id="cb459-8"><a href="loops-sim.html#cb459-8" tabindex="-1"></a><span class="co"># Convert data from wide to long format</span></span>
+<span id="cb459-9"><a href="loops-sim.html#cb459-9" tabindex="-1"></a>dist_long <span class="ot">&lt;-</span> dist <span class="sc">%&gt;%</span> </span>
+<span id="cb459-10"><a href="loops-sim.html#cb459-10" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">&quot;Distribution&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span>)</span>
+<span id="cb459-11"><a href="loops-sim.html#cb459-11" tabindex="-1"></a></span>
+<span id="cb459-12"><a href="loops-sim.html#cb459-12" tabindex="-1"></a><span class="co"># Create the ggplot</span></span>
+<span id="cb459-13"><a href="loops-sim.html#cb459-13" tabindex="-1"></a><span class="fu">ggplot</span>(dist_long, <span class="fu">aes</span>(<span class="at">x =</span> Value)) <span class="sc">+</span></span>
+<span id="cb459-14"><a href="loops-sim.html#cb459-14" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb459-15"><a href="loops-sim.html#cb459-15" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Distribution, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb459-16"><a href="loops-sim.html#cb459-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb459-17"><a href="loops-sim.html#cb459-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Sampling Distributions in R&quot;</span>)</span></code></pre></div>
 <p><img src="images/unnamed-chunk-200-1.png" width="50%" /></p>
 <p><strong>Side note</strong>. Something new we have never seen. The line of code with
 <code>pivot_longer</code> is transforming wide format data into long format. In
@@ -986,22 +983,22 @@ functions are actually <em>pseudo</em>-random numbers. They are random enough
 rather than genuinely random.</p>
 <p>The state of the random generator is controlled by the object
 <code>.Random.seed</code> which contains a list of integers:</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="loops-sim.html#cb461-1" tabindex="-1"></a><span class="co"># next 3 values to be used by the random generator</span></span>
-<span id="cb461-2"><a href="loops-sim.html#cb461-2" tabindex="-1"></a>.Random.seed[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="loops-sim.html#cb460-1" tabindex="-1"></a><span class="co"># next 3 values to be used by the random generator</span></span>
+<span id="cb460-2"><a href="loops-sim.html#cb460-2" tabindex="-1"></a>.Random.seed[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1]      10403         32 1260197148</code></pre>
 <p>Whenever <code>sample()</code> or an <code>r</code> function is run, the current state of
 <code>.Random.seed</code> is used.</p>
 <p>In order to re-run a simulation, we need to control the starting point
 of <code>.Random.seed</code> this can be done via <code>set.seed()</code> like so:</p>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="loops-sim.html#cb463-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4578</span>)</span>
-<span id="cb463-2"><a href="loops-sim.html#cb463-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="loops-sim.html#cb462-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4578</span>)</span>
+<span id="cb462-2"><a href="loops-sim.html#cb462-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] -0.3906706 -1.8656330 -0.2399937 -0.8530353</code></pre>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="loops-sim.html#cb465-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="loops-sim.html#cb464-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] -1.1927956  0.3692942 -1.4857336 -0.3040490</code></pre>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="loops-sim.html#cb467-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4578</span>)</span>
-<span id="cb467-2"><a href="loops-sim.html#cb467-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="loops-sim.html#cb466-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4578</span>)</span>
+<span id="cb466-2"><a href="loops-sim.html#cb466-2" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] -0.3906706 -1.8656330</code></pre>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="loops-sim.html#cb469-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="loops-sim.html#cb468-1" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] -0.2399937 -0.8530353</code></pre>
 <p>You would typically set your seed when you are performing simulations
 and wish to make your work reproducible. This allows others to rerun
@@ -1015,18 +1012,18 @@ numbers we would generate would be different.</p>
 four function types. But if, for instance, you wanted to draw a
 probability distribution, such as the normal distribution then it could
 be quickly done like this:</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="loops-sim.html#cb471-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
-<span id="cb471-2"><a href="loops-sim.html#cb471-2" tabindex="-1"></a>dn <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x)</span>
-<span id="cb471-3"><a href="loops-sim.html#cb471-3" tabindex="-1"></a><span class="fu">qplot</span>(x, dn, <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="loops-sim.html#cb470-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb470-2"><a href="loops-sim.html#cb470-2" tabindex="-1"></a>dn <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x)</span>
+<span id="cb470-3"><a href="loops-sim.html#cb470-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(x)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(x,dn))</span></code></pre></div>
 <p><img src="images/dnorm-1.png" width="70%" /></p>
 <p>For discrete distributions, where variables can only take distinct
 values, it is more appropriate to draw a bar chart rather than a
 continuous line. Here is a binomial distribution with <span class="math inline">\(size=10\)</span> and
 <span class="math inline">\(p=0.33\)</span>:</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="loops-sim.html#cb472-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb472-2"><a href="loops-sim.html#cb472-2" tabindex="-1"></a>binom <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x,</span>
-<span id="cb472-3"><a href="loops-sim.html#cb472-3" tabindex="-1"></a>                    <span class="at">db =</span> <span class="fu">dbinom</span>(x, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.33</span>))</span>
-<span id="cb472-4"><a href="loops-sim.html#cb472-4" tabindex="-1"></a><span class="fu">ggplot</span>(binom, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(x), <span class="at">y =</span> db)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="loops-sim.html#cb471-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb471-2"><a href="loops-sim.html#cb471-2" tabindex="-1"></a>binom <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x,</span>
+<span id="cb471-3"><a href="loops-sim.html#cb471-3" tabindex="-1"></a>                    <span class="at">db =</span> <span class="fu">dbinom</span>(x, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.33</span>))</span>
+<span id="cb471-4"><a href="loops-sim.html#cb471-4" tabindex="-1"></a><span class="fu">ggplot</span>(binom, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(x), <span class="at">y =</span> db)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <p><img src="images/dbinom-1.png" width="70%" /></p>
 </div>
 <div id="probabilities" class="section level3 hasAnchor" number="3.4.7">
@@ -1037,11 +1034,11 @@ probabilities. For example, to calculate the probability of observing
 distribution: <span class="math display">\[
 \text{Pr}(X \leq 2) ~~~\text{where}~~~ X \sim \text{Normal}(0, 1),
 \]</span> we would use <code>pnorm()</code> such that</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="loops-sim.html#cb473-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="loops-sim.html#cb472-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">2</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9772499</code></pre>
 <p>Similarly, to calculate the probability of flipping a coin ten times and
 observing <em>at least</em> 3 heads:</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="loops-sim.html#cb475-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="loops-sim.html#cb474-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9453125</code></pre>
 <p>The <code>p</code> functions compute the probability for a given number or vector
 of numbers. These functions also goes by the ominous title of the
@@ -1057,7 +1054,7 @@ have functions that will do all of this for us (namely <code>t.test()</code> and
 functions.</p>
 <p>Also note that when calculating <span class="math inline">\(p\)</span>-values when you want the upper tail
 (which is most of the time) it is better practice to code:</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="loops-sim.html#cb477-1" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="loops-sim.html#cb476-1" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9453125</code></pre>
 <p>This is because the <code>lower.tail</code> option is better at handling cases at
 the extremes of the distributions.</p>
@@ -1067,19 +1064,19 @@ the extremes of the distributions.</p>
 <p>The quantile functions are the opposite to the probability functions. To
 use <code>qnorm()</code> we have to specify a probability, and it will return the
 corresponding value of <span class="math inline">\(X\)</span>:</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="loops-sim.html#cb479-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="loops-sim.html#cb478-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <p>To rewrite this mathematically: <span class="math display">\[
 \text{Pr}(X \leq 1.96) = 0.975 ~~~\text{where}~~~ X \sim \text{Normal}(0, 1).
 \]</span></p>
 <p>Similarly, if we let <span class="math inline">\(Z \sim \text{Normal}(1, 9)\)</span>. To find the value <span class="math inline">\(q\)</span>
 (quantile) such that Pr<span class="math inline">\((Z \leq q)\)</span> is <span class="math inline">\(0.05\)</span> type:</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="loops-sim.html#cb481-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.05</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">9</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="loops-sim.html#cb480-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.05</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">9</span>))</span></code></pre></div>
 <pre><code>## [1] -3.934561</code></pre>
 <p>These functions also take a vector of quantiles. For example to find
 Pr<span class="math inline">\((Z \leq -3.9)\)</span>, Pr<span class="math inline">\((Z \leq 0)\)</span>, and Pr<span class="math inline">\((Z \leq 7)\)</span> type:</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="loops-sim.html#cb483-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.9</span>, <span class="dv">0</span>, <span class="dv">7</span>)</span>
-<span id="cb483-2"><a href="loops-sim.html#cb483-2" tabindex="-1"></a><span class="fu">pnorm</span>(q, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">9</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="loops-sim.html#cb482-1" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.9</span>, <span class="dv">0</span>, <span class="dv">7</span>)</span>
+<span id="cb482-2"><a href="loops-sim.html#cb482-2" tabindex="-1"></a><span class="fu">pnorm</span>(q, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">9</span>))</span></code></pre></div>
 <pre><code>## [1] 0.05119945 0.36944134 0.97724987</code></pre>
 </div>
 <div id="summary-4" class="section level3 hasAnchor" number="3.4.9">
@@ -1098,17 +1095,17 @@ check the help page of the function to confirm its particular
 parameterisation.</p></li>
 </ul>
 <p>Example:</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="loops-sim.html#cb485-1" tabindex="-1"></a><span class="co"># simulate 10 unbiased-coin flips</span></span>
-<span id="cb485-2"><a href="loops-sim.html#cb485-2" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="loops-sim.html#cb484-1" tabindex="-1"></a><span class="co"># simulate 10 unbiased-coin flips</span></span>
+<span id="cb484-2"><a href="loops-sim.html#cb484-2" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>##  [1] 0 0 1 0 0 0 0 0 0 1</code></pre>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="loops-sim.html#cb487-1" tabindex="-1"></a><span class="co"># simulate total number of heads for 2 trials</span></span>
-<span id="cb487-2"><a href="loops-sim.html#cb487-2" tabindex="-1"></a><span class="co"># of 100 unbiased-coin flips</span></span>
-<span id="cb487-3"><a href="loops-sim.html#cb487-3" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">2</span>, <span class="dv">100</span>, <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="loops-sim.html#cb486-1" tabindex="-1"></a><span class="co"># simulate total number of heads for 2 trials</span></span>
+<span id="cb486-2"><a href="loops-sim.html#cb486-2" tabindex="-1"></a><span class="co"># of 100 unbiased-coin flips</span></span>
+<span id="cb486-3"><a href="loops-sim.html#cb486-3" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">2</span>, <span class="dv">100</span>, <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 46 46</code></pre>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="loops-sim.html#cb489-1" tabindex="-1"></a><span class="co"># draw from 5 values from a standard normal distribution</span></span>
-<span id="cb489-2"><a href="loops-sim.html#cb489-2" tabindex="-1"></a><span class="co"># Standard normal distribution N(0,1^2)</span></span>
-<span id="cb489-3"><a href="loops-sim.html#cb489-3" tabindex="-1"></a><span class="co"># mean = 0 and standard deviation = 1</span></span>
-<span id="cb489-4"><a href="loops-sim.html#cb489-4" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="loops-sim.html#cb488-1" tabindex="-1"></a><span class="co"># draw from 5 values from a standard normal distribution</span></span>
+<span id="cb488-2"><a href="loops-sim.html#cb488-2" tabindex="-1"></a><span class="co"># Standard normal distribution N(0,1^2)</span></span>
+<span id="cb488-3"><a href="loops-sim.html#cb488-3" tabindex="-1"></a><span class="co"># mean = 0 and standard deviation = 1</span></span>
+<span id="cb488-4"><a href="loops-sim.html#cb488-4" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] -0.1047152  0.9304077  1.4534803 -0.9740542 -0.4645038</code></pre>
 <ul>
 <li><p>To ensure your simulations are reproducible use <code>set.seed()</code> to
@@ -1121,13 +1118,13 @@ probability functions (<code>p</code>).</p></li>
 <p>For example, say, <span class="math inline">\(X \sim \text{Normal}(6, 5)\)</span>, then to calculate the
 probability that we observe <span class="math inline">\(x\)</span> being less than or equal to <span class="math inline">\(3\)</span>,
 <span class="math inline">\(\text{Pr}(X \leq 3)\)</span>:</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="loops-sim.html#cb491-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">3</span>, <span class="at">mean =</span> <span class="dv">6</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="loops-sim.html#cb490-1" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">3</span>, <span class="at">mean =</span> <span class="dv">6</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">5</span>))</span></code></pre></div>
 <pre><code>## [1] 0.08985625</code></pre>
 <p>Similarly, if we wanted to calculate what quantile, <span class="math inline">\(q\)</span>, of <span class="math inline">\(X\)</span> would
 correspond to the following: <span class="math display">\[
 \text{Pr}(X \leq q) = 0.975
 \]</span> then we would use the following command:</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="loops-sim.html#cb493-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">6</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="loops-sim.html#cb492-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">6</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">5</span>))</span></code></pre></div>
 <pre><code>## [1] 10.38261</code></pre>
 </div>
 <div id="exercises-5" class="section level3 hasAnchor" number="3.4.10">
@@ -1175,38 +1172,38 @@ think about individuals in the population. For example, instead of
 saying 0.24 of females produce an offspring, we know say each female has
 a probability of 0.24 of producing an offspring. So, the deterministic
 model looked like this:</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="loops-sim.html#cb495-1" tabindex="-1"></a><span class="co"># time period</span></span>
-<span id="cb495-2"><a href="loops-sim.html#cb495-2" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb495-3"><a href="loops-sim.html#cb495-3" tabindex="-1"></a></span>
-<span id="cb495-4"><a href="loops-sim.html#cb495-4" tabindex="-1"></a><span class="co"># constants</span></span>
-<span id="cb495-5"><a href="loops-sim.html#cb495-5" tabindex="-1"></a>p0 <span class="ot">&lt;-</span> <span class="fl">0.11</span></span>
-<span id="cb495-6"><a href="loops-sim.html#cb495-6" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fl">0.71</span></span>
-<span id="cb495-7"><a href="loops-sim.html#cb495-7" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fl">0.94</span></span>
-<span id="cb495-8"><a href="loops-sim.html#cb495-8" tabindex="-1"></a>f  <span class="ot">&lt;-</span> <span class="fl">0.24</span></span>
-<span id="cb495-9"><a href="loops-sim.html#cb495-9" tabindex="-1"></a></span>
-<span id="cb495-10"><a href="loops-sim.html#cb495-10" tabindex="-1"></a><span class="co"># initial population sizes</span></span>
-<span id="cb495-11"><a href="loops-sim.html#cb495-11" tabindex="-1"></a>J <span class="ot">&lt;-</span> <span class="dv">1200</span></span>
-<span id="cb495-12"><a href="loops-sim.html#cb495-12" tabindex="-1"></a>S <span class="ot">&lt;-</span>  <span class="dv">800</span></span>
-<span id="cb495-13"><a href="loops-sim.html#cb495-13" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
-<span id="cb495-14"><a href="loops-sim.html#cb495-14" tabindex="-1"></a></span>
-<span id="cb495-15"><a href="loops-sim.html#cb495-15" tabindex="-1"></a><span class="co"># population growth model</span></span>
-<span id="cb495-16"><a href="loops-sim.html#cb495-16" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>years) {</span>
-<span id="cb495-17"><a href="loops-sim.html#cb495-17" tabindex="-1"></a>    S[t] <span class="ot">&lt;-</span> p0 <span class="sc">*</span> J[t<span class="dv">-1</span>]</span>
-<span id="cb495-18"><a href="loops-sim.html#cb495-18" tabindex="-1"></a>    A[t] <span class="ot">&lt;-</span> p1 <span class="sc">*</span> S[t<span class="dv">-1</span>] <span class="sc">+</span> p2 <span class="sc">*</span> A[t<span class="dv">-1</span>]</span>
-<span id="cb495-19"><a href="loops-sim.html#cb495-19" tabindex="-1"></a>    J[t] <span class="ot">&lt;-</span> f <span class="sc">*</span> A[t<span class="dv">-1</span>]</span>
-<span id="cb495-20"><a href="loops-sim.html#cb495-20" tabindex="-1"></a>}</span>
-<span id="cb495-21"><a href="loops-sim.html#cb495-21" tabindex="-1"></a></span>
-<span id="cb495-22"><a href="loops-sim.html#cb495-22" tabindex="-1"></a><span class="co"># store the results</span></span>
-<span id="cb495-23"><a href="loops-sim.html#cb495-23" tabindex="-1"></a>owl_pop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb495-24"><a href="loops-sim.html#cb495-24" tabindex="-1"></a>    <span class="at">time  =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>years, <span class="dv">3</span>),</span>
-<span id="cb495-25"><a href="loops-sim.html#cb495-25" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;J&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;A&quot;</span>), <span class="at">each =</span> years),</span>
-<span id="cb495-26"><a href="loops-sim.html#cb495-26" tabindex="-1"></a>    <span class="at">size  =</span> <span class="fu">c</span>(J, S, A)</span>
-<span id="cb495-27"><a href="loops-sim.html#cb495-27" tabindex="-1"></a>)</span>
-<span id="cb495-28"><a href="loops-sim.html#cb495-28" tabindex="-1"></a></span>
-<span id="cb495-29"><a href="loops-sim.html#cb495-29" tabindex="-1"></a><span class="co"># plot the results</span></span>
-<span id="cb495-30"><a href="loops-sim.html#cb495-30" tabindex="-1"></a><span class="fu">ggplot</span>(owl_pop) <span class="sc">+</span></span>
-<span id="cb495-31"><a href="loops-sim.html#cb495-31" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> size, <span class="at">colour =</span> group, <span class="at">linetype =</span> group)) <span class="sc">+</span></span>
-<span id="cb495-32"><a href="loops-sim.html#cb495-32" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="loops-sim.html#cb494-1" tabindex="-1"></a><span class="co"># time period</span></span>
+<span id="cb494-2"><a href="loops-sim.html#cb494-2" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb494-3"><a href="loops-sim.html#cb494-3" tabindex="-1"></a></span>
+<span id="cb494-4"><a href="loops-sim.html#cb494-4" tabindex="-1"></a><span class="co"># constants</span></span>
+<span id="cb494-5"><a href="loops-sim.html#cb494-5" tabindex="-1"></a>p0 <span class="ot">&lt;-</span> <span class="fl">0.11</span></span>
+<span id="cb494-6"><a href="loops-sim.html#cb494-6" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fl">0.71</span></span>
+<span id="cb494-7"><a href="loops-sim.html#cb494-7" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fl">0.94</span></span>
+<span id="cb494-8"><a href="loops-sim.html#cb494-8" tabindex="-1"></a>f  <span class="ot">&lt;-</span> <span class="fl">0.24</span></span>
+<span id="cb494-9"><a href="loops-sim.html#cb494-9" tabindex="-1"></a></span>
+<span id="cb494-10"><a href="loops-sim.html#cb494-10" tabindex="-1"></a><span class="co"># initial population sizes</span></span>
+<span id="cb494-11"><a href="loops-sim.html#cb494-11" tabindex="-1"></a>J <span class="ot">&lt;-</span> <span class="dv">1200</span></span>
+<span id="cb494-12"><a href="loops-sim.html#cb494-12" tabindex="-1"></a>S <span class="ot">&lt;-</span>  <span class="dv">800</span></span>
+<span id="cb494-13"><a href="loops-sim.html#cb494-13" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb494-14"><a href="loops-sim.html#cb494-14" tabindex="-1"></a></span>
+<span id="cb494-15"><a href="loops-sim.html#cb494-15" tabindex="-1"></a><span class="co"># population growth model</span></span>
+<span id="cb494-16"><a href="loops-sim.html#cb494-16" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>years) {</span>
+<span id="cb494-17"><a href="loops-sim.html#cb494-17" tabindex="-1"></a>    S[t] <span class="ot">&lt;-</span> p0 <span class="sc">*</span> J[t<span class="dv">-1</span>]</span>
+<span id="cb494-18"><a href="loops-sim.html#cb494-18" tabindex="-1"></a>    A[t] <span class="ot">&lt;-</span> p1 <span class="sc">*</span> S[t<span class="dv">-1</span>] <span class="sc">+</span> p2 <span class="sc">*</span> A[t<span class="dv">-1</span>]</span>
+<span id="cb494-19"><a href="loops-sim.html#cb494-19" tabindex="-1"></a>    J[t] <span class="ot">&lt;-</span> f <span class="sc">*</span> A[t<span class="dv">-1</span>]</span>
+<span id="cb494-20"><a href="loops-sim.html#cb494-20" tabindex="-1"></a>}</span>
+<span id="cb494-21"><a href="loops-sim.html#cb494-21" tabindex="-1"></a></span>
+<span id="cb494-22"><a href="loops-sim.html#cb494-22" tabindex="-1"></a><span class="co"># store the results</span></span>
+<span id="cb494-23"><a href="loops-sim.html#cb494-23" tabindex="-1"></a>owl_pop <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb494-24"><a href="loops-sim.html#cb494-24" tabindex="-1"></a>    <span class="at">time  =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>years, <span class="dv">3</span>),</span>
+<span id="cb494-25"><a href="loops-sim.html#cb494-25" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;J&quot;</span>, <span class="st">&quot;S&quot;</span>, <span class="st">&quot;A&quot;</span>), <span class="at">each =</span> years),</span>
+<span id="cb494-26"><a href="loops-sim.html#cb494-26" tabindex="-1"></a>    <span class="at">size  =</span> <span class="fu">c</span>(J, S, A)</span>
+<span id="cb494-27"><a href="loops-sim.html#cb494-27" tabindex="-1"></a>)</span>
+<span id="cb494-28"><a href="loops-sim.html#cb494-28" tabindex="-1"></a></span>
+<span id="cb494-29"><a href="loops-sim.html#cb494-29" tabindex="-1"></a><span class="co"># plot the results</span></span>
+<span id="cb494-30"><a href="loops-sim.html#cb494-30" tabindex="-1"></a><span class="fu">ggplot</span>(owl_pop) <span class="sc">+</span></span>
+<span id="cb494-31"><a href="loops-sim.html#cb494-31" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> size, <span class="at">colour =</span> group, <span class="at">linetype =</span> group)) <span class="sc">+</span></span>
+<span id="cb494-32"><a href="loops-sim.html#cb494-32" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
 <p>Essentially, we want to replace the deterministic equations in the for
 loop with calls to <code>rbinom()</code>. For example, for the subadult population,
 at each iteration we want to simulate one binomial sample with a size of

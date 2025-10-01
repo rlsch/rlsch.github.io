@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 String processing | Lancaster University Leipzig LZSCC.461 R Programming</title>
   <meta name="description" content="4 String processing | Lancaster University Leipzig LZSCC.461 R Programming" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 String processing | Lancaster University Leipzig LZSCC.461 R Programming" />
   <meta property="og:type" content="book" />
@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="web-app.html"><a href="web-app.html#collecting-data"><i class="fa fa-check"></i><b>5.2</b> Collecting data</a></li>
 <li class="chapter" data-level="5.3" data-path="web-app.html"><a href="web-app.html#alternative-graphics"><i class="fa fa-check"></i><b>5.3</b> Alternative graphics</a></li>
 <li class="chapter" data-level="5.4" data-path="web-app.html"><a href="web-app.html#shiny-web-applications"><i class="fa fa-check"></i><b>5.4</b> Shiny Web Applications</a></li>
-<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#rmarkdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> Rmarkdown HTML notebooks and Ipython/Jupyter notebooks</a></li>
+<li class="chapter" data-level="5.5" data-path="web-app.html"><a href="web-app.html#r-markdown-html-notebooks-and-ipythonjupyter-notebooks"><i class="fa fa-check"></i><b>5.5</b> R Markdown HTML notebooks and IPython/Jupyter notebooks</a></li>
 <li class="chapter" data-level="5.6" data-path="web-app.html"><a href="web-app.html#exercise-housing-in-nairobi"><i class="fa fa-check"></i><b>5.6</b> Exercise: Housing in Nairobi</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="further-reading.html"><a href="further-reading.html"><i class="fa fa-check"></i>Further reading</a></li>
@@ -229,12 +229,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Install the <code>stringr</code> package if it is not already available on your machine.</li>
 <li>Load your favourite packages at the start of a new script:</li>
 </ul>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="string.html#cb496-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb496-2"><a href="string.html#cb496-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb496-3"><a href="string.html#cb496-3" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb496-4"><a href="string.html#cb496-4" tabindex="-1"></a></span>
-<span id="cb496-5"><a href="string.html#cb496-5" tabindex="-1"></a><span class="co"># Or more simply</span></span>
-<span id="cb496-6"><a href="string.html#cb496-6" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="string.html#cb495-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb495-2"><a href="string.html#cb495-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb495-3"><a href="string.html#cb495-3" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb495-4"><a href="string.html#cb495-4" tabindex="-1"></a></span>
+<span id="cb495-5"><a href="string.html#cb495-5" tabindex="-1"></a><span class="co"># Or more simply</span></span>
+<span id="cb495-6"><a href="string.html#cb495-6" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 <div id="introducing-regular-expressions" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Introducing regular expressions<a href="string.html#introducing-regular-expressions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -276,14 +276,14 @@ This is similar to the way you might try to find a phrase in a word document
 or when submitting a keyword to a search engine. When you search for a string of text,
 character for character, you are searching with literal text.</p>
 <p>If you want to match the Lancaster area code, 01524, for example, which is a
-number sequence (string of digits), just type <code>01524</code> in the “Expression” box at the top of RegExr, and then all the matching area codes will be highlighted in the Text.
+number sequence (string of digits), just type <code>01524</code> in the “Expression” box at the top of RegExr, and then all the matching area codes will be highlighted in the text.
 If nothing is highlighted, check what you typed.</p>
 </div>
 <div id="matching-digits" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Matching digits<a href="string.html#matching-digits" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the Expression box, replace the literal text, 01524, with:</p>
 <pre><code>\d</code></pre>
-<p>This matches all the Arabic digits in the Text.
+<p>This matches all the Arabic digits in the text.
 Now in place of <code>\d</code> use a character class that matches
 the same thing. Enter the following range of digits as the Expression:</p>
 <pre><code>[0-9]</code></pre>
@@ -531,24 +531,24 @@ rather than using any pattern matching:</p>
 <li><code>str_c()</code> is equivalent to <code>paste()</code> which you may have already used, it concatenates vectors but it uses the empty string (<code>""</code>) as the default separator rather than a single whitespace (<code>" "</code>) and silently removes zero length arguments.</li>
 </ul>
 <p>Consider each of the following <code>str_c()</code> statements and how each differs from the previous:</p>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="string.html#cb526-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb526-2"><a href="string.html#cb526-2" tabindex="-1"></a>  <span class="at">animal =</span> <span class="fu">c</span>(<span class="st">&quot;human&quot;</span>, <span class="st">&quot;blue whale&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>),</span>
-<span id="cb526-3"><a href="string.html#cb526-3" tabindex="-1"></a>  <span class="at">food   =</span> <span class="fu">c</span>(<span class="st">&quot;pizza&quot;</span>, <span class="st">&quot;plankton&quot;</span>, <span class="st">&quot;human&quot;</span>, <span class="st">&quot;anything&quot;</span>),</span>
-<span id="cb526-4"><a href="string.html#cb526-4" tabindex="-1"></a>  <span class="at">when   =</span> <span class="fu">c</span>(<span class="st">&quot;this week&quot;</span>, <span class="st">&quot;now and then&quot;</span>, <span class="st">&quot;now&quot;</span>, <span class="st">&quot;always&quot;</span>)</span>
-<span id="cb526-5"><a href="string.html#cb526-5" tabindex="-1"></a>)</span>
-<span id="cb526-6"><a href="string.html#cb526-6" tabindex="-1"></a></span>
-<span id="cb526-7"><a href="string.html#cb526-7" tabindex="-1"></a><span class="fu">str_c</span>(dat<span class="sc">$</span>animal, <span class="st">&quot; wants to eat &quot;</span>, dat<span class="sc">$</span>food)</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="string.html#cb525-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb525-2"><a href="string.html#cb525-2" tabindex="-1"></a>  <span class="at">animal =</span> <span class="fu">c</span>(<span class="st">&quot;human&quot;</span>, <span class="st">&quot;blue whale&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>),</span>
+<span id="cb525-3"><a href="string.html#cb525-3" tabindex="-1"></a>  <span class="at">food   =</span> <span class="fu">c</span>(<span class="st">&quot;pizza&quot;</span>, <span class="st">&quot;plankton&quot;</span>, <span class="st">&quot;human&quot;</span>, <span class="st">&quot;anything&quot;</span>),</span>
+<span id="cb525-4"><a href="string.html#cb525-4" tabindex="-1"></a>  <span class="at">when   =</span> <span class="fu">c</span>(<span class="st">&quot;this week&quot;</span>, <span class="st">&quot;now and then&quot;</span>, <span class="st">&quot;now&quot;</span>, <span class="st">&quot;always&quot;</span>)</span>
+<span id="cb525-5"><a href="string.html#cb525-5" tabindex="-1"></a>)</span>
+<span id="cb525-6"><a href="string.html#cb525-6" tabindex="-1"></a></span>
+<span id="cb525-7"><a href="string.html#cb525-7" tabindex="-1"></a><span class="fu">str_c</span>(dat<span class="sc">$</span>animal, <span class="st">&quot; wants to eat &quot;</span>, dat<span class="sc">$</span>food)</span></code></pre></div>
 <pre><code>## [1] &quot;human wants to eat pizza&quot;         &quot;blue whale wants to eat plankton&quot;
 ## [3] &quot;cat wants to eat human&quot;           &quot;dog wants to eat anything&quot;</code></pre>
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="string.html#cb528-1" tabindex="-1"></a><span class="fu">str_c</span>(dat<span class="sc">$</span>animal, dat<span class="sc">$</span>food, <span class="at">sep =</span> <span class="st">&quot; wants to eat &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="string.html#cb527-1" tabindex="-1"></a><span class="fu">str_c</span>(dat<span class="sc">$</span>animal, dat<span class="sc">$</span>food, <span class="at">sep =</span> <span class="st">&quot; wants to eat &quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;human wants to eat pizza&quot;         &quot;blue whale wants to eat plankton&quot;
 ## [3] &quot;cat wants to eat human&quot;           &quot;dog wants to eat anything&quot;</code></pre>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="string.html#cb530-1" tabindex="-1"></a><span class="fu">str_c</span>(dat<span class="sc">$</span>animal, dat<span class="sc">$</span>food, dat<span class="sc">$</span>when, <span class="at">sep =</span> <span class="st">&quot; wants to eat &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="string.html#cb529-1" tabindex="-1"></a><span class="fu">str_c</span>(dat<span class="sc">$</span>animal, dat<span class="sc">$</span>food, dat<span class="sc">$</span>when, <span class="at">sep =</span> <span class="st">&quot; wants to eat &quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;human wants to eat pizza wants to eat this week&quot;           
 ## [2] &quot;blue whale wants to eat plankton wants to eat now and then&quot;
 ## [3] &quot;cat wants to eat human wants to eat now&quot;                   
 ## [4] &quot;dog wants to eat anything wants to eat always&quot;</code></pre>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="string.html#cb532-1" tabindex="-1"></a><span class="fu">str_c</span>(dat<span class="sc">$</span>animal, <span class="st">&quot; wants to eat &quot;</span>, dat<span class="sc">$</span>food, <span class="st">&quot; &quot;</span>, dat<span class="sc">$</span>when)</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="string.html#cb531-1" tabindex="-1"></a><span class="fu">str_c</span>(dat<span class="sc">$</span>animal, <span class="st">&quot; wants to eat &quot;</span>, dat<span class="sc">$</span>food, <span class="st">&quot; &quot;</span>, dat<span class="sc">$</span>when)</span></code></pre></div>
 <pre><code>## [1] &quot;human wants to eat pizza this week&quot;           
 ## [2] &quot;blue whale wants to eat plankton now and then&quot;
 ## [3] &quot;cat wants to eat human now&quot;                   
@@ -560,7 +560,7 @@ arguments to <code>str_c()</code>, check the help page to see how.
 <ul>
 <li><code>str_length()</code> calculates the length of a string (as the number of characters in the string). If passed a vector it will return a vector of lengths.</li>
 </ul>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="string.html#cb534-1" tabindex="-1"></a><span class="fu">str_length</span>(dat<span class="sc">$</span>animal)</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="string.html#cb533-1" tabindex="-1"></a><span class="fu">str_length</span>(dat<span class="sc">$</span>animal)</span></code></pre></div>
 <pre><code>## [1]  5 10  3  3</code></pre>
 </div>
 <div id="consumer-packaged-breakfast-goods" class="section level3 hasAnchor" number="4.3.2">
@@ -572,11 +572,11 @@ information and ingredient lists for 6,600 breakfast products. Download
 <code>cpg_breakfast.csv</code> from Moodle and open it in Excel to
 understand the structure, then read it into R (prevent
 auto-conversion of strings to factors).</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="string.html#cb536-1" tabindex="-1"></a>bf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;cpg_breakfast.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="string.html#cb535-1" tabindex="-1"></a>bf <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;cpg_breakfast.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>A variable description is presented in Table <a href="string.html#tab:bfast-vars">4.3</a>.
 Only convert <code>manufacturer</code> and <code>brand</code> to factors.</p>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="string.html#cb537-1" tabindex="-1"></a>bf <span class="ot">&lt;-</span> bf <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">manufacturer =</span> <span class="fu">as.factor</span>(manufacturer),</span>
-<span id="cb537-2"><a href="string.html#cb537-2" tabindex="-1"></a>                    <span class="at">brand =</span> <span class="fu">as.factor</span>(brand))</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="string.html#cb536-1" tabindex="-1"></a>bf <span class="ot">&lt;-</span> bf <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">manufacturer =</span> <span class="fu">as.factor</span>(manufacturer),</span>
+<span id="cb536-2"><a href="string.html#cb536-2" tabindex="-1"></a>                    <span class="at">brand =</span> <span class="fu">as.factor</span>(brand))</span></code></pre></div>
 <p>We will now be mainly working with the ingredient lists.</p>
 <table>
 <caption><span id="tab:bfast-vars">Table 4.3: </span> Description of relevant variables in the breakfast dataset.</caption>
@@ -637,13 +637,13 @@ instead of simply using one backslash for character classes
 (e.g. <code>\w</code>) we have to use two (e.g. <code>\\w</code>).</p>
 <p>Let us try to determine how many breakfast products in our data contain
 oats. First we create the expression:</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="string.html#cb538-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">b[oO]ats</span><span class="sc">\\</span><span class="st">b&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="string.html#cb537-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">b[oO]ats</span><span class="sc">\\</span><span class="st">b&quot;</span></span></code></pre></div>
 <p>which looks similar to the expressions we were creating earlier; we are looking
 to match either “oats” or “Oats” as whole words only. To then detect if either
 of these appear in the ingredients we do:</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="string.html#cb539-1" tabindex="-1"></a>bf<span class="sc">$</span>has_oats <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(bf<span class="sc">$</span>ingredients, expr)</span></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="string.html#cb538-1" tabindex="-1"></a>bf<span class="sc">$</span>has_oats <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(bf<span class="sc">$</span>ingredients, expr)</span></code></pre></div>
 <p>This has added the variable <code>has_oats</code> to our data frame, and it will contain a series of <code>TRUE</code> and <code>FALSE</code> values depending on whether or not our expression was matched in the <code>ingredients</code> strings. To summarise:</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="string.html#cb540-1" tabindex="-1"></a><span class="fu">table</span>(bf<span class="sc">$</span>has_oats)</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="string.html#cb539-1" tabindex="-1"></a><span class="fu">table</span>(bf<span class="sc">$</span>has_oats)</span></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ##  2708  1644</code></pre>
@@ -656,9 +656,9 @@ any instance of sugar, honey, or syrup.</p>
 <h3><span class="header-section-number">4.3.4</span> Extract the matched text<a href="string.html#extract-the-matched-text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are many different types of syrup (e.g. agave, maple, corn). Write
 an expression that retrieves “syrup” and the preceding word:</p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="string.html#cb542-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">w+ [sS]yrup&quot;</span></span>
-<span id="cb542-2"><a href="string.html#cb542-2" tabindex="-1"></a>bf<span class="sc">$</span>syrup_type <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(bf<span class="sc">$</span>ingredients, expr)</span>
-<span id="cb542-3"><a href="string.html#cb542-3" tabindex="-1"></a><span class="fu">table</span>(bf<span class="sc">$</span>syrup_type)</span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="string.html#cb541-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">w+ [sS]yrup&quot;</span></span>
+<span id="cb541-2"><a href="string.html#cb541-2" tabindex="-1"></a>bf<span class="sc">$</span>syrup_type <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(bf<span class="sc">$</span>ingredients, expr)</span>
+<span id="cb541-3"><a href="string.html#cb541-3" tabindex="-1"></a><span class="fu">table</span>(bf<span class="sc">$</span>syrup_type)</span></code></pre></div>
 <pre><code>## 
 ##         Agave Syrup        Barley Syrup          Cane Syrup       Caramel Syrup 
 ##                  11                   7                  61                   1 
@@ -678,9 +678,9 @@ an expression that retrieves “syrup” and the preceding word:</p>
 matches are actually for “high fructose corn syrup”? In general, we can extend
 our expression to try to capture all proceeding words (remember the ingredients
 are comma separated):</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="string.html#cb544-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;,[ a-zA-Z]*[sS]yrup,&quot;</span></span>
-<span id="cb544-2"><a href="string.html#cb544-2" tabindex="-1"></a>bf<span class="sc">$</span>syrup_type <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(bf<span class="sc">$</span>ingredients, expr)</span>
-<span id="cb544-3"><a href="string.html#cb544-3" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">table</span>(bf<span class="sc">$</span>syrup_type))</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="string.html#cb543-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;,[ a-zA-Z]*[sS]yrup,&quot;</span></span>
+<span id="cb543-2"><a href="string.html#cb543-2" tabindex="-1"></a>bf<span class="sc">$</span>syrup_type <span class="ot">&lt;-</span> <span class="fu">str_extract</span>(bf<span class="sc">$</span>ingredients, expr)</span>
+<span id="cb543-3"><a href="string.html#cb543-3" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">table</span>(bf<span class="sc">$</span>syrup_type))</span></code></pre></div>
 <pre><code>## 
 ##       , Agave Syrup, , Barley Malt Syrup,      , Barley Syrup, 
 ##                    3                   38                    1 
@@ -690,15 +690,15 @@ are comma separated):</p>
 can tidy this up by writing an expression that keeps all characters between
 the first and the last comma. To do this we use parentheses
 around the part of the expression that we want to keep:</p>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="string.html#cb546-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;, (.*),&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="string.html#cb545-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;, (.*),&quot;</span></span></code></pre></div>
 <p>Because the text we are now working on (the text in <code>bf$syrup_type</code>) is
 small we can risk being a bit lazy with our expression hence why I use dot-star.
 When we use parentheses like this it is known as grouping, with the first
 set of parentheses being referenced as group one. To only keep the text that
 matches inside the brackets:</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="string.html#cb547-1" tabindex="-1"></a>expr2 <span class="ot">&lt;-</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1&quot;</span></span>
-<span id="cb547-2"><a href="string.html#cb547-2" tabindex="-1"></a>bf<span class="sc">$</span>syrup_type <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(bf<span class="sc">$</span>syrup_type, expr, expr2)</span>
-<span id="cb547-3"><a href="string.html#cb547-3" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">table</span>(bf<span class="sc">$</span>syrup_type))</span></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="string.html#cb546-1" tabindex="-1"></a>expr2 <span class="ot">&lt;-</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">1&quot;</span></span>
+<span id="cb546-2"><a href="string.html#cb546-2" tabindex="-1"></a>bf<span class="sc">$</span>syrup_type <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(bf<span class="sc">$</span>syrup_type, expr, expr2)</span>
+<span id="cb546-3"><a href="string.html#cb546-3" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">table</span>(bf<span class="sc">$</span>syrup_type))</span></code></pre></div>
 <pre><code>## 
 ##       Agave Syrup Barley Malt Syrup      Barley Syrup  Brown Rice Syrup 
 ##                 3                38                 1               163 
@@ -708,10 +708,10 @@ matches inside the brackets:</p>
 would then be accessed using <code>"\\2"</code>, <code>"\\3"</code>, etc. Also, here our second
 expression is very simple, we are free to make this more complicated by
 including literal text:</p>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="string.html#cb549-1" tabindex="-1"></a>expr  <span class="ot">&lt;-</span> <span class="st">&quot;(.*)&quot;</span></span>
-<span id="cb549-2"><a href="string.html#cb549-2" tabindex="-1"></a>expr2 <span class="ot">&lt;-</span> <span class="st">&quot;I have found </span><span class="sc">\\</span><span class="st">1!&quot;</span></span>
-<span id="cb549-3"><a href="string.html#cb549-3" tabindex="-1"></a>bf<span class="sc">$</span>syrup_type <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(bf<span class="sc">$</span>syrup_type, expr, expr2)</span>
-<span id="cb549-4"><a href="string.html#cb549-4" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">table</span>(bf<span class="sc">$</span>syrup_type))</span></code></pre></div>
+<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="string.html#cb548-1" tabindex="-1"></a>expr  <span class="ot">&lt;-</span> <span class="st">&quot;(.*)&quot;</span></span>
+<span id="cb548-2"><a href="string.html#cb548-2" tabindex="-1"></a>expr2 <span class="ot">&lt;-</span> <span class="st">&quot;I have found </span><span class="sc">\\</span><span class="st">1!&quot;</span></span>
+<span id="cb548-3"><a href="string.html#cb548-3" tabindex="-1"></a>bf<span class="sc">$</span>syrup_type <span class="ot">&lt;-</span> <span class="fu">str_replace</span>(bf<span class="sc">$</span>syrup_type, expr, expr2)</span>
+<span id="cb548-4"><a href="string.html#cb548-4" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">table</span>(bf<span class="sc">$</span>syrup_type))</span></code></pre></div>
 <pre><code>## 
 ##       I have found Agave Syrup! I have found Barley Malt Syrup! 
 ##                               3                              38 
@@ -737,37 +737,37 @@ fairly good with regular expressions, let’s call this person Rose Myris. If Ro
 wanted to replace all instances of meat-based ingredients with the phrase
 “dead animal” then she could do this by using <code>str_replace()</code>.
 Firstly, let’s find some breakfast foods that do actually contain meat:</p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="string.html#cb551-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;(Duck|Beef|Pork|Bacon|Chicken|Poultry|Turkey)&quot;</span></span>
-<span id="cb551-2"><a href="string.html#cb551-2" tabindex="-1"></a>bf <span class="ot">&lt;-</span> bf <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">has_meat =</span> <span class="fu">str_detect</span>(ingredients, expr))</span>
-<span id="cb551-3"><a href="string.html#cb551-3" tabindex="-1"></a>bf_meat <span class="ot">&lt;-</span> <span class="fu">filter</span>(bf, has_meat <span class="sc">==</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb550-1"><a href="string.html#cb550-1" tabindex="-1"></a>expr <span class="ot">&lt;-</span> <span class="st">&quot;(Duck|Beef|Pork|Bacon|Chicken|Poultry|Turkey)&quot;</span></span>
+<span id="cb550-2"><a href="string.html#cb550-2" tabindex="-1"></a>bf <span class="ot">&lt;-</span> bf <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">has_meat =</span> <span class="fu">str_detect</span>(ingredients, expr))</span>
+<span id="cb550-3"><a href="string.html#cb550-3" tabindex="-1"></a>bf_meat <span class="ot">&lt;-</span> <span class="fu">filter</span>(bf, has_meat <span class="sc">==</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Inspect <code>bf_meat</code> to see the kinds of products we are dealing with,
 in particular look at row 169 (which also includes corn syrup).
 Using <code>str_replace()</code>, we can reuse the same expression in order
 to swap out each type of meat for a different phrase:</p>
-<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="string.html#cb552-1" tabindex="-1"></a>bf_meat <span class="ot">&lt;-</span> bf_meat <span class="sc">%&gt;%</span></span>
-<span id="cb552-2"><a href="string.html#cb552-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ingredients =</span> <span class="fu">str_replace</span>(ingredients, expr, <span class="st">&quot;Dead animal&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="string.html#cb551-1" tabindex="-1"></a>bf_meat <span class="ot">&lt;-</span> bf_meat <span class="sc">%&gt;%</span></span>
+<span id="cb551-2"><a href="string.html#cb551-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ingredients =</span> <span class="fu">str_replace</span>(ingredients, expr, <span class="st">&quot;Dead animal&quot;</span>)) </span></code></pre></div>
 <p>Now look at what changes have been made to the ingredients in <code>bf_meat</code>.
 In each string only the first match has been replaced. Obviously, Rose Myris,
 would prefer to have all matches replaced, the is where
 <code>str_replace_all()</code> comes in to action:</p>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="string.html#cb553-1" tabindex="-1"></a>bf_meat <span class="ot">&lt;-</span> bf_meat <span class="sc">%&gt;%</span></span>
-<span id="cb553-2"><a href="string.html#cb553-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ingredients =</span> <span class="fu">str_replace_all</span>(ingredients, expr, <span class="st">&quot;Dead animal&quot;</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="string.html#cb552-1" tabindex="-1"></a>bf_meat <span class="ot">&lt;-</span> bf_meat <span class="sc">%&gt;%</span></span>
+<span id="cb552-2"><a href="string.html#cb552-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ingredients =</span> <span class="fu">str_replace_all</span>(ingredients, expr, <span class="st">&quot;Dead animal&quot;</span>)) </span></code></pre></div>
 <p>At last, Rose Myris’ anger can now reach new heights! To really get her blood
 boiling let’s count how many replaces were made:</p>
-<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="string.html#cb554-1" tabindex="-1"></a>dead_hits <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(bf_meat<span class="sc">$</span>ingredients, <span class="st">&quot;Dead animal&quot;</span>)</span>
-<span id="cb554-2"><a href="string.html#cb554-2" tabindex="-1"></a></span>
-<span id="cb554-3"><a href="string.html#cb554-3" tabindex="-1"></a>dead_count <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb554-4"><a href="string.html#cb554-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(dead_hits)) {</span>
-<span id="cb554-5"><a href="string.html#cb554-5" tabindex="-1"></a>    dead_count[i] <span class="ot">&lt;-</span> <span class="fu">length</span>(dead_hits[[i]])</span>
-<span id="cb554-6"><a href="string.html#cb554-6" tabindex="-1"></a>}</span>
-<span id="cb554-7"><a href="string.html#cb554-7" tabindex="-1"></a><span class="fu">sum</span>(dead_count)</span></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="string.html#cb553-1" tabindex="-1"></a>dead_hits <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(bf_meat<span class="sc">$</span>ingredients, <span class="st">&quot;Dead animal&quot;</span>)</span>
+<span id="cb553-2"><a href="string.html#cb553-2" tabindex="-1"></a></span>
+<span id="cb553-3"><a href="string.html#cb553-3" tabindex="-1"></a>dead_count <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb553-4"><a href="string.html#cb553-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(dead_hits)) {</span>
+<span id="cb553-5"><a href="string.html#cb553-5" tabindex="-1"></a>    dead_count[i] <span class="ot">&lt;-</span> <span class="fu">length</span>(dead_hits[[i]])</span>
+<span id="cb553-6"><a href="string.html#cb553-6" tabindex="-1"></a>}</span>
+<span id="cb553-7"><a href="string.html#cb553-7" tabindex="-1"></a><span class="fu">sum</span>(dead_count)</span></code></pre></div>
 <pre><code>## [1] 315</code></pre>
 <p>An alternative way to code this which avoids the loop is:</p>
-<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb556-1"><a href="string.html#cb556-1" tabindex="-1"></a>dead_count <span class="ot">&lt;-</span> <span class="fu">lengths</span>(dead_hits)</span>
-<span id="cb556-2"><a href="string.html#cb556-2" tabindex="-1"></a><span class="fu">sum</span>(dead_count)</span></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="string.html#cb555-1" tabindex="-1"></a>dead_count <span class="ot">&lt;-</span> <span class="fu">lengths</span>(dead_hits)</span>
+<span id="cb555-2"><a href="string.html#cb555-2" tabindex="-1"></a><span class="fu">sum</span>(dead_count)</span></code></pre></div>
 <pre><code>## [1] 315</code></pre>
 <p>We can then look at the worst offender.</p>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb558-1"><a href="string.html#cb558-1" tabindex="-1"></a>bf_meat[<span class="fu">which.max</span>(dead_count), ]</span></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="string.html#cb557-1" tabindex="-1"></a>bf_meat[<span class="fu">which.max</span>(dead_count), ]</span></code></pre></div>
 <pre><code>##    manufacturer  brand product_name size
 ## 12              Turkey Turkey Bacon 6 oz
 ##                                                                                                                                                                                                                                                                                   ingredients
@@ -786,23 +786,23 @@ boiling let’s count how many replaces were made:</p>
 <p>If we wanted to find products that contained fruit, we simply have to create
 one long alternating pattern of literal fruit names (e.g. <code>(apple|orange|pear|raisin)</code>, as there is no smart compact expression we can write down that will match only fruit names.</p>
 <p>There should be a data set <code>fruit</code> in the package <code>stringr</code> that is just a vector of fruit names. Load it in R and have a look:</p>
-<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="string.html#cb560-1" tabindex="-1"></a><span class="fu">data</span>(fruit)</span>
-<span id="cb560-2"><a href="string.html#cb560-2" tabindex="-1"></a><span class="fu">head</span>(fruit)</span></code></pre></div>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="string.html#cb559-1" tabindex="-1"></a><span class="fu">data</span>(fruit)</span>
+<span id="cb559-2"><a href="string.html#cb559-2" tabindex="-1"></a><span class="fu">head</span>(fruit)</span></code></pre></div>
 <pre><code>## [1] &quot;apple&quot;       &quot;apricot&quot;     &quot;avocado&quot;     &quot;banana&quot;      &quot;bell pepper&quot;
 ## [6] &quot;bilberry&quot;</code></pre>
 <p>Check the length of <code>fruit</code> to see how many we actually have. We also make the first letter of the name upper case:</p>
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="string.html#cb562-1" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">str_to_sentence</span>(fruit)</span>
-<span id="cb562-2"><a href="string.html#cb562-2" tabindex="-1"></a><span class="fu">head</span>(fruit)</span></code></pre></div>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="string.html#cb561-1" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">str_to_sentence</span>(fruit)</span>
+<span id="cb561-2"><a href="string.html#cb561-2" tabindex="-1"></a><span class="fu">head</span>(fruit)</span></code></pre></div>
 <pre><code>## [1] &quot;Apple&quot;       &quot;Apricot&quot;     &quot;Avocado&quot;     &quot;Banana&quot;      &quot;Bell pepper&quot;
 ## [6] &quot;Bilberry&quot;</code></pre>
 <p>Next, we can start to build our expression by first collapsing all the different fruit names together, and then adding parenthesis either side:</p>
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="string.html#cb564-1" tabindex="-1"></a>fruit_expr <span class="ot">&lt;-</span> <span class="fu">str_c</span>(fruit, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>)</span>
-<span id="cb564-2"><a href="string.html#cb564-2" tabindex="-1"></a>fruit_expr <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">&quot;(&quot;</span>, fruit_expr, <span class="st">&quot;)&quot;</span>)</span>
-<span id="cb564-3"><a href="string.html#cb564-3" tabindex="-1"></a><span class="fu">str_length</span>(fruit_expr)</span></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="string.html#cb563-1" tabindex="-1"></a>fruit_expr <span class="ot">&lt;-</span> <span class="fu">str_c</span>(fruit, <span class="at">collapse =</span> <span class="st">&quot;|&quot;</span>)</span>
+<span id="cb563-2"><a href="string.html#cb563-2" tabindex="-1"></a>fruit_expr <span class="ot">&lt;-</span> <span class="fu">str_c</span>(<span class="st">&quot;(&quot;</span>, fruit_expr, <span class="st">&quot;)&quot;</span>)</span>
+<span id="cb563-3"><a href="string.html#cb563-3" tabindex="-1"></a><span class="fu">str_length</span>(fruit_expr)</span></code></pre></div>
 <pre><code>## [1] 728</code></pre>
 <p>Our fruit expression has 728 characters which means it’s very long. Let’s put this into action:</p>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="string.html#cb566-1" tabindex="-1"></a>bf<span class="sc">$</span>has_fruit <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(bf<span class="sc">$</span>ingredients, fruit_expr)</span>
-<span id="cb566-2"><a href="string.html#cb566-2" tabindex="-1"></a><span class="fu">table</span>(bf<span class="sc">$</span>has_fruit)</span></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="string.html#cb565-1" tabindex="-1"></a>bf<span class="sc">$</span>has_fruit <span class="ot">&lt;-</span> <span class="fu">str_detect</span>(bf<span class="sc">$</span>ingredients, fruit_expr)</span>
+<span id="cb565-2"><a href="string.html#cb565-2" tabindex="-1"></a><span class="fu">table</span>(bf<span class="sc">$</span>has_fruit)</span></code></pre></div>
 <pre><code>## 
 ## FALSE  TRUE 
 ##  2662  1690</code></pre>
